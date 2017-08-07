@@ -1,0 +1,15 @@
+@import "../../../globals";
+
+button {
+  background: $light-green-theme-color;
+  height: 70px;
+  width: 100%;
+  padding: 0;
+  color: $white-theme-color;
+  font-size: 32px;
+
+  &:hover {
+    cursor: pointer;
+    background: $opaque-green-theme-color;
+  }
+}

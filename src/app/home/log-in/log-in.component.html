@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="mini-container">
+        <form (ngSubmit)="onSubmit(logInForm)" class="pure-form pure-form-stacked" #logInForm="ngForm">
+            <fieldset>
+                <span *ngIf="logInUnsuccessful" class="pure-form-message" id="invalid-credentials">Invalid log in credentials.  Please try again.</span>
+
+                <div class="input-container">
+                    <input ngModel name="email" class="pure-input-1" type="email" placeholder="Email" #email="ngModel"
+                           required>
+                    <span *ngIf="!email.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
+                </div>
+
+                <div class="input-container">
+                    <input ngModel name="password" class="pure-input-1" type="password" placeholder="Password"
+                           [(ngModel)]="passwordInput" #password="ngModel" required>
+                    <span *ngIf="!password.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
+                </div>
+
+                <label for="remember" class="pure-checkbox">
+                    <input name="remember" id="remember" type="checkbox"> Remember me
+                </label>
+
+                <app-home-button [buttonText]="'Log In'"></app-home-button>
+
+                <p id="forgot-password"><a routerLink="/forgot-password">Forgot your password?</a></p>
+
+            </fieldset>
+        </form>
+
+    </div>
+</div>
