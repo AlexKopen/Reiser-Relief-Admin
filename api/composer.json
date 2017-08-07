@@ -1,0 +1,17 @@
+{
+    "name": "reiser-relief-admin",
+    "version": "1.0.0",
+    "description": "The PHP dependencies for the administrative portal at reiserrelief.org",
+    "authors": [
+        {
+            "name": "Alex Kopen",
+            "email": "alexkopen@gmail.com",
+            "homepage": "http://www.alexkopen.com",
+            "role": "Developer"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "firebase/php-jwt": "^5.0.0"
+    }
+}
