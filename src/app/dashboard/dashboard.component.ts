@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {Router} from '@angular/router';
+import {AuthHttp} from 'angular2-jwt';
+import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'app-dashboard',
@@ -9,8 +11,9 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
     isAuthenticated: boolean;
+    message: string;
 
-    constructor(private router: Router, private authService: AuthService) {
+    constructor(private router: Router, private authService: AuthService, private authHttp: AuthHttp) {
     }
 
     ngOnInit() {
@@ -18,6 +21,15 @@ export class DashboardComponent implements OnInit {
         if (!this.isAuthenticated) {
             this.router.navigate(['/log-in']);
         }
+    }
+
+    apiCall() {
+        this.authHttp.get('http://localhost:3001/secured/ping')
+            .map(res => res.json())
+            .subscribe(
+                data => this.message = data.message,
+                error => this.message = error
+            );
     }
 
 }

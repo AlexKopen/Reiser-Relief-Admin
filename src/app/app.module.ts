@@ -11,6 +11,16 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {HomeComponent} from './home/home.component';
 import {AuthService} from './auth/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {AuthConfig, AuthHttp} from 'angular2-jwt';
+import {Http, HttpModule, RequestOptions} from '@angular/http';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+    return new AuthHttp(new AuthConfig({
+        tokenName: 'token',
+        tokenGetter: (() => localStorage.getItem('access_token')),
+        globalHeaders: [{'Content-Type': 'application/json', 'Access-Control-Allow-Headers': 'authorization'}],
+    }), http, options);
+}
 
 const appRoutes: Routes = [
     {
@@ -57,9 +67,17 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         FormsModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        HttpModule
     ],
-    providers: [AuthService],
+    providers: [
+        AuthService,
+        {
+            provide: AuthHttp,
+            useFactory: authHttpServiceFactory,
+            deps: [Http, RequestOptions]
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

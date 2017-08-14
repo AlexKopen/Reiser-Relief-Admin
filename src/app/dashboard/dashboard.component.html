@@ -1,3 +1,5 @@
 <ng-container *ngIf="isAuthenticated">
     <h1>We logged in!</h1>
+    <h2 (click)="apiCall()">API call</h2>
+    <h2>message: {{message}}</h2>
 </ng-container>

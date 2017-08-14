@@ -11,7 +11,7 @@ export class AuthService {
         domain: AUTH_CONFIG.domain,
         clientID: AUTH_CONFIG.clientID,
         redirectUri: AUTH_CONFIG.callbackURL,
-        audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+        audience: `https://volzap.auth0.com/api/v2/`,
         responseType: 'token id_token',
         scope: 'openid'
     });
@@ -55,6 +55,7 @@ export class AuthService {
         const expiresAt = JSON.stringify(
             (authResult.expiresIn * 1000) + new Date().getTime()
         );
+        console.log(authResult.accessToken);
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
