@@ -40,7 +40,7 @@ class Main {
 
         return array(
             "status" => 'ok',
-            "message" => 'It will finna work!',
+            "message" => 'Secret response',
             "user" => array(
                 "email" => $userData["email"],
                 "name" => $userData["name"]

@@ -45,15 +45,11 @@
   // Create Router instance
   $router = new \Bramus\Router\Router();
 
-  $globalToken = '';
-
   // Activate CORS
   function sendCorsHeaders() {
-
     header("Access-Control-Allow-Origin: *");
-    header('Access-Control-Allow-Headers: x-test-header, Origin, Authorization, X-Requested-With, Content-Type, Accept');
+    header("Access-Control-Allow-Headers: Authorization, Content-Type");
     header("Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE");
-
   }
 
   $router->options('/.*', function() {
