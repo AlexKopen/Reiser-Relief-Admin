@@ -1,13 +1,31 @@
 body {
-  background: #24333c;
-  font-family: 'Titillium Web', sans-serif;
-  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.pure-g > div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
 }
 
 .container {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+  padding: 0 15px;
+}
+
+header {
+  margin-top: 15px;
+  text-align: right;
+
+  h1 {
+    text-align: center;
+  }
 }
 
 .mini-container {
