@@ -6,13 +6,15 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {LogInComponent} from './home/log-in/log-in.component';
 import {HomeButtonComponent} from './home/home-button/home-button.component';
-import {ForgotPasswordComponent} from './home/forgot-password/forgot-password.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {HomeComponent} from './home/home.component';
 import {AuthService} from './auth/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
 import {Http, HttpModule, RequestOptions} from '@angular/http';
+import { LogOutComponent } from './log-out/log-out.component';
+import {DataService} from './shared/data.service';
+import { DashboardTabComponent } from './dashboard/dashboard-tab/dashboard-tab.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -42,14 +44,14 @@ const appRoutes: Routes = [
         data: {title: 'Log In'}
     },
     {
-        path: 'dashboard',
-        component: DashboardComponent,
+        path: 'logout',
+        component: LogOutComponent,
         data: {title: 'Log In'}
     },
     {
-        path: 'forgot-password',
-        component: ForgotPasswordComponent,
-        data: {title: 'Password Recovery'}
+        path: 'dashboard',
+        component: DashboardComponent,
+        data: {title: 'Log In'}
     },
     {path: '**', component: PageNotFoundComponent}
 ];
@@ -59,10 +61,11 @@ const appRoutes: Routes = [
         AppComponent,
         LogInComponent,
         HomeButtonComponent,
-        ForgotPasswordComponent,
         PageNotFoundComponent,
         HomeComponent,
-        DashboardComponent
+        DashboardComponent,
+        LogOutComponent,
+        DashboardTabComponent
     ],
     imports: [
         BrowserModule,
@@ -76,7 +79,8 @@ const appRoutes: Routes = [
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,
             deps: [Http, RequestOptions]
-        }
+        },
+        DataService
     ],
     bootstrap: [AppComponent]
 })

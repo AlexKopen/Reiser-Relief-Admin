@@ -16,13 +16,7 @@
                     <span *ngIf="!password.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
                 </div>
 
-                <label for="remember" class="pure-checkbox">
-                    <input name="remember" id="remember" type="checkbox"> Remember me
-                </label>
-
                 <app-home-button [buttonText]="'Log In'"></app-home-button>
-
-                <p id="forgot-password"><a routerLink="/forgot-password">Forgot your password?</a></p>
 
             </fieldset>
         </form>

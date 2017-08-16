@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AUTH_CONFIG} from './auth0-variables';
 import * as auth0 from 'auth0-js';
+import {DataService} from '../shared/data.service';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
         scope: 'openid'
     });
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private loginState: DataService) {
     }
 
     public login(username: string, password: string): void {
@@ -27,10 +28,9 @@ export class AuthService {
         }, (err, authResult) => {
             if (err) {
                 console.log(err);
-                alert(`Error: ${err.error_description}. Check the console for further details.`);
+                this.loginState.setLoginUnsuccessful(true);
                 return;
             } else if (authResult && authResult.accessToken && authResult.idToken) {
-                console.log(authResult);
                 this.setSession(authResult);
             }
         });
@@ -55,7 +55,6 @@ export class AuthService {
         const expiresAt = JSON.stringify(
             (authResult.expiresIn * 1000) + new Date().getTime()
         );
-        console.log(authResult.accessToken);
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);

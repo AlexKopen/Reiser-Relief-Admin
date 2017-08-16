@@ -4,7 +4,7 @@ form {
   $input-height: 55px;
   $vertical-spacing: 30px;
   margin-top: $vertical-spacing;
-  color: $light-gray-theme-color;
+  color: $black-theme-color;
 
   .input-container {
     height: $input-height + $vertical-spacing;
@@ -17,17 +17,17 @@ form {
     box-shadow: none;
     border-radius: 0;
     margin-bottom: $vertical-spacing;
-    color: $white-theme-color;
+    color: $black-theme-color;
 
     &::placeholder {
-      color: $light-gray-theme-color;
+      color: $black-theme-color;
     }
 
     &:focus {
-      border-color: $light-green-theme-color;
+      border-color: $black-theme-color;
 
       &:invalid {
-        color: $white-theme-color;
+        color: $black-theme-color;
       }
     }
 
