@@ -1,0 +1,36 @@
+<h2>Create News Entry</h2>
+
+
+<form (ngSubmit)="onSubmit(logInForm)" class="pure-form pure-form-stacked" #logInForm="ngForm">
+  <fieldset>
+    <div class="input-container">
+      <input ngModel name="title" class="pure-input-1" placeholder="Title" #title="ngModel"
+             required>
+      <span *ngIf="!title.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
+    </div>
+
+    <textarea ngModel name="content" class="pure-input-1" #content="ngModel"
+              required></textarea>
+    <span *ngIf="!content.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
+
+  </fieldset>
+
+  <button class="pure-button">Submit</button>
+</form>
+
+
+<h3>Preview</h3>
+
+<div class="news-post">
+  <h2>
+    {{ title.value }}
+  </h2>
+  <h3>
+    <ng-container *ngIf="title.value || content.value">
+      {{ currentDate | date:'MMM d, y' }}
+    </ng-container>
+  </h3>
+  <p>
+    {{ content.value }}
+  </p>
+</div>

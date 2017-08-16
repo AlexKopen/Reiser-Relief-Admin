@@ -15,11 +15,11 @@ export class LogInComponent implements OnInit {
     passwordInput: string;
     loginStateSubscription: Subscription;
 
-    constructor(private authService: AuthService, private loginStateService: DataService) {
+    constructor(private authService: AuthService, private dataService: DataService) {
     }
 
     ngOnInit() {
-        this.loginStateSubscription = this.loginStateService.loginUnsuccessfulSubject.subscribe((value) => {
+        this.loginStateSubscription = this.dataService.loginUnsuccessfulSubject.subscribe((value) => {
             this.logInUnsuccessful = value;
         });
     }

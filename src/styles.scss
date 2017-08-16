@@ -1,3 +1,5 @@
+@import "globals";
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -41,5 +43,60 @@ a {
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+form {
+  $input-height: 55px;
+  $vertical-spacing: 30px;
+  margin-top: $vertical-spacing;
+  color: $black-theme-color;
+
+  .input-container {
+    height: $input-height + $vertical-spacing;
+  }
+
+  input {
+    height: $input-height;
+    background: none;
+    border: 1px solid $light-gray-theme-color;
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: $vertical-spacing;
+    color: $black-theme-color;
+
+    &::placeholder {
+      color: $black-theme-color;
+    }
+
+    &:focus {
+      border-color: $black-theme-color;
+
+      &:invalid {
+        color: $black-theme-color;
+      }
+    }
+
+    &[type=checkbox] {
+      $width-and-height: 25px;
+      height: $width-and-height;
+      width: $width-and-height;
+    }
+
+  }
+
+  textarea {
+    resize: vertical;
+    height: 215px;
+  }
+
+  .pure-form-message {
+    color: $error-theme-color;
+    padding: 0;
+    height: $vertical-spacing;
+
+    &#invalid-credentials {
+      text-align: center;
+    }
   }
 }
