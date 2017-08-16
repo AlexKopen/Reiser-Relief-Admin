@@ -3,6 +3,7 @@ import {AuthService} from '../auth/auth.service';
 import {Router} from '@angular/router';
 import {AuthHttp} from 'angular2-jwt';
 import 'rxjs/add/operator/map';
+import {DataService} from '../shared/data.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -12,6 +13,7 @@ import 'rxjs/add/operator/map';
 export class DashboardComponent implements OnInit {
     isAuthenticated: boolean;
     message: string;
+    selectedTab = 'News';
 
     constructor(private router: Router, private authService: AuthService, private authHttp: AuthHttp) {
     }
@@ -30,6 +32,10 @@ export class DashboardComponent implements OnInit {
                 data => this.message = data.message,
                 error => this.message = error
             );
+    }
+
+    setSelectedTab(selectedTab: string) {
+        this.selectedTab = selectedTab;
     }
 
 }

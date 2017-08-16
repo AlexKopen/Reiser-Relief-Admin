@@ -1,0 +1,15 @@
+@import "../../globals";
+
+.active-underline {
+  $underline-height: 3px;
+  visibility: hidden;
+  height: $underline-height;
+  width: 100%;
+  background: $light-theme-color;
+  margin-top: -$underline-height;
+
+  &.active {
+    visibility: visible;
+  }
+}
+

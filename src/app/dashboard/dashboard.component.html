@@ -1,5 +1,31 @@
 <ng-container *ngIf="isAuthenticated">
-    <h1>We logged in!</h1>
-    <h2 (click)="apiCall()">API call</h2>
-    <h2>message: {{message}}</h2>
+    <div class="container">
+        <div class="pure-g">
+            <div class="pure-u-1-3">
+                <app-dashboard-tab (click)="setSelectedTab('News')" [selectedTab]="'News'"></app-dashboard-tab>
+                <div class="active-underline" [ngClass]="{'active': selectedTab === 'News'}"></div>
+            </div>
+            <div class="pure-u-1-3">
+                <app-dashboard-tab (click)="setSelectedTab('Events')" [selectedTab]="'Events'"></app-dashboard-tab>
+                <div class="active-underline" [ngClass]="{'active': selectedTab === 'Events'}"></div>
+            </div>
+            <div class="pure-u-1-3">
+                <app-dashboard-tab (click)="setSelectedTab('Mission Trips')" [selectedTab]="'Mission Trips'"></app-dashboard-tab>
+                <div class="active-underline" [ngClass]="{'active': selectedTab === 'Mission Trips'}"></div>
+            </div>
+        </div>
+
+        <div id="active-tab">
+            <ng-container *ngIf="selectedTab === 'News'">
+                news
+            </ng-container>
+            <ng-container *ngIf="selectedTab === 'Events'">
+                events
+            </ng-container>
+            <ng-container *ngIf="selectedTab === 'Mission Trips'">
+                mts
+            </ng-container>
+        </div>
+
+    </div>
 </ng-container>

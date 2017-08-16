@@ -1,0 +1,18 @@
+@import "../../../globals";
+
+.single-tab {
+  $tab-height: 50px;
+  height: $tab-height;
+  background: $tab-background-color;
+  cursor: pointer;
+
+  &:hover {
+    background: $tab-hover-color;
+  }
+
+  p {
+    line-height: $tab-height;
+    text-align: center;
+    color: $dark-theme-color;
+  }
+}
