@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {DataService} from '../../shared/data.service';
+import {NewsPost} from '../../shared/models/news-post.model';
 
 @Component({
     selector: 'app-news',
@@ -12,22 +14,24 @@ export class NewsComponent implements OnInit {
     @ViewChild('title') title;
     @ViewChild('content') content;
 
-    constructor() {
+    constructor(private dataService: DataService) {
     }
 
     ngOnInit() {
     }
 
-
     onSubmit(newsPostForm: FormGroup) {
         if (newsPostForm.valid) {
-            console.log(this.title.viewModel);
-            console.log(this.content.viewModel);
+            const newsPost = new NewsPost();
+            newsPost.title = this.title.viewModel;
+            newsPost.content = this.content.viewModel;
 
+            this.dataService.submitNews(newsPost);
+
+            newsPostForm.reset();
         } else {
             this.formSubmittedAndNotProcessed = true;
         }
     }
-
 
 }

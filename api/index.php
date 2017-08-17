@@ -60,7 +60,7 @@
 
 
   // Check JWT on /secured routes
-  $router->before('GET', '/secured/.*', function() use ($app) {
+  $router->before('GET|POST', '/secured/.*', function() use ($app) {
 
     $requestHeaders = apache_request_headers();
 
@@ -98,6 +98,15 @@
   $router->get('/secured/ping', function() use ($app){
       echo json_encode($app->privatePing());
   });
+
+$router->post('/secured/news', function() use ($app){
+    $post = file_get_contents('php://input');
+    $post = json_decode($post, TRUE); //convert JSON into array
+    $title = $post['title'];
+    $content = $post['content'];
+
+    echo $post['title'];
+});
 
   $router->set404(function() {
     header('HTTP/1.1 404 Not Found');
