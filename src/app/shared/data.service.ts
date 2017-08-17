@@ -9,6 +9,8 @@ export class DataService {
     baseUrl = 'http://localhost:3001';
     loginUnsuccessful = false;
     loginUnsuccessfulSubject = new Subject<boolean>();
+    allNews: Array<NewsPost> = [];
+    allNewsSubject = new Subject<Array<NewsPost>>();
 
     constructor(private authHttp: AuthHttp) {
     }
@@ -27,5 +29,15 @@ export class DataService {
                 err => console.log(err),
                 () => console.log('Request Complete')
             );
+    }
+
+    getAllNews() {
+        this.authHttp.get(this.baseUrl + ENDPOINT.newsUrl)
+          .map(res => res.json())
+          .subscribe(
+            data => this.allNews = data,
+            error => console.log(error),
+            () => this.allNewsSubject.next(this.allNews)
+          );
     }
 }

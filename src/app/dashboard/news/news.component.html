@@ -1,36 +1,44 @@
 <h2>Create News Entry</h2>
 
+<div class="pure-g">
+  <div class="pure-u-1-2">
+    <form (ngSubmit)="onSubmit(logInForm)" class="pure-form pure-form-stacked" #logInForm="ngForm">
+      <fieldset>
+        <div class="input-container">
+          <input ngModel name="title" class="pure-input-1" placeholder="Title" #title="ngModel"
+                 required>
+          <span *ngIf="!title.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
+        </div>
 
-<form (ngSubmit)="onSubmit(logInForm)" class="pure-form pure-form-stacked" #logInForm="ngForm">
-  <fieldset>
-    <div class="input-container">
-      <input ngModel name="title" class="pure-input-1" placeholder="Title" #title="ngModel"
-             required>
-      <span *ngIf="!title.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
+        <textarea placeholder="New post content" ngModel name="content" class="pure-input-1" #content="ngModel"
+                  required></textarea>
+        <span *ngIf="!content.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
+
+      </fieldset>
+
+      <button class="pure-button">Submit</button>
+    </form>
+  </div>
+  <div class="pure-u-1-2">
+    <div class="padding-left">
+      <h3>Preview</h3>
+
+      <div class="news-post">
+        <h2>
+          {{ title.value }}
+        </h2>
+        <h3>
+          <ng-container *ngIf="title.value || content.value">
+            {{ currentDate | date:'MMM d, y' }}
+          </ng-container>
+        </h3>
+        <p>
+          {{ content.value }}
+        </p>
+      </div>
     </div>
-
-    <textarea ngModel name="content" class="pure-input-1" #content="ngModel"
-              required></textarea>
-    <span *ngIf="!content.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>
-
-  </fieldset>
-
-  <button class="pure-button">Submit</button>
-</form>
-
-
-<h3>Preview</h3>
-
-<div class="news-post">
-  <h2>
-    {{ title.value }}
-  </h2>
-  <h3>
-    <ng-container *ngIf="title.value || content.value">
-      {{ currentDate | date:'MMM d, y' }}
-    </ng-container>
-  </h3>
-  <p>
-    {{ content.value }}
-  </p>
+  </div>
 </div>
+
+<h2>Manage News</h2>
+<app-news-results [newsPosts]="allNewsPosts"></app-news-results>

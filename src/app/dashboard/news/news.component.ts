@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {DataService} from '../../shared/data.service';
 import {NewsPost} from '../../shared/models/news-post.model';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
     selector: 'app-news',
@@ -13,11 +14,18 @@ export class NewsComponent implements OnInit {
     currentDate = new Date();
     @ViewChild('title') title;
     @ViewChild('content') content;
+    allNewsPosts: Array<NewsPost>;
+    private allNewsSubscription: Subscription;
 
     constructor(private dataService: DataService) {
     }
 
     ngOnInit() {
+        this.dataService.getAllNews();
+        this.allNewsPosts = this.dataService.allNews;
+        this.allNewsSubscription = this.dataService.allNewsSubject.subscribe((value) => {
+            this.allNewsPosts = value;
+        });
     }
 
     onSubmit(newsPostForm: FormGroup) {
