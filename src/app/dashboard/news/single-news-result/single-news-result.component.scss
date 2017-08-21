@@ -20,6 +20,10 @@ $row-padding: 15px;
     padding: $row-padding 0;
     border-right: 1px solid $separator-color;
 
+    &.last {
+      border-right: none;
+    }
+
     textarea {
       height: $row-height;
       width: 95%;
