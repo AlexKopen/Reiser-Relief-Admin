@@ -7,7 +7,7 @@ import {Headers} from '@angular/http';
 
 @Injectable()
 export class DataService {
-    baseUrl = 'http://localhost:3001';
+    baseUrl = 'http://127.0.0.1:3001';
     loginUnsuccessful = false;
     loginUnsuccessfulSubject = new Subject<boolean>();
     allNews: Array<NewsPost> = [];

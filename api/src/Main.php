@@ -8,7 +8,7 @@ class Main
 {
     protected $token;
     protected $tokenInfo;
-    protected $servername = "localhost";
+    protected $servername = "127.0.0.1";
     protected $username = "root";
     protected $password = "";
     protected $dbname = "reiserrelief";
