@@ -1,11 +1,21 @@
-<div *ngFor="let newsPost of newsPosts" class="news-post">
-  <h2>
-    {{ newsPost['title'] }}
-  </h2>
-  <h3>
-    {{ newsPost['date'] }}
-  </h3>
-  <p>
-    {{ newsPost['content'] }}
-  </p>
+<div class="table-header">
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+            <p>Date</p>
+        </div>
+        <div class="pure-u-1-4">
+            <p>Title</p>
+        </div>
+        <div class="pure-u-1-4">
+            <p>Content</p>
+        </div>
+        <div class="pure-u-1-4">
+            <p>Action</p>
+        </div>
+    </div>
 </div>
+
+<ng-container *ngFor="let newsPost of newsPosts; let i = index">
+    <app-single-news-result [newsPost]="newsPost" [postIndex]="i"></app-single-news-result>
+</ng-container>
+

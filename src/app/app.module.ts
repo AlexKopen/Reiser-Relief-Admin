@@ -19,6 +19,7 @@ import {NewsComponent} from './dashboard/news/news.component';
 import {EventsComponent} from './dashboard/events/events.component';
 import {ApplicationsComponent} from './dashboard/applications/applications.component';
 import {NewsResultsComponent} from './dashboard/news/news-results/news-results.component';
+import { SingleNewsResultComponent } from './dashboard/news/single-news-result/single-news-result.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -73,7 +74,8 @@ const appRoutes: Routes = [
         NewsComponent,
         EventsComponent,
         ApplicationsComponent,
-        NewsResultsComponent
+        NewsResultsComponent,
+        SingleNewsResultComponent
     ],
     imports: [
         BrowserModule,

@@ -3,6 +3,7 @@ import {Subject} from 'rxjs/Subject';
 import {ENDPOINT} from './endpoint.constants';
 import {AuthHttp} from 'angular2-jwt';
 import {NewsPost} from './models/news-post.model';
+import {Headers} from '@angular/http';
 
 @Injectable()
 export class DataService {
@@ -39,5 +40,17 @@ export class DataService {
             error => console.log(error),
             () => this.allNewsSubject.next(this.allNews)
           );
+    }
+
+    deleteNews(newsPost: NewsPost) {
+        const myHeader = new Headers();
+        myHeader.append('Post-Id', newsPost.id.toString());
+
+        this.authHttp.delete(this.baseUrl + ENDPOINT.newsUrl, { headers: myHeader })
+            .subscribe(
+                data => this.getAllNews(),
+                err => console.log(err),
+                () => console.log('Request Complete')
+            );
     }
 }

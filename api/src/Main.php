@@ -29,7 +29,7 @@ class Main
         }
     }
 
-    public function postNews($title, $content)
+    public function postNews($id, $title, $content, $date)
     {
         $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -37,8 +37,8 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO news (title, content) VALUES (?, ?)");
-        $stmt->bind_param("ss", $title, $content);
+        $stmt = $conn->prepare("INSERT INTO news (id, title, content) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE title=?, content=?, date=?");
+        $stmt->bind_param("isssss", $id, $title, $content, $title, $content, $date);
 
         $stmt->execute();
 
@@ -58,11 +58,32 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $result = $conn->query("SELECT * FROM news");
+        $result = $conn->query("SELECT * FROM news ORDER BY date DESC");
         $rows = array();
         while($r = $result->fetch_assoc()) {
             $rows[] = $r;
         }
         return json_encode($rows);
+    }
+
+    public function deleteNews($id)
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $stmt = $conn->prepare("DELETE FROM news WHERE id = ?");
+        $stmt->bind_param("i", $id);
+
+        $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+
+        return array(
+            "status" => 'ok'
+        );
     }
 }

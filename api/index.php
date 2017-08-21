@@ -46,7 +46,7 @@ $router = new \Bramus\Router\Router();
 function sendCorsHeaders()
 {
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: Authorization, Content-Type");
+    header("Access-Control-Allow-Headers: Authorization, Content-Type, Post-Id");
     header("Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE");
 }
 
@@ -57,7 +57,7 @@ $router->options('/.*', function () {
 sendCorsHeaders();
 
 // Check JWT on /secured routes
-$router->before('GET|POST', '/secured/.*', function () use ($app) {
+$router->before('GET|POST|DELETE', '/secured/.*', function () use ($app) {
 
     $requestHeaders = apache_request_headers();
 
@@ -99,13 +99,20 @@ $router->get('/secured/news', function () use ($app) {
     echo json_encode($app->getNews());
 });
 
+$router->delete('/secured/news', function () use ($app) {
+    $requestHeaders = apache_request_headers();
+    echo json_encode($app->deleteNews($requestHeaders['Post-Id']));
+});
+
 $router->post('/secured/news', function () use ($app) {
     $post = file_get_contents('php://input');
     $post = json_decode($post, TRUE); //convert JSON into array
+    $id = $post['id'];
+    $date = $post['date'];
     $title = $post['title'];
     $content = $post['content'];
 
-    echo ($app->postNews($title, $content));
+    echo ($app->postNews($id, $title, $content, $date));
 });
 
 $router->set404(function () {
