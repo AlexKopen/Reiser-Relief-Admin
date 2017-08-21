@@ -87,14 +87,6 @@ $router->before('GET|POST|DELETE', '/secured/.*', function () use ($app) {
 
 });
 
-$router->get('/ping', function () use ($app) {
-    echo json_encode($app->publicPing());
-});
-
-$router->get('/secured/ping', function () use ($app) {
-    echo json_encode($app->privatePing());
-});
-
 $router->get('/secured/news', function () use ($app) {
     echo json_encode($app->getNews());
 });
@@ -113,6 +105,17 @@ $router->post('/secured/news', function () use ($app) {
     $content = $post['content'];
 
     echo ($app->postNews($id, $title, $content, $date));
+});
+
+$router->get('/secured/events', function () use ($app) {
+    echo json_encode($app->getEvents());
+});
+
+$router->post('/secured/events', function () use ($app) {
+    $post = file_get_contents('php://input');
+    $post = json_decode($post, TRUE); //convert JSON into array
+
+    echo ($app->postEvents($post));
 });
 
 $router->set404(function () {

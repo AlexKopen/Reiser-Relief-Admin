@@ -1,3 +1,4 @@
 export const ENDPOINT = {
-    newsUrl: '/secured/news'
+    newsUrl: '/secured/news',
+    eventsUrl: '/secured/events'
 };

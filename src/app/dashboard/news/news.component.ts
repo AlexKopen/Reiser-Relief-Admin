@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {DataService} from '../../shared/data.service';
 import {NewsPost} from '../../shared/models/news-post.model';
-import {Subscription} from "rxjs/Subscription";
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-news',

@@ -86,4 +86,58 @@ class Main
             "status" => 'ok'
         );
     }
+
+    public function getEvents()
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $result = $conn->query("SELECT * FROM events");
+        $rows = array();
+        while($r = $result->fetch_assoc()) {
+            $rows[] = $r;
+        }
+        return json_encode($rows);
+    }
+
+    public function postEvents($allEvents)
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $contentKTWT = "";
+        $contentGTTMD = "";
+
+        foreach ($allEvents as $currentEvent) {
+            switch (strtolower($currentEvent['title'])) {
+                case 'keep the wheel turning':
+                    $contentKTWT = $currentEvent['content'];
+                    break;
+                case 'give to the max day':
+                    $contentGTTMD = $currentEvent['content'];
+                    break;
+            }
+        }
+
+        $stmt = $conn->prepare("UPDATE events SET content=? WHERE title='Give to the Max Day'");
+        $stmt->bind_param("s", $contentGTTMD);
+        $stmt->execute();
+
+        $stmt = $conn->prepare("UPDATE events SET content=? WHERE title='Keep the Wheel Turning'");
+        $stmt->bind_param("s", $contentKTWT);
+        $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+
+        return array(
+            "status" => 'ok'
+        );
+    }
 }

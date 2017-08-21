@@ -4,6 +4,7 @@ import {ENDPOINT} from './endpoint.constants';
 import {AuthHttp} from 'angular2-jwt';
 import {NewsPost} from './models/news-post.model';
 import {Headers} from '@angular/http';
+import {EventEntry} from './models/event-entry.model';
 
 @Injectable()
 export class DataService {
@@ -12,6 +13,8 @@ export class DataService {
     loginUnsuccessfulSubject = new Subject<boolean>();
     allNews: Array<NewsPost> = [];
     allNewsSubject = new Subject<Array<NewsPost>>();
+    allEvents: Array<EventEntry> = [];
+    allEventsSubject = new Subject<Array<EventEntry>>();
 
     constructor(private authHttp: AuthHttp) {
     }
@@ -52,5 +55,26 @@ export class DataService {
                 err => console.log(err),
                 () => console.log('Request Complete')
             );
+    }
+
+    getAllEvents() {
+      this.authHttp.get(this.baseUrl + ENDPOINT.eventsUrl)
+        .map(res => res.json())
+        .subscribe(
+          data => this.allEvents = JSON.parse(data),
+          error => console.log(error),
+          () => this.allEventsSubject.next(this.allEvents)
+        );
+    }
+
+    submitAllEvents(events: Array<EventEntry>) {
+        const body = JSON.stringify(events);
+
+        this.authHttp.post(this.baseUrl + ENDPOINT.eventsUrl, body)
+          .subscribe(
+            data => this.getAllEvents(),
+            err => console.log(err),
+            () => console.log('Request Complete')
+          );
     }
 }
