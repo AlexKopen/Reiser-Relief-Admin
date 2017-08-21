@@ -1,3 +1,11 @@
-<p>
-  news-results works!
-</p>
+<div *ngFor="let newsPost of newsPosts" class="news-post">
+  <h2>
+    {{ newsPost['title'] }}
+  </h2>
+  <h3>
+    {{ newsPost['date'] }}
+  </h3>
+  <p>
+    {{ newsPost['content'] }}
+  </p>
+</div>

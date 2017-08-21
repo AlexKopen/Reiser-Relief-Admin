@@ -9,16 +9,16 @@ import {HomeButtonComponent} from './home/home-button/home-button.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {HomeComponent} from './home/home.component';
 import {AuthService} from './auth/auth.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
 import {Http, HttpModule, RequestOptions} from '@angular/http';
-import { LogOutComponent } from './log-out/log-out.component';
+import {LogOutComponent} from './log-out/log-out.component';
 import {DataService} from './shared/data.service';
-import { DashboardTabComponent } from './dashboard/dashboard-tab/dashboard-tab.component';
-import { NewsComponent } from './dashboard/news/news.component';
-import { EventsComponent } from './dashboard/events/events.component';
-import { ApplicationsComponent } from './dashboard/applications/applications.component';
-import { NewsResultsComponent } from './dashboard/news/news-results/news-results.component';
+import {DashboardTabComponent} from './dashboard/dashboard-tab/dashboard-tab.component';
+import {NewsComponent} from './dashboard/news/news.component';
+import {EventsComponent} from './dashboard/events/events.component';
+import {ApplicationsComponent} from './dashboard/applications/applications.component';
+import {NewsResultsComponent} from './dashboard/news/news-results/news-results.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({

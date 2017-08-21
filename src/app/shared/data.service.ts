@@ -25,7 +25,7 @@ export class DataService {
 
         this.authHttp.post(this.baseUrl + ENDPOINT.newsUrl, body)
             .subscribe(
-                data => console.log(data),
+                data => this.getAllNews(),
                 err => console.log(err),
                 () => console.log('Request Complete')
             );
@@ -35,7 +35,7 @@ export class DataService {
         this.authHttp.get(this.baseUrl + ENDPOINT.newsUrl)
           .map(res => res.json())
           .subscribe(
-            data => this.allNews = data,
+            data => this.allNews = JSON.parse(data),
             error => console.log(error),
             () => this.allNewsSubject.next(this.allNews)
           );

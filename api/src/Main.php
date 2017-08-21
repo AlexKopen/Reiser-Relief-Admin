@@ -4,48 +4,65 @@ namespace App;
 
 use Auth0\SDK\JWTVerifier;
 
-class Main {
-
+class Main
+{
     protected $token;
     protected $tokenInfo;
+    protected $servername = "localhost";
+    protected $username = "root";
+    protected $password = "";
+    protected $dbname = "reiserrelief";
 
-    public function setCurrentToken($token) {
-
+    public function setCurrentToken($token)
+    {
         try {
-          $verifier = new JWTVerifier([
-            'supported_algs' => ['RS256'],
-            'valid_audiences' => [getenv('AUTH0_AUDIENCE')],
-            'authorized_iss' => ['https://' . getenv('AUTH0_DOMAIN') . '/']
-          ]);
+            $verifier = new JWTVerifier([
+                'supported_algs' => ['RS256'],
+                'valid_audiences' => [getenv('AUTH0_AUDIENCE')],
+                'authorized_iss' => ['https://' . getenv('AUTH0_DOMAIN') . '/']
+            ]);
 
-          $this->token = $token;
-          $this->tokenInfo = $verifier->verifyAndDecode($token);
-        }
-        catch(\Auth0\SDK\Exception\CoreException $e) {
-          throw $e;
+            $this->token = $token;
+            $this->tokenInfo = $verifier->verifyAndDecode($token);
+        } catch (\Auth0\SDK\Exception\CoreException $e) {
+            throw $e;
         }
     }
 
-    public function publicPing(){
+    public function postNews($title, $content)
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $stmt = $conn->prepare("INSERT INTO news (title, content) VALUES (?, ?)");
+        $stmt->bind_param("ss", $title, $content);
+
+        $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+
         return array(
-            "status" => 'ok',
-            "message" => 'Everybody can do this...'
+            "status" => 'ok'
         );
     }
 
-    public function privatePing(){
+    public function getNews()
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
 
-        $auth0Api = new \Auth0\SDK\Auth0Api($this->token, getenv('AUTH0_DOMAIN'));
-        $userData = $auth0Api->users->get($this->tokenInfo->sub);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-        return array(
-            "status" => 'ok',
-            "message" => 'Secret response',
-            "user" => array(
-                "email" => $userData["email"],
-                "name" => $userData["name"]
-            )
-        );
+        $result = $conn->query("SELECT * FROM news");
+        $rows = array();
+        while($r = $result->fetch_assoc()) {
+            $rows[] = $r;
+        }
+        return json_encode($rows);
     }
-
 }
