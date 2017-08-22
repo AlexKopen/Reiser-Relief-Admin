@@ -27,7 +27,7 @@ export class DataService {
     submitNews(newsPost: NewsPost) {
         const body = JSON.stringify(newsPost);
 
-        this.authHttp.post(this.baseUrl + ENDPOINT.newsUrl, body)
+        this.authHttp.post(this.baseUrl + ENDPOINT.newsUrlPrivate, body)
             .subscribe(
                 data => this.getAllNews(),
                 err => console.log(err),
@@ -36,7 +36,7 @@ export class DataService {
     }
 
     getAllNews() {
-        this.authHttp.get(this.baseUrl + ENDPOINT.newsUrl)
+        this.authHttp.get(this.baseUrl + ENDPOINT.newsUrlPrivate)
           .map(res => res.json())
           .subscribe(
             data => this.allNews = JSON.parse(data),
@@ -49,7 +49,7 @@ export class DataService {
         const myHeader = new Headers();
         myHeader.append('Post-Id', newsPost.id.toString());
 
-        this.authHttp.delete(this.baseUrl + ENDPOINT.newsUrl, { headers: myHeader })
+        this.authHttp.delete(this.baseUrl + ENDPOINT.newsUrlPrivate, { headers: myHeader })
             .subscribe(
                 data => this.getAllNews(),
                 err => console.log(err),
@@ -58,7 +58,7 @@ export class DataService {
     }
 
     getAllEvents() {
-      this.authHttp.get(this.baseUrl + ENDPOINT.eventsUrl)
+      this.authHttp.get(this.baseUrl + ENDPOINT.eventsUrlPrivate)
         .map(res => res.json())
         .subscribe(
           data => this.allEvents = JSON.parse(data),
@@ -70,7 +70,7 @@ export class DataService {
     submitAllEvents(events: Array<EventEntry>) {
         const body = JSON.stringify(events);
 
-        this.authHttp.post(this.baseUrl + ENDPOINT.eventsUrl, body)
+        this.authHttp.post(this.baseUrl + ENDPOINT.eventsUrlPrivate, body)
           .subscribe(
             data => this.getAllEvents(),
             err => console.log(err),

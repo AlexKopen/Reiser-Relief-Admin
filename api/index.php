@@ -87,7 +87,7 @@ $router->before('GET|POST|DELETE', '/secured/.*', function () use ($app) {
 
 });
 
-$router->get('/secured/news', function () use ($app) {
+$router->get('/news', function () use ($app) {
     echo json_encode($app->getNews());
 });
 
@@ -107,7 +107,7 @@ $router->post('/secured/news', function () use ($app) {
     echo ($app->postNews($id, $title, $content, $date));
 });
 
-$router->get('/secured/events', function () use ($app) {
+$router->get('/events', function () use ($app) {
     echo json_encode($app->getEvents());
 });
 
@@ -116,6 +116,24 @@ $router->post('/secured/events', function () use ($app) {
     $post = json_decode($post, TRUE); //convert JSON into array
 
     echo ($app->postEvents($post));
+});
+
+$router->get('/application-dates', function () use ($app) {
+    echo json_encode($app->getApplicationDates());
+});
+
+$router->post('/secured/application-dates', function () use ($app) {
+    $post = file_get_contents('php://input');
+    $post = json_decode($post, TRUE);
+    $id = $post['id'];
+    $date = $post['date'];
+    $leader = $post['leader'];
+
+    echo ($app->postApplicationDates($id, $date, $leader));
+});
+
+$router->get('/secured/applications', function () use ($app) {
+    echo json_encode($app->getApplications());
 });
 
 $router->set404(function () {

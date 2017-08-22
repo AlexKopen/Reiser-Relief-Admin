@@ -37,6 +37,7 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
+        // Pass in date on duplicate key to avoid mysql from updating time stamp
         $stmt = $conn->prepare("INSERT INTO news (id, title, content) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE title=?, content=?, date=?");
         $stmt->bind_param("isssss", $id, $title, $content, $title, $content, $date);
 
@@ -131,6 +132,80 @@ class Main
 
         $stmt = $conn->prepare("UPDATE events SET content=? WHERE title='Keep the Wheel Turning'");
         $stmt->bind_param("s", $contentKTWT);
+        $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+
+        return array(
+            "status" => 'ok'
+        );
+    }
+
+    public function postApplicationDates($id, $date, $leader)
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $stmt = $conn->prepare("INSERT INTO application_dates (id, date, leader) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE date=?, leader=?");
+        $stmt->bind_param("issss", $id, $date, $leader, $date, $leader);
+
+        $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+
+        return array(
+            "status" => 'ok'
+        );
+    }
+
+    public function getApplicationDates()
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $result = $conn->query("SELECT * FROM application_dates");
+        $rows = array();
+        while($r = $result->fetch_assoc()) {
+            $rows[] = $r;
+        }
+        return json_encode($rows);
+    }
+
+    public function getApplications()
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $result = $conn->query("SELECT * FROM applications");
+        $rows = array();
+        while($r = $result->fetch_assoc()) {
+            $rows[] = $r;
+        }
+        return json_encode($rows);
+    }
+
+    public function postApplication($id, $date, $leader)
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $stmt = $conn->prepare("INSERT INTO application_dates (id, date, leader) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE date=?, leader=?");
+        $stmt->bind_param("issss", $id, $date, $leader, $date, $leader);
+
         $stmt->execute();
 
         $stmt->close();
