@@ -57,5 +57,6 @@ CREATE TABLE reiserrelief.application_dates
 (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   trip_leader TEXT NOT NULL,
-  date DATE NOT NULL
+  date DATE NOT NULL,
+  status TEXT NOT NULL
 );

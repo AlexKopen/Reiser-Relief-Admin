@@ -4,9 +4,26 @@
             Modify Trips
         </h2>
 
-        <ul *ngFor="let currentApplicationDate of applicationDates">
-            <li>{{currentApplicationDate.date}}</li>
-        </ul>
+        <table class="pure-table">
+            <thead>
+            <tr>
+                <th>Trip</th>
+                <th>Leader</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+
+            <tbody *ngFor="let currentApplicationDate of applicationDates; let i = index">
+            <tr [ngClass]="{'pure-table-odd': i % 2 === 0}">
+                <td>{{currentApplicationDate.date}}</td>
+                <td>{{currentApplicationDate.trip_leader}}</td>
+                <td>{{currentApplicationDate.status}}</td>
+                <td>Manage</td>
+            </tr>
+
+            </tbody>
+        </table>
     </div>
     <div class="pure-u-1-2">
         <h2>Add a Trip</h2>

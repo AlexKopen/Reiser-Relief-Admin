@@ -1,6 +1,6 @@
 export class ApplicationDate {
   id: number;
-  tripLeader: string;
+  trip_leader: string;
   status: string;
   date: string;
 }
