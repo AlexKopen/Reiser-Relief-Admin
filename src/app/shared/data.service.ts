@@ -3,8 +3,10 @@ import {Subject} from 'rxjs/Subject';
 import {ENDPOINT} from './endpoint.constants';
 import {AuthHttp} from 'angular2-jwt';
 import {NewsPost} from './models/news-post.model';
-import {Headers} from '@angular/http';
+import {Headers, Http} from '@angular/http';
 import {EventEntry} from './models/event-entry.model';
+import {Application} from './models/application.model';
+import {ApplicationDate} from './models/application-date.model';
 
 @Injectable()
 export class DataService {
@@ -15,8 +17,12 @@ export class DataService {
     allNewsSubject = new Subject<Array<NewsPost>>();
     allEvents: Array<EventEntry> = [];
     allEventsSubject = new Subject<Array<EventEntry>>();
+    allApplicationDates: Array<ApplicationDate> = [];
+    allApplicationDatesSubject = new Subject<Array<ApplicationDate>>();
+    allApplications: Array<Application> = [];
+    allApplicationsSubject = new Subject<Array<Application>>();
 
-    constructor(private authHttp: AuthHttp) {
+    constructor(private authHttp: AuthHttp, private http: Http) {
     }
 
     setLoginUnsuccessful(state: boolean) {
@@ -36,7 +42,7 @@ export class DataService {
     }
 
     getAllNews() {
-        this.authHttp.get(this.baseUrl + ENDPOINT.newsUrlPrivate)
+        this.http.get(this.baseUrl + ENDPOINT.newsUrlPublic)
           .map(res => res.json())
           .subscribe(
             data => this.allNews = JSON.parse(data),
@@ -58,7 +64,7 @@ export class DataService {
     }
 
     getAllEvents() {
-      this.authHttp.get(this.baseUrl + ENDPOINT.eventsUrlPrivate)
+      this.http.get(this.baseUrl + ENDPOINT.eventsUrlPublic)
         .map(res => res.json())
         .subscribe(
           data => this.allEvents = JSON.parse(data),
@@ -75,6 +81,26 @@ export class DataService {
             data => this.getAllEvents(),
             err => console.log(err),
             () => console.log('Request Complete')
+          );
+    }
+
+    getAllApplicationDates() {
+        this.http.get(this.baseUrl + ENDPOINT.applicationDatesUrlPublic)
+          .map(res => res.json())
+          .subscribe(
+            data => this.allApplicationDates = JSON.parse(data),
+            error => console.log(error),
+            () => this.allApplicationDatesSubject.next(this.allApplicationDates)
+          );
+    }
+
+    getAllApplications() {
+        this.authHttp.get(this.baseUrl + ENDPOINT.applicationsUrlPrivate)
+          .map(res => res.json())
+          .subscribe(
+            data => this.allApplications = JSON.parse(data),
+            error => console.log(error),
+            () => this.allApplicationsSubject.next(this.allApplications)
           );
     }
 }

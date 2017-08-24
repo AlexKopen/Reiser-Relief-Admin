@@ -1,3 +1,14 @@
-<p>
-  applications works!
-</p>
+<div class="pure-g">
+    <div class="pure-u-1-2">
+        <h2>
+            Modify Trips
+        </h2>
+
+        <ul *ngFor="let currentApplicationDate of applicationDates">
+            <li>{{currentApplicationDate.date}}</li>
+        </ul>
+    </div>
+    <div class="pure-u-1-2">
+        <h2>Add a Trip</h2>
+    </div>
+</div>
