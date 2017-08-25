@@ -127,7 +127,7 @@ $router->post('/secured/application-dates', function () use ($app) {
     $post = json_decode($post, TRUE);
     $id = $post['id'];
     $date = $post['date'];
-    $leader = $post['leader'];
+    $leader = $post['trip_leader'];
 
     echo ($app->postApplicationDates($id, $date, $leader));
 });
