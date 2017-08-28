@@ -19,7 +19,8 @@ import {NewsComponent} from './dashboard/news/news.component';
 import {EventsComponent} from './dashboard/events/events.component';
 import {ApplicationsComponent} from './dashboard/applications/applications.component';
 import {NewsResultsComponent} from './dashboard/news/news-results/news-results.component';
-import { SingleNewsResultComponent } from './dashboard/news/single-news-result/single-news-result.component';
+import {SingleNewsResultComponent} from './dashboard/news/single-news-result/single-news-result.component';
+import {AuthGuard} from './auth/auth-guard.service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -40,23 +41,35 @@ const appRoutes: Routes = [
     },
     {
         path: 'login',
-        redirectTo: '/log-in',
-        pathMatch: 'full'
+        redirectTo: '/log-in'
     },
     {
         path: 'log-in',
-        component: LogInComponent,
-        data: {title: 'Log In'}
+        component: LogInComponent
     },
     {
         path: 'logout',
-        component: LogOutComponent,
-        data: {title: 'Log In'}
+        component: LogOutComponent
     },
     {
         path: 'dashboard',
         component: DashboardComponent,
-        data: {title: 'Log In'}
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'dashboard/news',
+        component: NewsComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'dashboard/events',
+        component: EventsComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'dashboard/applications',
+        component: ApplicationsComponent,
+        canActivate: [AuthGuard]
     },
     {path: '**', component: PageNotFoundComponent}
 ];
@@ -90,7 +103,8 @@ const appRoutes: Routes = [
             useFactory: authHttpServiceFactory,
             deps: [Http, RequestOptions]
         },
-        DataService
+        DataService,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })
