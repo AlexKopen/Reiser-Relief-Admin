@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {ENDPOINT} from './endpoint.constants';
 import {AuthHttp} from 'angular2-jwt';
@@ -21,6 +21,8 @@ export class DataService {
     allApplicationDatesSubject = new Subject<Array<ApplicationDate>>();
     allApplications: Array<Application> = [];
     allApplicationsSubject = new Subject<Array<Application>>();
+    selectedTab: string;
+    selectedTabSubject = new Subject<string>();
 
     constructor(private authHttp: AuthHttp, private http: Http) {
     }

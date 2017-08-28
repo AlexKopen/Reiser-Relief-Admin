@@ -9,7 +9,6 @@ import {AuthService} from '../auth/auth.service';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-    selectedTab = 'News';
 
     constructor(private router: Router, private authService: AuthService) {
     }
@@ -20,8 +19,10 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    setSelectedTab(selectedTab: string) {
-        this.selectedTab = selectedTab;
-    }
+    // console.log('heyo' + this.router.url);
+    // let endRoute = this.router.url.substr(this.router.url.lastIndexOf('/'));
+    // endRoute = endRoute.charAt(0).toUpperCase() + endRoute.slice(1);
+    // this.selectedTab = endRoute;
+    // console.log(this.selectedTab);
 
 }
