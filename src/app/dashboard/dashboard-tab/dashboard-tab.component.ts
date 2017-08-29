@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../shared/data.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
@@ -20,6 +20,7 @@ export class DashboardTabComponent implements OnInit {
     this.selectedTabSubscription = this.dataService.selectedTabSubject.subscribe((value) => {
       this.selectedTab = value;
     });
+
   }
 
   setSelectedTab(selectedTab: string) {

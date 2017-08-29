@@ -3,6 +3,7 @@ import {FormGroup} from '@angular/forms';
 import {DataService} from '../../shared/data.service';
 import {NewsPost} from '../../shared/models/news-post.model';
 import {Subscription} from 'rxjs/Subscription';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-news',
@@ -17,7 +18,7 @@ export class NewsComponent implements OnInit {
     allNewsPosts: Array<NewsPost>;
     private allNewsSubscription: Subscription;
 
-    constructor(private dataService: DataService) {
+    constructor(private dataService: DataService, private router: Router) {
     }
 
     ngOnInit() {
@@ -26,6 +27,8 @@ export class NewsComponent implements OnInit {
         this.allNewsSubscription = this.dataService.allNewsSubject.subscribe((value) => {
             this.allNewsPosts = value;
         });
+
+        this.dataService.setTab();
     }
 
     onSubmit(newsPostForm: FormGroup) {

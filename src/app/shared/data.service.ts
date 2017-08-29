@@ -7,6 +7,7 @@ import {Headers, Http} from '@angular/http';
 import {EventEntry} from './models/event-entry.model';
 import {Application} from './models/application.model';
 import {ApplicationDate} from './models/application-date.model';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class DataService {
@@ -24,7 +25,14 @@ export class DataService {
     selectedTab: string;
     selectedTabSubject = new Subject<string>();
 
-    constructor(private authHttp: AuthHttp, private http: Http) {
+    constructor(private authHttp: AuthHttp, private http: Http, private router: Router) {
+    }
+
+    setTab() {
+      let endRoute = this.router.url.substr(this.router.url.lastIndexOf('/') + 1);
+      endRoute = endRoute.charAt(0).toUpperCase() + endRoute.slice(1);
+      this.selectedTabSubject.next(endRoute);
+      this.selectedTab = endRoute;
     }
 
     setLoginUnsuccessful(state: boolean) {

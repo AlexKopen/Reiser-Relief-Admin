@@ -25,6 +25,8 @@ export class EventsComponent implements OnInit {
       this.allEventData = value;
       this.getEventData();
     });
+
+    this.dataService.setTab();
   }
 
   submitEvent() {

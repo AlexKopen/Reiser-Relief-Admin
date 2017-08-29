@@ -30,6 +30,8 @@ export class ApplicationsComponent implements OnInit {
     this.applicationDatesSubscription = this.dataService.allApplicationDatesSubject.subscribe((value) => {
       this.applicationDates = value;
     });
+
+    this.dataService.setTab();
   }
 
 }

@@ -19,10 +19,4 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    // console.log('heyo' + this.router.url);
-    // let endRoute = this.router.url.substr(this.router.url.lastIndexOf('/'));
-    // endRoute = endRoute.charAt(0).toUpperCase() + endRoute.slice(1);
-    // this.selectedTab = endRoute;
-    // console.log(this.selectedTab);
-
 }

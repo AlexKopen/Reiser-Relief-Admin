@@ -22,7 +22,7 @@ Once you've set those 2 enviroment variables, just run the following to get the 
 
 ````bash
 composer install
-php -S localhost:3001
+php -S 127.0.0.1:3001
 ````
 
 Now, try calling [http://localhost:30001/ping](http://localhost:30001/ping)
