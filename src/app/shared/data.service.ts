@@ -6,7 +6,7 @@ import {NewsPost} from './models/news-post.model';
 import {Headers, Http} from '@angular/http';
 import {EventEntry} from './models/event-entry.model';
 import {Application} from './models/application.model';
-import {ApplicationDate} from './models/application-date.model';
+import {TripDate} from './models/trip-date.model';
 import {Router} from '@angular/router';
 
 @Injectable()
@@ -18,8 +18,8 @@ export class DataService {
     allNewsSubject = new Subject<Array<NewsPost>>();
     allEvents: Array<EventEntry> = [];
     allEventsSubject = new Subject<Array<EventEntry>>();
-    allApplicationDates: Array<ApplicationDate> = [];
-    allApplicationDatesSubject = new Subject<Array<ApplicationDate>>();
+    allTripDates: Array<TripDate> = [];
+    allTripDatesSubject = new Subject<Array<TripDate>>();
     allApplications: Array<Application> = [];
     allApplicationsSubject = new Subject<Array<Application>>();
     selectedTab: string;
@@ -94,14 +94,25 @@ export class DataService {
           );
     }
 
-    getAllApplicationDates() {
-        this.http.get(this.baseUrl + ENDPOINT.applicationDatesUrlPublic)
+    getAllTripDates() {
+        this.http.get(this.baseUrl + ENDPOINT.tripDatesUrlPublic)
           .map(res => res.json())
           .subscribe(
-            data => this.allApplicationDates = JSON.parse(data),
+            data => this.allTripDates = JSON.parse(data),
             error => console.log(error),
-            () => this.allApplicationDatesSubject.next(this.allApplicationDates)
+            () => this.allTripDatesSubject.next(this.allTripDates)
           );
+    }
+
+    submitTripDate(tripDate: TripDate) {
+      const body = JSON.stringify(tripDate);
+
+      this.authHttp.post(this.baseUrl + ENDPOINT.tripDatesUrlPrivate, body)
+        .subscribe(
+          data => this.getAllTripDates(),
+          err => console.log(err),
+          () => console.log('Request Complete')
+        );
     }
 
     getAllApplications() {

@@ -142,7 +142,7 @@ class Main
         );
     }
 
-    public function postApplicationDates($id, $date, $leader)
+    public function postTripDates($id, $date, $leader, $status)
     {
         $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -150,8 +150,8 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO application_dates (id, date, leader) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE date=?, leader=?");
-        $stmt->bind_param("issss", $id, $date, $leader, $date, $leader);
+        $stmt = $conn->prepare("INSERT INTO trip_dates (id, date, trip_leader, status) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE date=?, trip_leader=?, status=?");
+        $stmt->bind_param("issssss", $id, $date, $leader, $status, $date, $leader, $status);
 
         $stmt->execute();
 
@@ -163,7 +163,7 @@ class Main
         );
     }
 
-    public function getApplicationDates()
+    public function getTripDates()
     {
         $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -171,7 +171,7 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $result = $conn->query("SELECT * FROM application_dates");
+        $result = $conn->query("SELECT * FROM trip_dates");
         $rows = array();
         while($r = $result->fetch_assoc()) {
             $rows[] = $r;
@@ -203,7 +203,7 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO application_dates (id, date, leader) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE date=?, leader=?");
+        $stmt = $conn->prepare("INSERT INTO trip_dates (id, date, leader) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE date=?, leader=?");
         $stmt->bind_param("issss", $id, $date, $leader, $date, $leader);
 
         $stmt->execute();

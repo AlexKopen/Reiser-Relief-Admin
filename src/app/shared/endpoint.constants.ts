@@ -3,8 +3,8 @@ export const ENDPOINT = {
     newsUrlPrivate: '/secured/news',
     eventsUrlPublic: '/events',
     eventsUrlPrivate: '/secured/events',
-    applicationDatesUrlPublic: '/application-dates',
-    applicationDatesUrlPrivate: '/secured/application-dates',
+    tripDatesUrlPublic: '/trip-dates',
+    tripDatesUrlPrivate: '/secured/trip-dates',
     applicationsUrlPublic: '/applications',
     applicationsUrlPrivate: '/secured/applications'
 };

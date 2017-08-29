@@ -118,18 +118,19 @@ $router->post('/secured/events', function () use ($app) {
     echo ($app->postEvents($post));
 });
 
-$router->get('/application-dates', function () use ($app) {
-    echo json_encode($app->getApplicationDates());
+$router->get('/trip-dates', function () use ($app) {
+    echo json_encode($app->getTripDates());
 });
 
-$router->post('/secured/application-dates', function () use ($app) {
+$router->post('/secured/trip-dates', function () use ($app) {
     $post = file_get_contents('php://input');
     $post = json_decode($post, TRUE);
     $id = $post['id'];
     $date = $post['date'];
     $leader = $post['trip_leader'];
+    $status = $post['status'];
 
-    echo ($app->postApplicationDates($id, $date, $leader));
+    echo ($app->postTripDates($id, $date, $leader, $status));
 });
 
 $router->get('/secured/applications', function () use ($app) {

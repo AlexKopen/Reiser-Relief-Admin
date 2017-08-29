@@ -21,6 +21,7 @@ import {ApplicationsComponent} from './dashboard/applications/applications.compo
 import {NewsResultsComponent} from './dashboard/news/news-results/news-results.component';
 import {SingleNewsResultComponent} from './dashboard/news/single-news-result/single-news-result.component';
 import {AuthGuard} from './auth/auth-guard.service';
+import {MyDatePickerModule} from 'mydatepicker';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -94,7 +95,8 @@ const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         RouterModule.forRoot(appRoutes),
-        HttpModule
+        HttpModule,
+        MyDatePickerModule
     ],
     providers: [
         AuthService,

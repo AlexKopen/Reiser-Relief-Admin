@@ -53,7 +53,7 @@ CREATE TABLE reiserrelief.applications
   person2Email TEXT
 );
 
-CREATE TABLE reiserrelief.application_dates
+CREATE TABLE reiserrelief.trip_dates
 (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   trip_leader TEXT NOT NULL,
