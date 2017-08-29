@@ -19,6 +19,8 @@ export class ApplicationsComponent implements OnInit {
   @ViewChild('date') date;
   @ViewChild('leader') leader;
   formSubmittedAndNotProcessed = false;
+  showModal = false;
+  currentModalTripId: number;
 
   myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -62,7 +64,41 @@ export class ApplicationsComponent implements OnInit {
     }
   }
 
-  modalClick(tripId: number) {
+  modalOpenClick(tripId: number) {
+    this.currentModalTripId = tripId;
+    this.showModal = true;
+  }
+
+  modalCloseClick() {
+    this.showModal = false;
+  }
+
+  getOppositeStatus() {
+    const status = this.getTripStatusById();
+    return status === 'Full' ? 'Open' : 'Full';
+  }
+
+  deleteTrip() {
+
+  }
+
+  changeTripStatus() {
+
+  }
+
+  changeTripLeader() {
+
+  }
+
+  private getTripStatusById(): string {
+    // This only works in IE 11 :(
+    // this.tripDates.find(x => x.id === this.currentModalTripId).status;
+
+    for (const currentTripDate of this.tripDates) {
+      if (currentTripDate.id === this.currentModalTripId) {
+        return currentTripDate.status;
+      }
+    }
 
   }
 

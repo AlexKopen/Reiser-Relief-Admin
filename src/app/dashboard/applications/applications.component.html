@@ -19,16 +19,17 @@
                 <td>{{currentTripDate.date}}</td>
                 <td>{{currentTripDate.trip_leader}}</td>
                 <td>{{currentTripDate.status}}</td>
-                <td>Manage</td>
+                <td (click)="modalOpenClick(currentTripDate.id)">Manage</td>
             </tr>
 
             </tbody>
         </table>
 
-        <div class="modal">
-            <button class="pure-button">Delete</button>
-            <button class="pure-button">Mark as Open</button>
-            <button class="pure-button">Change Trip Leader</button>
+        <div class="modal" [ngClass]="{'show-modal': showModal}">
+            <div (click)="modalCloseClick()">Close</div>
+            <button (click)="deleteTrip()" class="pure-button">Delete</button>
+            <button (click)="changeTripStatus()" class="pure-button">Mark as {{getOppositeStatus()}}</button>
+            <button (click)="changeTripLeader()" class="pure-button">Change Trip Leader</button>
         </div>
 
     </div>
@@ -38,11 +39,6 @@
 
             <form (ngSubmit)="onSubmit(newsPostForm)" class="pure-form pure-form-stacked" #newsPostForm="ngForm">
                 <fieldset>
-                    <!--<div class="input-container">-->
-                    <!--<input ngModel name="date" class="pure-input-1" placeholder="Date" #date="ngModel"-->
-                    <!--required>-->
-                    <!--<span *ngIf="!date.valid && formSubmittedAndNotProcessed" class="pure-form-message">This is a required field.</span>-->
-                    <!--</div>-->
 
                     <div class="input-container">
                         <my-date-picker ngModel name="date" [options]="myDatePickerOptions"
