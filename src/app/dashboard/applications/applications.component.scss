@@ -2,14 +2,18 @@
 
 table {
   width: 100%;
+
+  .manage {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 form {
   margin-top: 0;
-
-  .manage {
-    cursor: pointer;
-  }
 
   //input {
   //  height: 55px !important;

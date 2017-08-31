@@ -1,5 +1,8 @@
 export class Application {
   id: number;
+  submitted: string;
+  trip_id: number;
+  trip_date: string;
   first: string;
   middle: string;
   last: string;

@@ -71,3 +71,27 @@
         </div>
     </div>
 </div>
+
+<h2>Applications</h2>
+
+<ng-container *ngFor="let currentTripDate of tripDates">
+    <h3>{{ currentTripDate.date | date:'MMM d, y' }}</h3>
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Submitted</th>
+            <th>View</th>
+        </tr>
+        </thead>
+
+        <tbody *ngFor="let currentApplication of applications; let i = index">
+        <tr *ngIf="currentApplication.trip_id === currentTripDate.id" [ngClass]="{'pure-table-odd': i % 2 === 0}">
+            <td>{{currentApplication.first}} {{currentApplication.middle}} {{currentApplication.last}}</td>
+            <td>{{currentApplication.submitted}}</td>
+            <td class="manage" (click)="modalOpenClick(currentTripDate.id)">Manage</td>
+        </tr>
+
+        </tbody>
+    </table>
+</ng-container>

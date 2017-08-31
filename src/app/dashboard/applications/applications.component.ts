@@ -83,6 +83,7 @@ export class ApplicationsComponent implements OnInit {
 
   deleteTrip() {
     this.dataService.deleteTrip(this.currentModalTrip);
+    this.showModal = false;
   }
 
   changeStatus() {
@@ -97,6 +98,7 @@ export class ApplicationsComponent implements OnInit {
     tripDate.status = this.currentModalTrip.status;
     tripDate.id = this.currentModalTripId;
     this.dataService.submitTripDate(tripDate);
+    this.showModal = false;
   }
 
   private getCurrentModalTrip() {
