@@ -16,11 +16,14 @@ export class ApplicationsComponent implements OnInit {
   private tripDatesSubscription: Subscription;
   applications: Array<Application>;
   private applicationsSubscription: Subscription;
-  @ViewChild('date') date;
-  @ViewChild('leader') leader;
+  @ViewChild('tripDateField') tripDateField;
+  @ViewChild('leaderField') leaderField;
   formSubmittedAndNotProcessed = false;
   showModal = false;
   currentModalTripId: number;
+  currentModalTrip: TripDate;
+  changeLeaderInput: string;
+  changeDateInput: string;
 
   myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -52,9 +55,9 @@ export class ApplicationsComponent implements OnInit {
   onSubmit(tripDateForm: FormGroup) {
     if (tripDateForm.valid) {
       const tripDate = new TripDate();
-      const dateField = this.date.viewModel.date;
+      const dateField = this.tripDateField.viewModel.date;
       tripDate.date = dateField.year + '-' + ('0' + dateField.month).slice(-2) + '-' + ('0' + dateField.day).slice(-2);
-      tripDate.trip_leader = this.leader.viewModel;
+      tripDate.trip_leader = this.leaderField.viewModel;
       tripDate.status = 'Open';
       this.dataService.submitTripDate(tripDate);
 
@@ -66,6 +69,7 @@ export class ApplicationsComponent implements OnInit {
 
   modalOpenClick(tripId: number) {
     this.currentModalTripId = tripId;
+    this.getCurrentModalTrip();
     this.showModal = true;
   }
 
@@ -74,31 +78,39 @@ export class ApplicationsComponent implements OnInit {
   }
 
   getOppositeStatus() {
-    const status = this.getTripStatusById();
-    return status === 'Full' ? 'Open' : 'Full';
+    return this.currentModalTrip.status === 'Full' ? 'Open' : 'Full';
   }
 
   deleteTrip() {
-
+    this.dataService.deleteTrip(this.currentModalTrip);
   }
 
-  changeTripStatus() {
-
+  changeStatus() {
+    this.currentModalTrip.status = this.currentModalTrip.status === 'Full' ? 'Open' : 'Full';
+    this.updateTrip();
   }
 
-  changeTripLeader() {
-
+  updateTrip() {
+    const tripDate = new TripDate();
+    tripDate.date = this.changeDateInput;
+    tripDate.trip_leader = this.changeLeaderInput;
+    tripDate.status = this.currentModalTrip.status;
+    tripDate.id = this.currentModalTripId;
+    this.dataService.submitTripDate(tripDate);
   }
 
-  private getTripStatusById(): string {
+  private getCurrentModalTrip() {
     // This only works in IE 11 :(
     // this.tripDates.find(x => x.id === this.currentModalTripId).status;
 
-    for (const currentTripDate of this.tripDates) {
-      if (currentTripDate.id === this.currentModalTripId) {
-        return currentTripDate.status;
+    for (const currentModalTrip of this.tripDates) {
+      if (currentModalTrip.id === this.currentModalTripId) {
+        this.currentModalTrip = currentModalTrip;
       }
     }
+
+    this.changeLeaderInput = this.currentModalTrip.trip_leader;
+    this.changeDateInput = this.currentModalTrip.date;
 
   }
 

@@ -115,6 +115,18 @@ export class DataService {
         );
     }
 
+    deleteTrip(tripDate: TripDate) {
+      const myHeader = new Headers();
+      myHeader.append('Post-Id', tripDate.id.toString());
+
+      this.authHttp.delete(this.baseUrl + ENDPOINT.tripDatesUrlPrivate, { headers: myHeader })
+        .subscribe(
+          data => this.getAllTripDates(),
+          err => console.log(err),
+          () => console.log('Request Complete')
+        );
+    }
+
     getAllApplications() {
         this.authHttp.get(this.baseUrl + ENDPOINT.applicationsUrlPrivate)
           .map(res => res.json())

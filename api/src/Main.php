@@ -142,7 +142,7 @@ class Main
         );
     }
 
-    public function postTripDates($id, $date, $leader, $status)
+    public function postTripDate($id, $date, $leader, $status)
     {
         $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -152,6 +152,27 @@ class Main
 
         $stmt = $conn->prepare("INSERT INTO trip_dates (id, date, trip_leader, status) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE date=?, trip_leader=?, status=?");
         $stmt->bind_param("issssss", $id, $date, $leader, $status, $date, $leader, $status);
+
+        $stmt->execute();
+
+        $stmt->close();
+        $conn->close();
+
+        return array(
+            "status" => 'ok'
+        );
+    }
+
+    public function deleteTripDate($id)
+    {
+        $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $stmt = $conn->prepare("DELETE FROM trip_dates WHERE id = ?");
+        $stmt->bind_param("i", $id);
 
         $stmt->execute();
 
@@ -203,7 +224,7 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO trip_dates (id, date, leader) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE date=?, leader=?");
+        $stmt = $conn->prepare("INSERT INTO trip_dates (id, date, leaderField) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE date=?, leaderField=?");
         $stmt->bind_param("issss", $id, $date, $leader, $date, $leader);
 
         $stmt->execute();

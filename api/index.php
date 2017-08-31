@@ -130,7 +130,12 @@ $router->post('/secured/trip-dates', function () use ($app) {
     $leader = $post['trip_leader'];
     $status = $post['status'];
 
-    echo ($app->postTripDates($id, $date, $leader, $status));
+    echo ($app->postTripDate($id, $date, $leader, $status));
+});
+
+$router->delete('/secured/trip-dates', function () use ($app) {
+    $requestHeaders = apache_request_headers();
+    echo json_encode($app->deleteTripDate($requestHeaders['Post-Id']));
 });
 
 $router->get('/secured/applications', function () use ($app) {
