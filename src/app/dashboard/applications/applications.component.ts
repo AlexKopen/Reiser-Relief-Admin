@@ -20,6 +20,9 @@ export class ApplicationsComponent implements OnInit {
   @ViewChild('leaderField') leaderField;
   formSubmittedAndNotProcessed = false;
   showModal = false;
+  showApplication = false;
+  currentApplicationId: number;
+  currentApplication: Application;
   currentModalTripId: number;
   currentModalTrip: TripDate;
   changeLeaderInput: string;
@@ -77,6 +80,16 @@ export class ApplicationsComponent implements OnInit {
     this.showModal = false;
   }
 
+  applicationOpenClick(applicationId: number) {
+    this.currentApplicationId = applicationId;
+    this.getCurrentApplication();
+    this.showApplication = true;
+  }
+
+  applicationCloseClick() {
+    this.showApplication = false;
+  }
+
   getOppositeStatus() {
     return this.currentModalTrip.status === 'Full' ? 'Open' : 'Full';
   }
@@ -114,6 +127,14 @@ export class ApplicationsComponent implements OnInit {
     this.changeLeaderInput = this.currentModalTrip.trip_leader;
     this.changeDateInput = this.currentModalTrip.date;
 
+  }
+
+  private getCurrentApplication() {
+    for (const currentApplication of this.applications) {
+      if (currentApplication.id === this.currentApplicationId) {
+        this.currentApplication = currentApplication;
+      }
+    }
   }
 
 }
