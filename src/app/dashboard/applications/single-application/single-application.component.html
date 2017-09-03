@@ -202,19 +202,19 @@
               </div>
               <div class="pure-u-1-1 pure-u-md-4-24">
                 <select id="day" name="day">
-                  {{ include('common/days.twig') }}
+                  <option value=""></option>
+                  <ng-container *ngFor="let currentDay of days">
+                    <option value="{{currentDay}}">{{currentDay}}</option>
+                  </ng-container>
                 </select>
                 <label for="day">Day</label>
               </div>
               <div class="pure-u-1-1 pure-u-md-4-24">
                 <select id="year" name="year">
-                  {{ include('common/years.twig') }}
-                  <ul>
-                    <ng-template ngFor let-item [ngForOf]="createRange(5)" let-currentElementIndex="(index + 1)"
-                                 [ngForTrackBy]="trackByFn">
-                      {{currentElementIndex}} Something
-                    </ng-template>
-                  </ul>
+                  <option value=""></option>
+                  <ng-container *ngFor="let currentYear of years">
+                    <option value="{{currentYear}}">{{currentYear}}</option>
+                  </ng-container>
                 </select>
                 <label for="year">Year</label>
               </div>
@@ -321,13 +321,19 @@
               </div>
               <div class="pure-u-1-1 pure-u-md-4-24">
                 <select id="passport-issue-date-day" name="passport-issue-date-day">
-                  {{ include('common/days.twig') }}
+                  <option value=""></option>
+                  <ng-container *ngFor="let currentDay of days">
+                    <option value="{{currentDay}}">{{currentDay}}</option>
+                  </ng-container>
                 </select>
                 <label for="passport-issue-date-day">Day</label>
               </div>
               <div class="pure-u-1-1 pure-u-md-4-24">
                 <select id="passport-issue-date-year" name="passport-issue-date-year">
-                  {{ include('common/years.twig') }}
+                  <option value=""></option>
+                  <ng-container *ngFor="let currentYear of years">
+                    <option value="{{currentYear}}">{{currentYear}}</option>
+                  </ng-container>
                 </select>
                 <label for="passport-issue-date-year">Year</label>
               </div>
@@ -359,13 +365,19 @@
               </div>
               <div class="pure-u-1-1 pure-u-md-4-24">
                 <select id="passport-expiration-date-day" name="passport-expiration-date-day">
-                  {{ include('common/days.twig') }}
+                  <option value=""></option>
+                  <ng-container *ngFor="let currentDay of days">
+                    <option value="{{currentDay}}">{{currentDay}}</option>
+                  </ng-container>
                 </select>
                 <label for="passport-expiration-date-day">Day</label>
               </div>
               <div class="pure-u-1-1 pure-u-md-4-24">
                 <select id="passport-expiration-date-year" name="passport-expiration-date-year">
-                  {{ include('common/years.twig') }}
+                  <option value=""></option>
+                  <ng-container *ngFor="let currentYear of years">
+                    <option value="{{currentYear}}">{{currentYear}}</option>
+                  </ng-container>
                 </select>
                 <label for="passport-expiration-date-year">Year</label>
               </div>

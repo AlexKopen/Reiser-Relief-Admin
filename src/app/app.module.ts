@@ -22,7 +22,7 @@ import {NewsResultsComponent} from './dashboard/news/news-results/news-results.c
 import {SingleNewsResultComponent} from './dashboard/news/single-news-result/single-news-result.component';
 import {AuthGuard} from './auth/auth-guard.service';
 import {MyDatePickerModule} from 'mydatepicker';
-import { SingleApplicationComponent } from './dashboard/applications/src/app/dashboard/applications/single-application/single-application.component';
+import { SingleApplicationComponent } from './dashboard/applications/single-application/single-application.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
