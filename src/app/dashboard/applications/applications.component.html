@@ -99,5 +99,6 @@
 </ng-container>
 
 <ng-container *ngIf="showApplication">
+    <h2 (click)="showApplication = false" id="back">Back to all applications</h2>
     <app-single-application [currentApplication]="currentApplication"></app-single-application>
 </ng-container>
