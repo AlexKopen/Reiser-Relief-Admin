@@ -60,7 +60,7 @@ export class ApplicationsComponent implements OnInit {
       const tripDate = new TripDate();
       const dateField = this.tripDateField.viewModel.date;
       tripDate.date = dateField.year + '-' + ('0' + dateField.month).slice(-2) + '-' + ('0' + dateField.day).slice(-2);
-      tripDate.trip_leader = this.leaderField.viewModel;
+      tripDate.tripLeader = this.leaderField.viewModel;
       tripDate.status = 'Open';
       this.dataService.submitTripDate(tripDate);
 
@@ -107,7 +107,7 @@ export class ApplicationsComponent implements OnInit {
   updateTrip() {
     const tripDate = new TripDate();
     tripDate.date = this.changeDateInput;
-    tripDate.trip_leader = this.changeLeaderInput;
+    tripDate.tripLeader = this.changeLeaderInput;
     tripDate.status = this.currentModalTrip.status;
     tripDate.id = this.currentModalTripId;
     this.dataService.submitTripDate(tripDate);
@@ -124,7 +124,7 @@ export class ApplicationsComponent implements OnInit {
       }
     }
 
-    this.changeLeaderInput = this.currentModalTrip.trip_leader;
+    this.changeLeaderInput = this.currentModalTrip.tripLeader;
     this.changeDateInput = this.currentModalTrip.date;
 
   }

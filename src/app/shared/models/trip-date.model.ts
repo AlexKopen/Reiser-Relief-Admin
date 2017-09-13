@@ -1,6 +1,6 @@
 export class TripDate {
   id: number;
-  trip_leader: string;
+  tripLeader: string;
   status: string;
   date: string;
 }

@@ -1,4 +1,6 @@
-CREATE TABLE `reiserrelief`.`news` ( `id` INT NOT NULL AUTO_INCREMENT , `title` TEXT NOT NULL , `date` TIMESTAMP NOT NULL , `content` TEXT NOT NULL , PRIMARY KEY (`id`));
+DROP DATABASE reiserrelief;
+
+CREATE TABLE reiserrelief.news ( id INT NOT NULL AUTO_INCREMENT , title TEXT NOT NULL , date TIMESTAMP NOT NULL , content TEXT NOT NULL , PRIMARY KEY (id));
 
 CREATE TABLE reiserrelief.events
 (
@@ -11,7 +13,7 @@ CREATE TABLE reiserrelief.applications
 (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   submitted TIMESTAMP NOT NULL,
-  trip_date DATE,
+  tripDate TEXT NOT NULL,
   first TEXT,
   middle TEXT,
   last TEXT,
@@ -54,12 +56,12 @@ CREATE TABLE reiserrelief.applications
   person2Email TEXT
 );
 
-INSERT INTO reiserrelief.applications (submitted, trip_date, trip_id, first, middle, last, addressLine1, addressLine2, city, state, zip, homePhone, cellPhone, email, month, day, year, nationality, birthPlace, maidenName, maritalStatus, gender, passportNumber, passportIssueDateMonth, passportIssueDateDay, passportIssueDateYear, passportExpirationDateMonth, passportExpirationDateDay, passportExpirationDateYear, question1, question2, question3, question4, question5, question6, person1Name, person1Relationship, person1Phone, person1Email, person2Name, person2Relationship, person2Phone, person2Email) VALUES ('2017-08-31 16:27:20', '2018-08-16', 1, 'Alex', 'Daniel', 'Kopen', '8581 Shadow Creek dr', null, 'maple grove', 'mn', '55410', '763-286-7667', '765-678-9675', 'alexkopen@gmail.com', 'march', '09', '1994', 'usa', 'usa', 'leger', 'married', 'male', '54445455454', 'february', '07', '1900', 'january', '06', '3017', 'i am here', 'at this table', 'editing this form', 'it is fun', 'how are you doing baby', 'another one jesus', 'tim', 'dad', '754-976-0000', 't@tk.com', 'rene kopen', 'mommmy', '756-454-3333', 'r@y.com');
+INSERT INTO reiserrelief.applications (submitted, tripDate, first, middle, last, addressLine1, addressLine2, city, state, zip, homePhone, cellPhone, email, month, day, year, nationality, birthPlace, maidenName, maritalStatus, gender, passportNumber, passportIssueDateMonth, passportIssueDateDay, passportIssueDateYear, passportExpirationDateMonth, passportExpirationDateDay, passportExpirationDateYear, question1, question2, question3, question4, question5, question6, person1Name, person1Relationship, person1Phone, person1Email, person2Name, person2Relationship, person2Phone, person2Email) VALUES ('2017-08-31 16:27:20', '2017-08-31 16:27:20', 'Alex', 'Daniel', 'Kopen', '8581 Shadow Creek dr', null, 'maple grove', 'mn', '55410', '763-286-7667', '765-678-9675', 'alexkopen@gmail.com', 'march', '09', '1994', 'usa', 'usa', 'leger', 'married', 'male', '54445455454', 'february', '07', '1900', 'january', '06', '3017', 'i am here', 'at this table', 'editing this form', 'it is fun', 'how are you doing baby', 'another one jesus', 'tim', 'dad', '754-976-0000', 't@tk.com', 'rene kopen', 'mommmy', '756-454-3333', 'r@y.com');
 
 CREATE TABLE reiserrelief.trip_dates
 (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  trip_leader TEXT NOT NULL,
+  tripLeader TEXT NOT NULL,
   date DATE NOT NULL,
   status TEXT NOT NULL
 );

@@ -150,7 +150,7 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO trip_dates (id, date, trip_leader, status) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE date=?, trip_leader=?, status=?");
+        $stmt = $conn->prepare("INSERT INTO trip_dates (id, date, tripLeader, status) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE date=?, tripLeader=?, status=?");
         $stmt->bind_param("issssss", $id, $date, $leader, $status, $date, $leader, $status);
 
         $stmt->execute();
@@ -216,7 +216,7 @@ class Main
         return json_encode($rows);
     }
 
-    public function postApplication($id, $date, $leader)
+    public function postApplication($first, $middle, $last, $addressLine1, $addressLine2, $city, $state, $zip, $homePhone, $cellPhone, $email, $month, $day, $year, $nationality, $birthPlace, $maidenName, $maritalStatus, $gender, $passportNumber, $passportIssueDateMonth, $passportIssueDateDay, $passportIssueDateYear, $passportExpirationDateMonth, $passportExpirationDateDay, $passportExpirationDateYear, $question1, $question2, $question3, $question4, $question5, $question6, $person1Name, $person1Relationship, $person1Phone, $person1Email, $person2Name, $person2Relationship, $person2Phone, $person2Email)
     {
         $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -224,8 +224,10 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $stmt = $conn->prepare("INSERT INTO trip_dates (id, date, leaderField) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE date=?, leaderField=?");
-        $stmt->bind_param("issss", $id, $date, $leader, $date, $leader);
+        $stmt = $conn->prepare("INSERT INTO applications (tripId, first, middle, last, addressLine1, addressLine2, city, state, zip, homePhone, cellPhone, email, month, day, year, nationality, birthPlace, maidenName, maritalStatus, gender, passportNumber, passportIssueDateMonth, passportIssueDateDay, passportIssueDateYear, passportExpirationDateMonth, passportExpirationDateDay, passportExpirationDateYear, question1, question2, question3, question4, question5, question6, person1Name, person1Relationship, person1Phone, person1Email, person2Name, person2Relationship, person2Phone, person2Email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+
+        $stmt->bind_param("issssssssssssssssssssssssssssssssssssssss", $first, $middle, $last, $addressLine1, $addressLine2, $city, $state, $zip, $homePhone, $cellPhone, $email, $month, $day, $year, $nationality, $birthPlace, $maidenName, $maritalStatus, $gender, $passportNumber, $passportIssueDateMonth, $passportIssueDateDay, $passportIssueDateYear, $passportExpirationDateMonth, $passportExpirationDateDay, $passportExpirationDateYear, $question1, $question2, $question3, $question4, $question5, $question6, $person1Name, $person1Relationship, $person1Phone, $person1Email, $person2Name, $person2Relationship, $person2Phone, $person2Email);
 
         $stmt->execute();
 

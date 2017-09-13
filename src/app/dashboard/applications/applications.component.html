@@ -38,7 +38,7 @@
                 <tbody *ngFor="let currentTripDate of tripDates; let i = index">
                 <tr [ngClass]="{'pure-table-odd': i % 2 === 0}">
                     <td>{{currentTripDate.date}}</td>
-                    <td>{{currentTripDate.trip_leader}}</td>
+                    <td>{{currentTripDate.tripLeader}}</td>
                     <td>{{currentTripDate.status}}</td>
                     <td class="manage" (click)="modalOpenClick(currentTripDate.id)">Manage</td>
                 </tr>
@@ -87,7 +87,7 @@
             </thead>
 
             <tbody *ngFor="let currentApplication of applications; let i = index">
-            <tr *ngIf="currentApplication.trip_id === currentTripDate.id" [ngClass]="{'pure-table-odd': i % 2 === 0}">
+            <tr *ngIf="currentApplication.tripId === currentTripDate.id" [ngClass]="{'pure-table-odd': i % 2 === 0}">
                 <td>{{currentApplication.first}} {{currentApplication.middle}} {{currentApplication.last}}</td>
                 <td>{{ currentApplication.submitted | date:'MMM d, y' }}</td>
                 <td class="manage" (click)="applicationOpenClick(currentApplication.id)">Manage</td>
