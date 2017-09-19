@@ -24,6 +24,8 @@ export class DataService {
     allApplicationsSubject = new Subject<Array<Application>>();
     selectedTab: string;
     selectedTabSubject = new Subject<string>();
+    showNavBar = false;
+    showNavBarSubject = new Subject<boolean>();
 
     constructor(private authHttp: AuthHttp, private http: Http, private router: Router) {
     }
@@ -38,6 +40,11 @@ export class DataService {
     setLoginUnsuccessful(state: boolean) {
         this.loginUnsuccessful = state;
         this.loginUnsuccessfulSubject.next(this.loginUnsuccessful);
+    }
+
+    setShowNavBar(state: boolean) {
+      this.showNavBar = true;
+      this.showNavBarSubject.next(this.showNavBar);
     }
 
     submitNews(newsPost: NewsPost) {

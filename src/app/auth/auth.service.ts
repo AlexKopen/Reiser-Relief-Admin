@@ -32,6 +32,7 @@ export class AuthService {
                 return;
             } else if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
+                this.loginState.setShowNavBar(true);
             }
         });
     }

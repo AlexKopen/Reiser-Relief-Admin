@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../shared/data.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-dashboard-tab',
@@ -11,8 +12,10 @@ import {Router} from '@angular/router';
 export class DashboardTabComponent implements OnInit {
   selectedTab: string;
   selectedTabSubscription: Subscription;
+  showNavBar = false;
+  showNavBarSubscription: Subscription;
 
-  constructor(private dataService: DataService, private router: Router) {
+  constructor(private dataService: DataService, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -21,6 +24,10 @@ export class DashboardTabComponent implements OnInit {
       this.selectedTab = value;
     });
 
+    this.showNavBar = this.dataService.showNavBar;
+    this.showNavBarSubscription = this.dataService.showNavBarSubject.subscribe((value) => {
+      this.showNavBar = value;
+    });
   }
 
   setSelectedTab(selectedTab: string) {
