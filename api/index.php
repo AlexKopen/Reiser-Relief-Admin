@@ -190,6 +190,17 @@ $router->post('/applications', function () use ($app) {
     echo ($app->postApplication($first, $middle, $last, $addressLine1, $addressLine2, $city, $state, $zip, $homePhone, $cellPhone, $email, $month, $day, $year, $nationality, $birthPlace, $maidenName, $maritalStatus, $gender, $passportNumber, $passportIssueDateMonth, $passportIssueDateDay, $passportIssueDateYear, $passportExpirationDateMonth, $passportExpirationDateDay, $passportExpirationDateYear, $question1, $question2, $question3, $question4, $question5, $question6, $person1Name, $person1Relationship, $person1Phone, $person1Email, $person2Name, $person2Relationship, $person2Phone, $person2Email));
 });
 
+$router->post('/contact-submit', function () use ($app) {
+    $post = file_get_contents('php://input');
+    $post = json_decode($post, TRUE);
+    $id = $post['id'];
+    $date = $post['date'];
+    $leader = $post['tripLeader'];
+    $status = $post['status'];
+
+    echo ($app->postTripDate($id, $date, $leader, $status));
+});
+
 
 $router->set404(function () {
     header('HTTP/1.1 404 Not Found');
