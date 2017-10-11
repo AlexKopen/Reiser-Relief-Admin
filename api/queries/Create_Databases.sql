@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS reiserrelief.trip_dates;
+DROP TABLE IF EXISTS reiserrelief.news;
+DROP TABLE IF EXISTS reiserrelief.events;
+DROP TABLE IF EXISTS reiserrelief.applications;
+
 create table reiserrelief.applications
 (
 	id int auto_increment
