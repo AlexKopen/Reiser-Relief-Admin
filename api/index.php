@@ -104,18 +104,26 @@ $router->post('/secured/news', function () use ($app) {
     $title = $post['title'];
     $content = $post['content'];
 
-    echo ($app->postNews($id, $title, $content, $date));
+    echo($app->postNews($id, $title, $content, $date));
 });
 
 $router->get('/events', function () use ($app) {
-    echo json_encode($app->getEvents());
+    echo json_encode($app->getEvents(''));
+});
+
+$router->get('/gttmd', function () use ($app) {
+    echo json_encode($app->getEvents('gttmd'));
+});
+
+$router->get('/ktwt', function () use ($app) {
+    echo json_encode($app->getEvents('ktwt'));
 });
 
 $router->post('/secured/events', function () use ($app) {
     $post = file_get_contents('php://input');
     $post = json_decode($post, TRUE); //convert JSON into array
 
-    echo ($app->postEvents($post));
+    echo($app->postEvents($post));
 });
 
 $router->get('/trip-dates', function () use ($app) {
@@ -130,7 +138,7 @@ $router->post('/secured/trip-dates', function () use ($app) {
     $leader = $post['tripLeader'];
     $status = $post['status'];
 
-    echo ($app->postTripDate($id, $date, $leader, $status));
+    echo($app->postTripDate($id, $date, $leader, $status));
 });
 
 $router->delete('/secured/trip-dates', function () use ($app) {
@@ -187,7 +195,7 @@ $router->post('/applications', function () use ($app) {
     $person2Phone = $post['person-2-phone'];
     $person2Email = $post['person-2-email'];
 
-    echo ($app->postApplication($first, $middle, $last, $addressLine1, $addressLine2, $city, $state, $zip, $homePhone, $cellPhone, $email, $month, $day, $year, $nationality, $birthPlace, $maidenName, $maritalStatus, $gender, $passportNumber, $passportIssueDateMonth, $passportIssueDateDay, $passportIssueDateYear, $passportExpirationDateMonth, $passportExpirationDateDay, $passportExpirationDateYear, $question1, $question2, $question3, $question4, $question5, $question6, $person1Name, $person1Relationship, $person1Phone, $person1Email, $person2Name, $person2Relationship, $person2Phone, $person2Email));
+    echo($app->postApplication($first, $middle, $last, $addressLine1, $addressLine2, $city, $state, $zip, $homePhone, $cellPhone, $email, $month, $day, $year, $nationality, $birthPlace, $maidenName, $maritalStatus, $gender, $passportNumber, $passportIssueDateMonth, $passportIssueDateDay, $passportIssueDateYear, $passportExpirationDateMonth, $passportExpirationDateDay, $passportExpirationDateYear, $question1, $question2, $question3, $question4, $question5, $question6, $person1Name, $person1Relationship, $person1Phone, $person1Email, $person2Name, $person2Relationship, $person2Phone, $person2Email));
 });
 
 $router->post('/contact-submit', function () use ($app) {
@@ -198,7 +206,7 @@ $router->post('/contact-submit', function () use ($app) {
     $leader = $post['tripLeader'];
     $status = $post['status'];
 
-    echo ($app->postTripDate($id, $date, $leader, $status));
+    echo($app->postTripDate($id, $date, $leader, $status));
 });
 
 

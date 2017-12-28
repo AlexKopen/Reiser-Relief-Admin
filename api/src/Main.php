@@ -61,7 +61,7 @@ class Main
 
         $result = $conn->query("SELECT * FROM news ORDER BY date DESC");
         $rows = array();
-        while($r = $result->fetch_assoc()) {
+        while ($r = $result->fetch_assoc()) {
             $rows[] = $r;
         }
         return json_encode($rows);
@@ -88,7 +88,7 @@ class Main
         );
     }
 
-    public function getEvents()
+    public function getEvents($event)
     {
         $conn = new \MySQLi($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -96,9 +96,21 @@ class Main
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $result = $conn->query("SELECT * FROM events");
+        switch ($event) {
+            case 'gttmd':
+                $result = $conn->query("SELECT * FROM events WHERE title = 'Give to the Max Day'");
+                break;
+            case 'ktwt':
+                $result = $conn->query("SELECT * FROM events WHERE title = 'Keep the Wheel Turning'");
+                break;
+            default:
+                $result = $conn->query("SELECT * FROM events");
+                break;
+        }
+
+
         $rows = array();
-        while($r = $result->fetch_assoc()) {
+        while ($r = $result->fetch_assoc()) {
             $rows[] = $r;
         }
         return json_encode($rows);
@@ -194,7 +206,7 @@ class Main
 
         $result = $conn->query("SELECT * FROM trip_dates");
         $rows = array();
-        while($r = $result->fetch_assoc()) {
+        while ($r = $result->fetch_assoc()) {
             $rows[] = $r;
         }
         return json_encode($rows);
@@ -210,7 +222,7 @@ class Main
 
         $result = $conn->query("SELECT * FROM applications");
         $rows = array();
-        while($r = $result->fetch_assoc()) {
+        while ($r = $result->fetch_assoc()) {
             $rows[] = $r;
         }
         return json_encode($rows);
