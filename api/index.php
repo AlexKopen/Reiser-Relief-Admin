@@ -150,7 +150,7 @@ $router->get('/secured/applications', function () use ($app) {
     echo json_encode($app->getApplications());
 });
 
-$router->post('/apply', function () use ($app) {
+$router->post('/apply-submit', function () use ($app) {
     $post = file_get_contents('php://input');
     $post = json_decode($post, TRUE);
 
