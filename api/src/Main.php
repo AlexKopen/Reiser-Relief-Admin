@@ -250,4 +250,13 @@ class Main
             "status" => 'ok'
         );
     }
+
+    public function postContact($name, $email, $subject, $message)
+    {
+        // email contact form
+        return array(
+            "status" => 'ok'
+        );
+    }
+
 }

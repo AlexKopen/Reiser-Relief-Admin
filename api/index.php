@@ -150,7 +150,7 @@ $router->get('/secured/applications', function () use ($app) {
     echo json_encode($app->getApplications());
 });
 
-$router->post('/applications', function () use ($app) {
+$router->post('/apply', function () use ($app) {
     $post = file_get_contents('php://input');
     $post = json_decode($post, TRUE);
 
@@ -201,12 +201,12 @@ $router->post('/applications', function () use ($app) {
 $router->post('/contact-submit', function () use ($app) {
     $post = file_get_contents('php://input');
     $post = json_decode($post, TRUE);
-    $id = $post['id'];
-    $date = $post['date'];
-    $leader = $post['tripLeader'];
-    $status = $post['status'];
+    $name = $post['name'];
+    $email = $post['email'];
+    $subject = $post['subject'];
+    $message = $post['message'];
 
-    echo($app->postTripDate($id, $date, $leader, $status));
+    $app->postContact($name, $email, $subject, $message);
 });
 
 
