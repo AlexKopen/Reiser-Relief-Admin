@@ -206,7 +206,7 @@ $router->post('/contact-submit', function () use ($app) {
     $subject = $post['subject'];
     $message = $post['message'];
 
-    $app->postContact($name, $email, $subject, $message);
+    echo json_encode($app->postContact($name, $email, $subject, $message));
 });
 
 
