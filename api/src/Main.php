@@ -253,10 +253,22 @@ class Main
 
     public function postContact($name, $email, $subject, $message)
     {
-        // email contact form
-        return array(
-            "status" => 'ok'
-        );
+        $to = 'alexkopen@gmail.com';
+        $headers = 'From: admin@reiserrelief.org' . "\r\n" .
+            'Reply-To: ' . $email . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        $message = $name . "\r\n" . $message;
+
+        if (mail($to, $subject, $message, $headers)) {
+            return array(
+                "status" => 'ok'
+            );
+        } else {
+            return array(
+                "status" => 'error'
+            );
+        }
     }
 
 }
