@@ -199,10 +199,10 @@ $router->post('/apply-submit', function () use ($app) {
 });
 
 $router->post('/contact-submit', function () use ($app) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+    $message = isset($_POST['message']) ? $_POST['message'] : '';
 
     echo json_encode($app->postContact($name, $email, $subject, $message));
 });
