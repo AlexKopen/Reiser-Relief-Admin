@@ -199,12 +199,10 @@ $router->post('/apply-submit', function () use ($app) {
 });
 
 $router->post('/contact-submit', function () use ($app) {
-    $post = file_get_contents('php://input');
-    $post = json_decode($post, TRUE);
-    $name = $post['name'];
-    $email = $post['email'];
-    $subject = $post['subject'];
-    $message = $post['message'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
 
     echo json_encode($app->postContact($name, $email, $subject, $message));
 });

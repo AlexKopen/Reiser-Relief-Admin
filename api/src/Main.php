@@ -253,6 +253,7 @@ class Main
 
     public function postContact($name, $email, $subject, $message)
     {
+        error_reporting(E_ALL ^ E_WARNING);
         $to = 'alexkopen@gmail.com';
         $headers = 'From: admin@reiserrelief.org' . "\r\n" .
             'Reply-To: ' . $email . "\r\n" .
