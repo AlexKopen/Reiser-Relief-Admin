@@ -151,51 +151,55 @@ $router->get('/secured/applications', function () use ($app) {
 });
 
 $router->post('/apply-submit', function () use ($app) {
-    $post = file_get_contents('php://input');
-    $post = json_decode($post, TRUE);
+    if (!isset($_POST['id'])) {
+        echo(json_encode(array(
+            "status" => 'error'
+        )));
+    } else {
+        $tripId = $_POST['id'];
+        $first = isset($_POST['first']) ? $_POST['first'] : '';
+        $middle = isset($_POST['middle']) ? $_POST['middle'] : '';
+        $last = isset($_POST['last']) ? $_POST['last'] : '';
+        $addressLine1 = isset($_POST['address-line-1']) ? $_POST['address-line-1'] : '';
+        $addressLine2 = isset($_POST['address-line-2']) ? $_POST['address-line-2'] : '';
+        $city = isset($_POST['city']) ? $_POST['city'] : '';
+        $state = isset($_POST['state']) ? $_POST['state'] : '';
+        $zip = isset($_POST['zip']) ? $_POST['zip'] : '';
+        $homePhone = isset($_POST['home-phone']) ? $_POST['home-phone'] : '';
+        $cellPhone = isset($_POST['cell-phone']) ? $_POST['cell-phone'] : '';
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $month = isset($_POST['month']) ? $_POST['month'] : '';
+        $day = isset($_POST['day']) ? $_POST['day'] : '';
+        $year = isset($_POST['year']) ? $_POST['year'] : '';
+        $nationality = isset($_POST['nationality']) ? $_POST['nationality'] : '';
+        $birthPlace = isset($_POST['birth-place']) ? $_POST['birth-place'] : '';
+        $maidenName = isset($_POST['maiden-name']) ? $_POST['maiden-name'] : '';
+        $maritalStatus = isset($_POST['marital-status']) ? $_POST['marital-status'] : '';
+        $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+        $passportNumber = isset($_POST['passport-number']) ? $_POST['passport-number'] : '';
+        $passportIssueDateMonth = isset($_POST['passport-issue-date-month']) ? $_POST['passport-issue-date-month'] : '';
+        $passportIssueDateDay = isset($_POST['passport-issue-date-day']) ? $_POST['passport-issue-date-day'] : '';
+        $passportIssueDateYear = isset($_POST['passport-issue-date-year']) ? $_POST['passport-issue-date-year'] : '';
+        $passportExpirationDateMonth = isset($_POST['passport-expiration-date-month']) ? $_POST['passport-expiration-date-month'] : '';
+        $passportExpirationDateDay = isset($_POST['passport-expiration-date-day']) ? $_POST['passport-expiration-date-day'] : '';
+        $passportExpirationDateYear = isset($_POST['passport-expiration-date-year']) ? $_POST['passport-expiration-date-year'] : '';
+        $question1 = isset($_POST['question-1']) ? $_POST['question-1'] : '';
+        $question2 = isset($_POST['question-2']) ? $_POST['question-2'] : '';
+        $question3 = isset($_POST['question-3']) ? $_POST['question-3'] : '';
+        $question4 = isset($_POST['question-4']) ? $_POST['question-4'] : '';
+        $question5 = isset($_POST['question-5']) ? $_POST['question-5'] : '';
+        $question6 = isset($_POST['question-6']) ? $_POST['question-6'] : '';
+        $person1Name = isset($_POST['person-1-name']) ? $_POST['person-1-name'] : '';
+        $person1Relationship = isset($_POST['person-1-relationship']) ? $_POST['person-1-relationship'] : '';
+        $person1Phone = isset($_POST['person-1-phone']) ? $_POST['person-1-phone'] : '';
+        $person1Email = isset($_POST['person-1-email']) ? $_POST['person-1-email'] : '';
+        $person2Name = isset($_POST['person-2-name']) ? $_POST['person-2-name'] : '';
+        $person2Relationship = isset($_POST['person-2-relationship']) ? $_POST['person-2-relationship'] : '';
+        $person2Phone = isset($_POST['person-2-phone']) ? $_POST['person-2-phone'] : '';
+        $person2Email = isset($_POST['person-2-email']) ? $_POST['person-2-email'] : '';
 
-    $first = $post['first'];
-    $middle = $post['middle'];
-    $last = $post['last'];
-    $addressLine1 = $post['address-line-1'];
-    $addressLine2 = $post['address-line-2'];
-    $city = $post['city'];
-    $state = $post['state'];
-    $zip = $post['zip'];
-    $homePhone = $post['home-phone'];
-    $cellPhone = $post['cell-phone'];
-    $email = $post['email'];
-    $month = $post['month'];
-    $day = $post['day'];
-    $year = $post['year'];
-    $nationality = $post['nationality'];
-    $birthPlace = $post['birth-place'];
-    $maidenName = $post['maiden-name'];
-    $maritalStatus = $post['marital-status'];
-    $gender = $post['gender'];
-    $passportNumber = $post['passport-number'];
-    $passportIssueDateMonth = $post['passport-issue-date-month'];
-    $passportIssueDateDay = $post['passport-issue-date-day'];
-    $passportIssueDateYear = $post['passport-issue-date-year'];
-    $passportExpirationDateMonth = $post['passport-expiration-date-month'];
-    $passportExpirationDateDay = $post['passport-expiration-date-day'];
-    $passportExpirationDateYear = $post['passport-expiration-date-year'];
-    $question1 = $post['question-1'];
-    $question2 = $post['question-2'];
-    $question3 = $post['question-3'];
-    $question4 = $post['question-4'];
-    $question5 = $post['question-5'];
-    $question6 = $post['question-6'];
-    $person1Name = $post['person-1-name'];
-    $person1Relationship = $post['person-1-relationship'];
-    $person1Phone = $post['person-1-phone'];
-    $person1Email = $post['person-1-email'];
-    $person2Name = $post['person-2-name'];
-    $person2Relationship = $post['person-2-relationship'];
-    $person2Phone = $post['person-2-phone'];
-    $person2Email = $post['person-2-email'];
-
-    echo($app->postApplication($first, $middle, $last, $addressLine1, $addressLine2, $city, $state, $zip, $homePhone, $cellPhone, $email, $month, $day, $year, $nationality, $birthPlace, $maidenName, $maritalStatus, $gender, $passportNumber, $passportIssueDateMonth, $passportIssueDateDay, $passportIssueDateYear, $passportExpirationDateMonth, $passportExpirationDateDay, $passportExpirationDateYear, $question1, $question2, $question3, $question4, $question5, $question6, $person1Name, $person1Relationship, $person1Phone, $person1Email, $person2Name, $person2Relationship, $person2Phone, $person2Email));
+        echo json_encode($app->postApplication($tripId, $first, $middle, $last, $addressLine1, $addressLine2, $city, $state, $zip, $homePhone, $cellPhone, $email, $month, $day, $year, $nationality, $birthPlace, $maidenName, $maritalStatus, $gender, $passportNumber, $passportIssueDateMonth, $passportIssueDateDay, $passportIssueDateYear, $passportExpirationDateMonth, $passportExpirationDateDay, $passportExpirationDateYear, $question1, $question2, $question3, $question4, $question5, $question6, $person1Name, $person1Relationship, $person1Phone, $person1Email, $person2Name, $person2Relationship, $person2Phone, $person2Email));
+    }
 });
 
 $router->post('/contact-submit', function () use ($app) {
