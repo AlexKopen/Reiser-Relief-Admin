@@ -151,12 +151,12 @@ $router->get('/secured/applications', function () use ($app) {
 });
 
 $router->post('/apply-submit', function () use ($app) {
-    if (!isset($_POST['id'])) {
+    if (!isset($_POST['trip-id'])) {
         echo(json_encode(array(
             "status" => 'error'
         )));
     } else {
-        $tripId = $_POST['id'];
+        $tripId = $_POST['trip-id'];
         $first = isset($_POST['first']) ? $_POST['first'] : '';
         $middle = isset($_POST['middle']) ? $_POST['middle'] : '';
         $last = isset($_POST['last']) ? $_POST['last'] : '';
