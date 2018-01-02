@@ -97,12 +97,10 @@ $router->delete('/secured/news', function () use ($app) {
 });
 
 $router->post('/secured/news', function () use ($app) {
-    $post = file_get_contents('php://input');
-    $post = json_decode($post, TRUE); //convert JSON into array
-    $id = $post['id'];
-    $date = $post['date'];
-    $title = $post['title'];
-    $content = $post['content'];
+    $id = $_POST['id'];
+    $date = $_POST['date'];
+    $title = $_POST['title'];
+    $content = $_POST['content'];
 
     echo($app->postNews($id, $title, $content, $date));
 });

@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class DataService {
-    baseUrl = 'http://127.0.0.1:3001';
+    baseUrl = 'http://localhost/Reiser-Relief/dist/admin/api';
     loginUnsuccessful = false;
     loginUnsuccessfulSubject = new Subject<boolean>();
     allNews: Array<NewsPost> = [];
