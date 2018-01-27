@@ -22,6 +22,7 @@ export class NewsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.dataService.setShowNavBar(true);
         this.dataService.getAllNews();
         this.allNewsPosts = this.dataService.allNews;
         this.allNewsSubscription = this.dataService.allNewsSubject.subscribe((value) => {

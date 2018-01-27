@@ -18,6 +18,7 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataService.setShowNavBar(true);
     this.dataService.getAllEvents();
     this.allEventData = this.dataService.allEvents;
     this.getEventData();
@@ -29,9 +30,26 @@ export class EventsComponent implements OnInit {
     this.dataService.setTab();
   }
 
-  submitEvent() {
+  submitEvent(eventSybmol: string) {
     this.setEventData();
-    this.dataService.submitAllEvents(this.allEventData);
+    let eventTextToSubmit = '';
+
+    switch (eventSybmol) {
+        case 'gttmd':
+          eventTextToSubmit = this.contentGTTMD;
+          break;
+        case 'ktwt':
+          eventTextToSubmit = this.contentKTWT;
+          break;
+        default:
+          break;
+    }
+
+    const event: EventEntry = new EventEntry();
+    event.symbol = eventSybmol;
+    event.content = eventTextToSubmit;
+
+    this.dataService.updateEvent(event);
   }
 
   private getEventData() {

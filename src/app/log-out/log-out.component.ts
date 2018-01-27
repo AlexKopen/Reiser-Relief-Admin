@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../auth/auth.service";
+import {DataService} from '../shared/data.service';
 
 @Component({
   selector: 'app-log-out',
@@ -8,9 +9,10 @@ import {AuthService} from "../auth/auth.service";
 })
 export class LogOutComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private dataService: DataService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.dataService.setShowNavBar(false);
     this.authService.logout();
   }
 

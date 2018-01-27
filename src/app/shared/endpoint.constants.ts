@@ -4,7 +4,7 @@ export const ENDPOINT = {
     eventsUrlPublic: '/events',
     eventsUrlPrivate: '/secured/events',
     tripDatesUrlPublic: '/trip-dates',
-    tripDatesUrlPrivate: '/secured/trip-dates',
+    tripDatesUrlPrivate: '/secured/trip-date',
     applicationsUrlPublic: '/applications',
     applicationsUrlPrivate: '/secured/applications'
 };
