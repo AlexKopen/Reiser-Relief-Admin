@@ -1,7 +1,7 @@
 @import "../../../globals";
 
 button {
-  background: $light-green-theme-color;
+  background: $light-theme-color;
   height: 70px;
   width: 100%;
   padding: 0;
@@ -10,6 +10,6 @@ button {
 
   &:hover {
     cursor: pointer;
-    background: $opaque-green-theme-color;
+    background: $dark-theme-color;
   }
 }

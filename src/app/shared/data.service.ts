@@ -1,9 +1,9 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {ENDPOINT} from './endpoint.constants';
 import {AuthHttp} from 'angular2-jwt';
 import {NewsPost} from './models/news-post.model';
-import {Headers, Http} from '@angular/http';
+import {Http} from '@angular/http';
 import {EventEntry} from './models/event-entry.model';
 import {Application} from './models/application.model';
 import {TripDate} from './models/trip-date.model';
@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class DataService {
-    baseUrl = 'http://localhost/Reiser-Relief/dist/admin/api';
+    baseUrl = 'http://api.reiserrelief.org/public';
     loginUnsuccessful = false;
     loginUnsuccessfulSubject = new Subject<boolean>();
     allNews: Array<NewsPost> = [];
@@ -43,7 +43,7 @@ export class DataService {
     }
 
     setShowNavBar(state: boolean) {
-      this.showNavBar = true;
+      this.showNavBar = state;
       this.showNavBarSubject.next(this.showNavBar);
     }
 
@@ -58,21 +58,29 @@ export class DataService {
             );
     }
 
+    updateNews(newsPost: NewsPost) {
+        const body = JSON.stringify(newsPost);
+
+        this.authHttp.put(this.baseUrl + ENDPOINT.newsUrlPrivate + '/' + newsPost.id, body)
+            .subscribe(
+                data => this.getAllNews(),
+                err => console.log(err),
+                () => console.log('Request Complete')
+            );
+    }
+
     getAllNews() {
         this.http.get(this.baseUrl + ENDPOINT.newsUrlPublic)
           .map(res => res.json())
           .subscribe(
-            data => this.allNews = JSON.parse(data),
+            data => this.allNews = data,
             error => console.log(error),
             () => this.allNewsSubject.next(this.allNews)
           );
     }
 
     deleteNews(newsPost: NewsPost) {
-        const myHeader = new Headers();
-        myHeader.append('Post-Id', newsPost.id.toString());
-
-        this.authHttp.delete(this.baseUrl + ENDPOINT.newsUrlPrivate, { headers: myHeader })
+        this.authHttp.delete(this.baseUrl + ENDPOINT.newsUrlPrivate + '/' + newsPost.id)
             .subscribe(
                 data => this.getAllNews(),
                 err => console.log(err),
@@ -84,16 +92,16 @@ export class DataService {
       this.http.get(this.baseUrl + ENDPOINT.eventsUrlPublic)
         .map(res => res.json())
         .subscribe(
-          data => this.allEvents = JSON.parse(data),
+          data => this.allEvents = data,
           error => console.log(error),
           () => this.allEventsSubject.next(this.allEvents)
         );
     }
 
-    submitAllEvents(events: Array<EventEntry>) {
-        const body = JSON.stringify(events);
+    updateEvent(event: EventEntry) {
+        const body = JSON.stringify(event);
 
-        this.authHttp.post(this.baseUrl + ENDPOINT.eventsUrlPrivate, body)
+        this.authHttp.put(this.baseUrl + ENDPOINT.eventsUrlPrivate + '/' + event.symbol, body)
           .subscribe(
             data => this.getAllEvents(),
             err => console.log(err),
@@ -105,7 +113,7 @@ export class DataService {
         this.http.get(this.baseUrl + ENDPOINT.tripDatesUrlPublic)
           .map(res => res.json())
           .subscribe(
-            data => this.allTripDates = JSON.parse(data),
+            data => this.allTripDates = data,
             error => console.log(error),
             () => this.allTripDatesSubject.next(this.allTripDates)
           );
@@ -122,11 +130,19 @@ export class DataService {
         );
     }
 
-    deleteTrip(tripDate: TripDate) {
-      const myHeader = new Headers();
-      myHeader.append('Post-Id', tripDate.id.toString());
+    updateTripDate(tripDate: TripDate) {
+        const body = JSON.stringify(tripDate);
 
-      this.authHttp.delete(this.baseUrl + ENDPOINT.tripDatesUrlPrivate, { headers: myHeader })
+        this.authHttp.put(this.baseUrl + ENDPOINT.tripDatesUrlPrivate + '/' + tripDate.id, body)
+            .subscribe(
+                data => this.getAllTripDates(),
+                err => console.log(err),
+                () => console.log('Request Complete')
+            );
+    }
+
+    deleteTrip(tripDate: TripDate) {
+      this.authHttp.delete(this.baseUrl + ENDPOINT.tripDatesUrlPrivate + '/' + tripDate.id)
         .subscribe(
           data => this.getAllTripDates(),
           err => console.log(err),
@@ -138,7 +154,7 @@ export class DataService {
         this.authHttp.get(this.baseUrl + ENDPOINT.applicationsUrlPrivate)
           .map(res => res.json())
           .subscribe(
-            data => this.allApplications = JSON.parse(data),
+            data => this.allApplications = data,
             error => console.log(error),
             () => this.allApplicationsSubject.next(this.allApplications)
           );

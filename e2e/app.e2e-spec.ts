@@ -1,10 +1,10 @@
-import { VolzapEventAdminPage } from './app.po';
+import { ReiserRliefAdminPage } from './app.po';
 
-describe('volzap-event-admin App', () => {
-  let page: VolzapEventAdminPage;
+describe('reiser-relief-admin App', () => {
+  let page: ReiserRliefAdminPage;
 
   beforeEach(() => {
-    page = new VolzapEventAdminPage();
+    page = new ReiserRliefAdminPage();
   });
 
   it('should display welcome message', () => {

@@ -40,6 +40,7 @@ export class ApplicationsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataService.setShowNavBar(true);
     this.dataService.getAllApplications();
     this.applications = this.dataService.allApplications;
     this.applicationsSubscription = this.dataService.allApplicationsSubject.subscribe((value) => {
@@ -110,7 +111,7 @@ export class ApplicationsComponent implements OnInit {
     tripDate.tripLeader = this.changeLeaderInput;
     tripDate.status = this.currentModalTrip.status;
     tripDate.id = this.currentModalTripId;
-    this.dataService.submitTripDate(tripDate);
+    this.dataService.updateTripDate(tripDate);
     this.showModal = false;
   }
 

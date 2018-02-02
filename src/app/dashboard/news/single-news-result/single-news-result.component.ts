@@ -25,7 +25,7 @@ export class SingleNewsResultComponent implements OnInit {
         const editedPost = this.newsPost;
         editedPost.title = this.title;
         editedPost.content = this.content;
-        this.dataService.submitNews(editedPost);
+        this.dataService.updateNews(editedPost);
     }
 
     delete() {

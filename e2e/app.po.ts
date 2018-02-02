@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class VolzapEventAdminPage {
+export class ReiserRliefAdminPage {
   navigateTo() {
     return browser.get('/');
   }
