@@ -12,15 +12,17 @@ export class AuthService {
         domain: AUTH_CONFIG.domain,
         clientID: AUTH_CONFIG.clientID,
         redirectUri: AUTH_CONFIG.callbackURL,
-        audience: `https://volzap.auth0.com/userinfo`,
-        responseType: 'token id_token',
-        scope: 'openid'
+        audience: 'https://api.reiserrelief.org',
+        scope: 'openid profile read:messages',
+        responseType: 'token token'
     });
 
     constructor(private router: Router, private loginState: DataService) {
     }
 
     public login(username: string, password: string): void {
+        console.log('present, bitch');
+        localStorage.clear();
         this.auth0.client.login({
             realm: 'Username-Password-Authentication',
             username,
