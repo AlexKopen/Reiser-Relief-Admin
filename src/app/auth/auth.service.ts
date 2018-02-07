@@ -12,7 +12,7 @@ export class AuthService {
         domain: AUTH_CONFIG.domain,
         clientID: AUTH_CONFIG.clientID,
         redirectUri: AUTH_CONFIG.callbackURL,
-        audience: `https://volzap.auth0.com/api/v2/`,
+        audience: `https://volzap.auth0.com/userinfo`,
         responseType: 'token id_token',
         scope: 'openid'
     });

@@ -5,7 +5,7 @@ interface AuthConfig {
 }
 
 export const AUTH_CONFIG: AuthConfig = {
-    clientID: 'tvwRmFJ751eO63fdVTrk6zMdBfIoU0v7',
+    clientID: '0mhlYvM24PZgMmVwdzklWT49fciMI8NE',
     domain: 'volzap.auth0.com',
     callbackURL: 'http://localhost:4200/callback'
 };
