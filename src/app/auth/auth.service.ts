@@ -21,7 +21,6 @@ export class AuthService {
     }
 
     public login(username: string, password: string): void {
-        console.log('present, bitch');
         localStorage.clear();
         this.auth0.client.login({
             realm: 'Username-Password-Authentication',

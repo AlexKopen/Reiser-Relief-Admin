@@ -1,0 +1,10 @@
+.row {
+  $row-height: 35px;
+  height: $row-height;
+  line-height: $row-height;
+  padding-left: 15px;
+}
+
+.row-odd {
+  background: #e0e0e0;
+}
