@@ -1,30 +1,24 @@
 <app-navigation></app-navigation>
 
 <div class="container">
-    <h2>Sample Posts</h2>
+    <h2>Administrative Portal</h2>
 
-    <app-spinner *ngIf="!displayTable"></app-spinner>
-
-    <table *ngIf="displayTable" class="pure-table">
-        <thead>
-        <tr>
-            <th>Post Id</th>
-            <th>User Id</th>
-            <th>Title</th>
-            <th>Content</th>
-        </tr>
-        </thead>
-
-        <tbody *ngFor="let currentPost of posts; let i = index">
-        <ng-container *ngIf="i < 5">
-            <tr [ngClass]="{'pure-table-odd': i % 2 === 0}">
-                <td>{{currentPost.id}}</td>
-                <td>{{currentPost.userId}}</td>
-                <td>{{currentPost.title}}</td>
-                <td>{{currentPost.body}}</td>
-            </tr>
-        </ng-container>
-
-        </tbody>
-    </table>
+    <div class="pure-g">
+        <div class="pure-u-1-1 pure-u-md-1-2">
+            <a [routerLink]="['/dashboard/news']">
+                <div class="tile">
+                    <h3>News</h3>
+                    <p>Manage news posts which appear on the home page of reiserrelief.org</p>
+                </div>
+            </a>
+        </div>
+        <div class="pure-u-1-1 pure-u-md-1-2">
+            <a [routerLink]="['/dashboard/applications']">
+                <div class="tile">
+                    <h3>Applications</h3>
+                    <p>View applications for mission trips to Haiti</p>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
