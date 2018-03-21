@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "reiser-relief-admin-portal"
+    "name": "reiser-relief-admin"
   },
   "apps": [
     {

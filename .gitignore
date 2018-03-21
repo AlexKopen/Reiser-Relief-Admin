@@ -42,6 +42,4 @@ package-lock.json
 .DS_Store
 Thumbs.db
 
-# PHP
-/api/composer.lock
-/api/vendor
+src/app/shared/auth-config.ts

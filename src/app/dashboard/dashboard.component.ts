@@ -1,22 +1,31 @@
-import {Component, OnInit} from '@angular/core';
-import 'rxjs/add/operator/map';
-import {Router} from '@angular/router';
-import {AuthService} from '../auth/auth.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DataService } from '../shared/data.service';
+import { Post } from '../shared/models/post.model';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+  posts: Array<Post>;
+  private postsSubscription: Subscription;
 
-    constructor(private router: Router, private authService: AuthService) {
-    }
+  constructor(private dataService: DataService) {
+  }
 
-    ngOnInit() {
-        if (this.authService.isAuthenticated()) {
-            this.router.navigate(['dashboard/news']);
-        }
-    }
+  ngOnInit() {
+    this.postsSubscription = this.dataService.getPosts().subscribe(
+      data => this.posts = data
+    );
+  }
 
+  get displayTable() {
+    return this.posts && this.posts.length > 0;
+  }
+
+  ngOnDestroy() {
+    this.postsSubscription.unsubscribe();
+  }
 }
