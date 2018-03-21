@@ -16,7 +16,7 @@ export class DataService {
     return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
   }
 
-  getPosts(): Observable<Array<NewsPost>> {
+  getNewsPosts(): Observable<Array<NewsPost>> {
     return this.http
       .get(this.baseURL + ENDPOINT.newsUrlPublic, {headers: this.headers})
       .pipe(

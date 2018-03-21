@@ -14,6 +14,8 @@ import { DataService } from './shared/data.service';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { NewsComponent } from './news/news.component';
+import { ApplicationsComponent } from './applications/applications.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
     DashboardComponent,
     NavigationComponent,
     LoginFormComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NewsComponent,
+    ApplicationsComponent
   ],
   imports: [
     BrowserModule,
