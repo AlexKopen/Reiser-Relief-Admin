@@ -6,7 +6,7 @@
                 [(ngModel)]="previewHTML"
                 [style]="{height: '150px'}">
         </quill-editor>
-        <button (click)="newsSubmit()" [disabled]="submitDisabled" class="pure-button">Submit News Entry</button>
+        <button id="submit-news-button" (click)="newsSubmit()" [disabled]="submitDisabled" class="pure-button">Submit News Entry</button>
     </div>
     <div id="preview-container" class="pure-u-1-1 pure-u-md-1-2">
         <h2>Preview</h2>
@@ -21,9 +21,23 @@
 
 <h2>Manage News Entries</h2>
 
-<ul *ngFor="let currentPost of allNewsPosts; let i = index">
-    <li>{{currentPost.id}}</li>
-    <li>{{currentPost.title}}</li>
-    <li>{{currentPost.date}}</li>
-    <li>{{currentPost.content}}</li>
-</ul>
+<table class="pure-table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let currentPost of allNewsPosts; let i = index" [ngClass]="{'pure-table-odd': i % 2 == 1}">
+        <td>{{currentPost.title}}</td>
+        <td>{{ currentPost.date | date:'EEEE, MMMM d, y' }}</td>
+        <td>
+            <button (click)="manageNewsPost(currentPost)" class="pure-button">Manage</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+

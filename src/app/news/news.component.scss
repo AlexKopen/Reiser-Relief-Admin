@@ -35,6 +35,12 @@ input {
   }
 }
 
-button {
+#submit-news-button {
   margin-top: 2em;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
 }

@@ -40,4 +40,8 @@ export class NewsComponent {
       'success'
     );
   }
+
+  manageNewsPost(newsPost: NewsPost): void {
+    console.log(newsPost.content);
+  }
 }
