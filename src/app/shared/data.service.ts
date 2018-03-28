@@ -24,7 +24,14 @@ export class DataService {
       );
   }
 
-  // Implement a method to handle errors, if any
+  submitNewsPost(newsPost: NewsPost) {
+    return this.http
+      .post<NewsPost>(this.baseURL + ENDPOINT.newsUrlPrivate, newsPost, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(err: HttpErrorResponse | any) {
     console.error('An error occurred', err);
     return Observable.throw(err.message || err);

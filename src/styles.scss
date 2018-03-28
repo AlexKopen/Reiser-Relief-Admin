@@ -1,7 +1,17 @@
+body, h1, h2, h3, h4, p, ul, li {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .container {
   width: 100%;
   max-width: 64em;
   margin: 0 auto;
   padding: 0 1em;
+  box-sizing: border-box;
+}
+
+.pure-g > div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }

@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NewsComponent } from './news/news.component';
 import { ApplicationsComponent } from './applications/applications.component';
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ApplicationsComponent } from './applications/applications.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    QuillModule
   ],
   providers: [AuthService, DataService],
   bootstrap: [AppComponent]
