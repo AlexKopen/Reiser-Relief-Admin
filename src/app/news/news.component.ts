@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NewsPost } from '../shared/models/news-post.model';
 import { DataService } from '../shared/data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-news',
@@ -32,5 +33,11 @@ export class NewsComponent {
 
     this.previewTitle = 'Post Title';
     this.previewHTML = '<p>Post content</p>';
+
+    Swal(
+      'News Entry Submitted',
+      '',
+      'success'
+    );
   }
 }
