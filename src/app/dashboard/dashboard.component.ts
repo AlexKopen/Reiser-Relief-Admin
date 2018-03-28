@@ -20,6 +20,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loadNewsPosts();
+  }
+
+  private loadNewsPosts(): void {
     this.newsPostsSubscription = this.dataService.getNewsPosts().subscribe(
       data => this.newsPosts = data
     );
@@ -43,6 +47,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.showNews = false;
     this.showApplications = false;
     this.displayTiles = true;
+  }
+
+  updateNews(): void {
+    this.loadNewsPosts();
   }
 
   ngOnDestroy() {

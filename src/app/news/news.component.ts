@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NewsPost } from '../shared/models/news-post.model';
 import { DataService } from '../shared/data.service';
 
@@ -9,6 +9,8 @@ import { DataService } from '../shared/data.service';
 })
 export class NewsComponent {
   @Input() private newsPosts: Array<NewsPost>;
+  @Output() updateNews = new EventEmitter();
+
   previewTitle = 'Post Title';
   previewHTML = '<p>Post content</p>';
   currentDate = new Date();
@@ -26,9 +28,9 @@ export class NewsComponent {
 
   newsSubmit(): void {
     const newsPost = new NewsPost(null, this.previewTitle, null, this.previewHTML);
-    this.dataService.submitNewsPost(newsPost).subscribe();
+    this.dataService.submitNewsPost(newsPost).subscribe(data => this.updateNews.next());
 
-    this.previewTitle = '';
-    this.previewHTML = '';
+    this.previewTitle = 'Post Title';
+    this.previewHTML = '<p>Post content</p>';
   }
 }

@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <app-news *ngIf="showNews" [newsPosts]="newsPosts"></app-news>
+    <app-news *ngIf="showNews" [newsPosts]="newsPosts" (updateNews)="updateNews()"></app-news>
     <app-applications *ngIf="showApplications"></app-applications>
 
 </div>
