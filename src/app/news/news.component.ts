@@ -9,8 +9,9 @@ import { DataService } from '../shared/data.service';
 })
 export class NewsComponent {
   @Input() private newsPosts: Array<NewsPost>;
-  previewTitle: string;
-  previewHTML: string;
+  previewTitle = 'Post Title';
+  previewHTML = '<p>Post content</p>';
+  currentDate = new Date();
 
   constructor(private dataService: DataService) {
   }
