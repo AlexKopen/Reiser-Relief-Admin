@@ -41,7 +41,11 @@ export class NewsComponent {
     );
   }
 
-  manageNewsPost(newsPost: NewsPost): void {
+  editNewsPost(newsPost: NewsPost): void {
     console.log(newsPost.content);
+  }
+
+  deleteNewsPost(newsPost: NewsPost): void {
+    console.log('deleting ', newsPost.id)
   }
 }
