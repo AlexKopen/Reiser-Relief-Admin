@@ -1,27 +1,8 @@
-<h2>News Entries</h2>
-<button (click)="createNewClick()">Create New</button>
+<div *ngIf="!showNewsEdit">
+    <h2>News Entries</h2>
+    <button class="pure-button" id="create-new-button" (click)="createNewClick()">Create New</button>
+</div>
 
-<app-news-edit *ngIf="showNewsEdit" (updateNews)="updateNews()" (cancel)="cancel()"></app-news-edit>
+<app-news-edit *ngIf="showNewsEdit" (updateNews)="updateNews()" (close)="close()"></app-news-edit>
 
-<table class="pure-table">
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Date</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr class="news-entry-row" *ngFor="let currentPost of allNewsPosts; let i = index" [ngClass]="{'pure-table-odd': i % 2 == 1}">
-        <td>
-            <div class="news-entry-title" (click)="editNewsPost(currentPost)"><strong>{{currentPost.title}}</strong></div>
-            <div class="news-entry-actions">
-                <span class="edit-action" (click)="editNewsPost(currentPost)">Edit</span> | <span
-                    class="trash-action" (click)="deleteNewsPost(currentPost)">Trash</span>
-            </div>
-        </td>
-        <td>{{ currentPost.date | date:'EEEE, MMMM d, y' }}</td>
-    </tr>
-    </tbody>
-</table>
-
+<app-news-entries *ngIf="!showNewsEdit" [newsPosts]="allNewsPosts"></app-news-entries>

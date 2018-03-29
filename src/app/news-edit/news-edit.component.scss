@@ -35,6 +35,13 @@ input {
   }
 }
 
-#submit-news-button {
+#submit-news-button, #cancel-button {
   margin-top: 2em;
+}
+
+#cancel-button {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background: #ca3d3c;
 }

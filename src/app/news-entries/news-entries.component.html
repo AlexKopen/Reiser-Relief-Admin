@@ -1,3 +1,23 @@
-<p>
-  news-entries works!
-</p>
+<table class="pure-table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr class="news-entry-row" *ngFor="let currentPost of allNewsPosts; let i = index"
+        [ngClass]="{'pure-table-odd': i % 2 == 1}">
+        <td>
+            <div class="news-entry-title" (click)="editNewsPost(currentPost)"><strong>{{currentPost.title}}</strong>
+            </div>
+            <div class="news-entry-actions">
+                <span class="edit-action" (click)="editNewsPost(currentPost)">Edit</span> | <span
+                    class="trash-action" (click)="deleteNewsPost(currentPost)">Trash</span>
+            </div>
+        </td>
+        <td>{{ currentPost.date | date:'EEEE, MMMM d, y' }}</td>
+    </tr>
+    </tbody>
+</table>

@@ -7,8 +7,8 @@ import { NewsPost } from '../shared/models/news-post.model';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent {
-  @Input() private newsPosts: Array<NewsPost>;
-  @Output() private reloadNews = new EventEmitter();
+  @Input() newsPosts: Array<NewsPost>;
+  @Output() reloadNews = new EventEmitter();
 
   showNewsEdit = false;
 
@@ -27,15 +27,7 @@ export class NewsComponent {
     this.showNewsEdit = true;
   }
 
-  cancel(): void {
+  close(): void {
     this.showNewsEdit = false;
-  }
-
-  editNewsPost(newsPost: NewsPost): void {
-    console.log(newsPost.content);
-  }
-
-  deleteNewsPost(newsPost: NewsPost): void {
-    console.log('deleting ', newsPost.id);
   }
 }

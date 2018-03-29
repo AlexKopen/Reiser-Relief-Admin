@@ -9,8 +9,8 @@ import { DataService } from '../shared/data.service';
   styleUrls: ['./news-edit.component.scss']
 })
 export class NewsEditComponent implements OnInit {
-  @Output() private updateNews = new EventEmitter();
-  @Output() private cancel = new EventEmitter();
+  @Output() updateNews = new EventEmitter();
+  @Output() close = new EventEmitter();
 
   previewTitle = 'Post Title';
   previewHTML = '<p>Post content</p>';
@@ -28,19 +28,22 @@ export class NewsEditComponent implements OnInit {
 
   newsSubmit(): void {
     const newsPost = new NewsPost(null, this.previewTitle, null, this.previewHTML);
-    this.dataService.submitNewsPost(newsPost).subscribe(data => this.updateNews.next());
+    this.dataService.submitNewsPost(newsPost).subscribe(data => this.sendUpdate());
+  }
 
-    this.previewTitle = 'Post Title';
-    this.previewHTML = '<p>Post content</p>';
+  private sendUpdate(): void {
+    this.updateNews.next();
 
     Swal(
       'News Entry Submitted',
       '',
       'success'
     );
+
+    this.closeClick();
   }
 
-  cancelClick(): void {
-    this.cancel.next();
+  closeClick(): void {
+    this.close.next();
   }
 }
