@@ -17,6 +17,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { NewsComponent } from './news/news.component';
 import { ApplicationsComponent } from './applications/applications.component';
 import { QuillModule } from 'ngx-quill';
+import { NewsEntriesComponent } from './news-entries/news-entries.component';
+import { NewsEditComponent } from './news-edit/news-edit.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { QuillModule } from 'ngx-quill';
     LoginFormComponent,
     SpinnerComponent,
     NewsComponent,
-    ApplicationsComponent
+    ApplicationsComponent,
+    NewsEntriesComponent,
+    NewsEditComponent
   ],
   imports: [
     BrowserModule,

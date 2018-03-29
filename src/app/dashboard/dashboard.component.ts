@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.displayTiles = true;
   }
 
-  updateNews(): void {
+  reloadNews(): void {
     this.loadNewsPosts();
   }
 
