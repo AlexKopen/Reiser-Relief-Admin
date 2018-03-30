@@ -19,6 +19,10 @@ import { ApplicationsComponent } from './applications/applications.component';
 import { QuillModule } from 'ngx-quill';
 import { NewsEntriesComponent } from './news-entries/news-entries.component';
 import { NewsEditComponent } from './news-edit/news-edit.component';
+import { ModifyTripComponent } from './modify-trip/modify-trip.component';
+import { AddTripComponent } from './add-trip/add-trip.component';
+import { ApplicationSubmissionsComponent } from './application-submissions/application-submissions.component';
+import { ApplicationViewComponent } from './application-view/application-view.component';
 
 
 @NgModule({
@@ -33,7 +37,11 @@ import { NewsEditComponent } from './news-edit/news-edit.component';
     NewsComponent,
     ApplicationsComponent,
     NewsEntriesComponent,
-    NewsEditComponent
+    NewsEditComponent,
+    ModifyTripComponent,
+    AddTripComponent,
+    ApplicationSubmissionsComponent,
+    ApplicationViewComponent
   ],
   imports: [
     BrowserModule,

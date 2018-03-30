@@ -1,3 +1,14 @@
-<p>
-  applications works!
-</p>
+<div *ngIf="!showApplicationView">
+    <div class="pure-g">
+        <div class="pure-u-1-2 pure-u-md-1-2">
+            <app-modify-trip></app-modify-trip>
+        </div>
+        <div class="pure-u-1-2 pure-u-md-1-2">
+            <app-add-trip></app-add-trip>
+        </div>
+    </div>
+
+    <app-application-submissions [applications]="applications"></app-application-submissions>
+</div>
+
+<app-application-view *ngIf="showApplicationView"></app-application-view>

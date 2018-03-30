@@ -4,6 +4,7 @@ import { ENDPOINT } from './endpoint.constants';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { NewsPost } from './models/news-post.model';
+import { Application } from './models/application.model';
 
 @Injectable()
 export class DataService {
@@ -41,6 +42,14 @@ export class DataService {
   deleteNewsPost(newsPost: NewsPost) {
     return this.http
       .delete<NewsPost>(ENDPOINT.newsUrlPrivate + '/' + newsPost.id, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getApplications(): Observable<Array<Application>> {
+    return this.http
+      .get(ENDPOINT.applicationsUrlPrivate, {headers: this.headers})
       .pipe(
         catchError(this.handleError)
       );

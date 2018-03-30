@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../shared/data.service';
 import { NewsPost } from '../shared/models/news-post.model';
 import { Subscription } from 'rxjs/Subscription';
+import { Application } from '../shared/models/application.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,20 +17,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private newsPosts: Array<NewsPost>;
   private newsPostsSubscription: Subscription;
 
+  private applications: Array<Application>;
+  private applicationsSubscription: Subscription;
+
   constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
     this.loadNewsPosts();
+    this.loadApplications();
   }
 
-  get allNewsPosts():  Array<NewsPost> {
+  get allNewsPosts(): Array<NewsPost> {
     return this.newsPosts ? this.newsPosts : [];
+  }
+
+  get allApplications(): Array<Application> {
+    return this.applications ? this.applications : [];
   }
 
   private loadNewsPosts(): void {
     this.newsPostsSubscription = this.dataService.getNewsPosts().subscribe(
       data => this.newsPosts = data
+    );
+  }
+
+  private loadApplications(): void {
+    this.applicationsSubscription = this.dataService.getApplications().subscribe(
+      data => this.applications = data
     );
   }
 
