@@ -24,12 +24,22 @@ export class NewsEntriesComponent implements OnInit {
   }
 
   deleteNewsPost(newsPost: NewsPost): void {
-    this.dataService.deleteNewsPost(newsPost).subscribe(data => this.deleteNewsCallback());
+    Swal({
+      title: 'Are you sure you want to delete "' + newsPost.title  + '"?',
+      text: 'This news entry will no longer appear on the website.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.dataService.deleteNewsPost(newsPost).subscribe(data => this.deleteNewsCallback());
+      }
+    });
   }
 
   private deleteNewsCallback(): void {
     this.deletePost.next();
-
     Swal(
       'News Entry Deleted',
       '',
