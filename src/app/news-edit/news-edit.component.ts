@@ -13,6 +13,7 @@ export class NewsEditComponent implements OnInit {
   @Output() updateNews = new EventEmitter();
   @Output() close = new EventEmitter();
 
+  headerActionText: string;
   previewTitle: string;
   previewHTML: string;
   currentDate: string;
@@ -22,6 +23,7 @@ export class NewsEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.headerActionText = this.postToEdit ? 'Edit' : 'Create';
     this.previewTitle = this.postToEdit ? this.postToEdit.title : 'Post Title';
     this.previewHTML = this.postToEdit ? this.postToEdit.content : '<p>Post content</p>';
     this.currentDate = this.postToEdit ? this.postToEdit.date : String(new Date());
