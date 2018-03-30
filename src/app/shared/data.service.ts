@@ -30,6 +30,14 @@ export class DataService {
       );
   }
 
+  updateNewsPost(newsPost: NewsPost) {
+    return this.http
+      .put<NewsPost>(ENDPOINT.newsUrlPrivate + '/' + newsPost.id, newsPost, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(err: HttpErrorResponse | any) {
     console.error('An error occurred', err);
     return Observable.throw(err.message || err);

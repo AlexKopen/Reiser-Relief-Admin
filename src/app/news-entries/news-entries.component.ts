@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NewsPost } from '../shared/models/news-post.model';
 
 @Component({
@@ -8,6 +8,7 @@ import { NewsPost } from '../shared/models/news-post.model';
 })
 export class NewsEntriesComponent implements OnInit {
   @Input() newsPosts: Array<NewsPost>;
+  @Output() editPost = new EventEmitter();
 
   constructor() {
   }
@@ -20,7 +21,7 @@ export class NewsEntriesComponent implements OnInit {
   }
 
   editNewsPost(newsPost: NewsPost): void {
-    console.log(newsPost.content);
+    this.editPost.next(newsPost);
   }
 
   deleteNewsPost(newsPost: NewsPost): void {

@@ -9,19 +9,23 @@ import { DataService } from '../shared/data.service';
   styleUrls: ['./news-edit.component.scss']
 })
 export class NewsEditComponent implements OnInit {
-  @Input() newEntry = false;
+  @Input() postToEdit: NewsPost;
   @Output() updateNews = new EventEmitter();
   @Output() close = new EventEmitter();
 
-  previewTitle = 'Post Title';
-  previewHTML = '<p>Post content</p>';
-  currentDate = new Date();
-  buttonText = this.newEntry ? 'Update News Entry' : 'Submit News Entry';
+  previewTitle: string;
+  previewHTML: string;
+  currentDate: string;
+  buttonText: string;
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
+    this.previewTitle = this.postToEdit ? this.postToEdit.title : 'Post Title';
+    this.previewHTML = this.postToEdit ? this.postToEdit.content : '<p>Post content</p>';
+    this.currentDate = this.postToEdit ? this.postToEdit.date : String(new Date());
+    this.buttonText = this.postToEdit ? 'Update News Entry' : 'Submit News Entry';
   }
 
   get submitDisabled(): boolean {
@@ -29,8 +33,14 @@ export class NewsEditComponent implements OnInit {
   }
 
   newsSubmit(): void {
-    const newsPost = new NewsPost(null, this.previewTitle, null, this.previewHTML);
-    this.dataService.submitNewsPost(newsPost).subscribe(data => this.sendUpdate());
+    if (this.postToEdit) {
+      this.postToEdit.title = this.previewTitle;
+      this.postToEdit.content = this.previewHTML;
+      this.dataService.updateNewsPost(this.postToEdit).subscribe(data => this.sendUpdate());
+    } else {
+      const newsPost = new NewsPost(null, this.previewTitle, null, this.previewHTML);
+      this.dataService.submitNewsPost(newsPost).subscribe(data => this.sendUpdate());
+    }
   }
 
   private sendUpdate(): void {

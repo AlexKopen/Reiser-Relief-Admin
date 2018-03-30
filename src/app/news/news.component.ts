@@ -22,6 +22,7 @@ export class NewsComponent {
 
   updateNews(): void {
     this.reloadNews.next();
+    this.selectedNewsPost = null;
   }
 
   createNewClick(): void {
@@ -30,5 +31,11 @@ export class NewsComponent {
 
   close(): void {
     this.showNewsEdit = false;
+    this.selectedNewsPost = null;
+  }
+
+  editPost(newsPost: NewsPost): void {
+    this.selectedNewsPost = newsPost;
+    this.showNewsEdit = true;
   }
 }

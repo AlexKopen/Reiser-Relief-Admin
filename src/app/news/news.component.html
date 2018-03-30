@@ -3,6 +3,6 @@
     <button class="pure-button" id="create-new-button" (click)="createNewClick()">Create New</button>
 </div>
 
-<app-news-edit *ngIf="showNewsEdit" (updateNews)="updateNews()" (close)="close()"></app-news-edit>
+<app-news-edit *ngIf="showNewsEdit" [postToEdit]="selectedNewsPost" (updateNews)="updateNews()" (close)="close()"></app-news-edit>
 
-<app-news-entries *ngIf="!showNewsEdit" [newsPosts]="allNewsPosts"></app-news-entries>
+<app-news-entries *ngIf="!showNewsEdit" [newsPosts]="allNewsPosts" (editPost)="editPost($event)"></app-news-entries>
