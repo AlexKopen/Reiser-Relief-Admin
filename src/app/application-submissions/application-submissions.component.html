@@ -1,4 +1,8 @@
-<ul *ngFor="let currentApplication of applications; let i = index">
-    <li>{{currentApplication.first}}</li>
-    <li>{{currentApplication.submitted}}</li>
-</ul>
+<div *ngFor="let currentGroupedApplications of applicationsGroupedByTripDate">
+    <h2>{{currentGroupedApplications.tripDate}}</h2>
+    <ul *ngFor="let currentApplication of currentGroupedApplications.applications; let i = index">
+        <li>{{currentApplication.tripDate}}</li>
+        <li>{{currentApplication.first}}</li>
+        <li>{{currentApplication.submitted}}</li>
+    </ul>
+</div>
