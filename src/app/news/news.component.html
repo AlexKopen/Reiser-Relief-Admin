@@ -5,4 +5,4 @@
 
 <app-news-edit *ngIf="showNewsEdit" [postToEdit]="selectedNewsPost" (updateNews)="updateNews()" (close)="close()"></app-news-edit>
 
-<app-news-entries *ngIf="!showNewsEdit" [newsPosts]="allNewsPosts" (editPost)="editPost($event)"></app-news-entries>
+<app-news-entries *ngIf="!showNewsEdit" [newsPosts]="newsPosts" (editPost)="editPost($event)" (deletePost)="deletePost($event)"></app-news-entries>

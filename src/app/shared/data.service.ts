@@ -38,6 +38,14 @@ export class DataService {
       );
   }
 
+  deleteNewsPost(newsPost: NewsPost) {
+    return this.http
+      .delete<NewsPost>(ENDPOINT.newsUrlPrivate + '/' + newsPost.id, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(err: HttpErrorResponse | any) {
     console.error('An error occurred', err);
     return Observable.throw(err.message || err);

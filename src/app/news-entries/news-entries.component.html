@@ -7,7 +7,7 @@
     </thead>
 
     <tbody>
-    <tr class="news-entry-row" *ngFor="let currentPost of allNewsPosts; let i = index"
+    <tr class="news-entry-row" *ngFor="let currentPost of newsPosts; let i = index"
         [ngClass]="{'pure-table-odd': i % 2 == 1}">
         <td>
             <div class="news-entry-title" (click)="editNewsPost(currentPost)"><strong>{{currentPost.title}}</strong>

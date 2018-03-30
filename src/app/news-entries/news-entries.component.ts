@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import Swal from 'sweetalert2';
 import { NewsPost } from '../shared/models/news-post.model';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-news-entries',
@@ -9,15 +11,12 @@ import { NewsPost } from '../shared/models/news-post.model';
 export class NewsEntriesComponent implements OnInit {
   @Input() newsPosts: Array<NewsPost>;
   @Output() editPost = new EventEmitter();
+  @Output() deletePost = new EventEmitter();
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
-  }
-
-  get allNewsPosts(): Array<NewsPost> {
-    return this.newsPosts ? this.newsPosts : [];
   }
 
   editNewsPost(newsPost: NewsPost): void {
@@ -25,6 +24,16 @@ export class NewsEntriesComponent implements OnInit {
   }
 
   deleteNewsPost(newsPost: NewsPost): void {
-    console.log('deleting ', newsPost.id);
+    this.dataService.deleteNewsPost(newsPost).subscribe(data => this.deleteNewsCallback());
+  }
+
+  private deleteNewsCallback(): void {
+    this.deletePost.next();
+
+    Swal(
+      'News Entry Deleted',
+      '',
+      'success'
+    );
   }
 }

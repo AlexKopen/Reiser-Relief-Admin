@@ -16,10 +16,6 @@ export class NewsComponent {
   constructor() {
   }
 
-  get allNewsPosts(): Array<NewsPost> {
-    return this.newsPosts ? this.newsPosts : [];
-  }
-
   updateNews(): void {
     this.reloadNews.next();
     this.selectedNewsPost = null;
@@ -37,5 +33,9 @@ export class NewsComponent {
   editPost(newsPost: NewsPost): void {
     this.selectedNewsPost = newsPost;
     this.showNewsEdit = true;
+  }
+
+  deletePost(): void {
+    this.updateNews();
   }
 }

@@ -45,9 +45,10 @@ export class NewsEditComponent implements OnInit {
 
   private sendUpdate(): void {
     this.updateNews.next();
+    const alertMessageEnding = this.postToEdit ? 'Updated' : 'Submitted';
 
     Swal(
-      'News Entry Submitted',
+      'News Entry ' + alertMessageEnding,
       '',
       'success'
     );

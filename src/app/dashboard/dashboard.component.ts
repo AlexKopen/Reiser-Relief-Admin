@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   showNews = false;
   showApplications = false;
 
-  newsPosts: Array<NewsPost>;
+  private newsPosts: Array<NewsPost>;
   private newsPostsSubscription: Subscription;
 
   constructor(private dataService: DataService) {
@@ -21,6 +21,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadNewsPosts();
+  }
+
+  get allNewsPosts():  Array<NewsPost> {
+    return this.newsPosts ? this.newsPosts : [];
   }
 
   private loadNewsPosts(): void {
