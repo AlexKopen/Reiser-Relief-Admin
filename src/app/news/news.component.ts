@@ -11,6 +11,7 @@ export class NewsComponent {
   @Output() reloadNews = new EventEmitter();
 
   showNewsEdit = false;
+  selectedNewsPost: NewsPost;
 
   constructor() {
   }

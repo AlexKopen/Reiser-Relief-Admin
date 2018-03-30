@@ -6,8 +6,8 @@
                 [(ngModel)]="previewHTML"
                 [style]="{height: '150px'}">
         </quill-editor>
-        <button id="submit-news-button" class="pure-button" (click)="newsSubmit()" [disabled]="submitDisabled">Submit
-            News Entry
+        <button id="submit-news-button" class="pure-button" (click)="newsSubmit()" [disabled]="submitDisabled">
+            {{buttonText}}
         </button>
         <button id="cancel-button" class="pure-button" (click)="closeClick()">Cancel</button>
     </div>
