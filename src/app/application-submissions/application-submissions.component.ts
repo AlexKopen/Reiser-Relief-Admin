@@ -11,7 +11,7 @@ import { DataService } from '../shared/data.service';
 })
 export class ApplicationSubmissionsComponent implements OnInit {
   @Input() applications: Array<Application>;
-  @Output() editApplicationEvent = new EventEmitter();
+  @Output() viewApplicationEvent = new EventEmitter();
   @Output() deleteApplicationEvent = new EventEmitter();
 
   constructor(private dataService: DataService) {
@@ -32,8 +32,8 @@ export class ApplicationSubmissionsComponent implements OnInit {
     return groupedApplications;
   }
 
-  editApplication(application: Application): void {
-    this.editApplicationEvent.next(application);
+  viewApplication(application: Application): void {
+    this.viewApplicationEvent.next(application);
   }
 
   deleteApplication(application: Application): void {

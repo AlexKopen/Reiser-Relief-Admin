@@ -13,11 +13,11 @@
             *ngFor="let currentApplication of currentGroupedApplications.applications; let i = index"
             [ngClass]="{'pure-table-odd': i % 2 == 1}">
             <td>
-                <div class="applicant-name" (click)="editApplication(currentApplication)"><strong>{{currentApplication.first}}
+                <div class="applicant-name" (click)="viewApplication(currentApplication)"><strong>{{currentApplication.first}}
                     {{currentApplication.middle}} {{currentApplication.last}}</strong>
                 </div>
                 <div class="applicant-actions">
-                    <span class="edit-action" (click)="editApplication(currentApplication)">Edit</span> | <span
+                    <span class="view-action" (click)="viewApplication(currentApplication)">View</span> | <span
                         class="trash-action" (click)="deleteApplication(currentApplication)">Trash</span>
                 </div>
             </td>

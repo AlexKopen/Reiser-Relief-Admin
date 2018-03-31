@@ -7,7 +7,7 @@ table {
     vertical-align: top;
     height: 5em;
 
-    .applicant-name, .edit-action, .trash-action {
+    .applicant-name, .view-action, .trash-action {
       &:hover {
         cursor: pointer;
         text-decoration: underline;

@@ -19,7 +19,7 @@ export class ApplicationsComponent implements OnInit {
   ngOnInit() {
   }
 
-  editApplication(application: Application): void {
+  viewApplication(application: Application): void {
     this.selectedApplication = application;
     this.showApplicationView = true;
   }
@@ -28,4 +28,8 @@ export class ApplicationsComponent implements OnInit {
     this.reloadApplications.next();
   }
 
+  applicationClose(): void {
+    this.showApplicationView = false;
+    this.selectedApplication = null;
+  }
 }

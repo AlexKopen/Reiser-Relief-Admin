@@ -9,7 +9,7 @@
     </div>
 
     <h2>Applications</h2>
-    <app-application-submissions [applications]="applications" (editApplicationEvent)="editApplication($event)" (deleteApplicationEvent)="deleteApplication()"></app-application-submissions>
+    <app-application-submissions [applications]="applications" (viewApplicationEvent)="viewApplication($event)" (deleteApplicationEvent)="deleteApplication()"></app-application-submissions>
 </div>
 
-<app-application-view *ngIf="showApplicationView"></app-application-view>
+<app-application-view *ngIf="showApplicationView" [applicationToEdit]="selectedApplication" (close)="applicationClose()"></app-application-view>
