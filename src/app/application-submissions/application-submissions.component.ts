@@ -28,11 +28,18 @@ export class ApplicationSubmissionsComponent implements OnInit {
     return groupedApplications;
   }
 
+  editApplication(application: Application): void {
+    console.log(application.first);
+  }
+
+  deleteApplication(application: Application): void {
+    console.log(application.first);
+  }
+
   private groupBy(xs, key) {
     return xs.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});
   }
-
 }

@@ -1,8 +1,29 @@
 <div *ngFor="let currentGroupedApplications of applicationsGroupedByTripDate">
-    <h2>{{currentGroupedApplications.tripDate}}</h2>
-    <ul *ngFor="let currentApplication of currentGroupedApplications.applications; let i = index">
-        <li>{{currentApplication.tripDate}}</li>
-        <li>{{currentApplication.first}}</li>
-        <li>{{currentApplication.submitted}}</li>
-    </ul>
+    <h2>{{currentGroupedApplications.tripDate | date:'EEEE, MMMM d, y'}}</h2>
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Submitted</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr class="application-row"
+            *ngFor="let currentApplication of currentGroupedApplications.applications; let i = index"
+            [ngClass]="{'pure-table-odd': i % 2 == 1}">
+            <td>
+                <div class="applicant-name" (click)="editApplication(currentApplication)"><strong>{{currentApplication.first}}
+                    {{currentApplication.middle}} {{currentApplication.last}}</strong>
+                </div>
+                <div class="applicant-actions">
+                    <span class="edit-action" (click)="editApplication(currentApplication)">Edit</span> | <span
+                        class="trash-action" (click)="deleteApplication(currentApplication)">Trash</span>
+                </div>
+            </td>
+            <td>{{ currentApplication.submitted | date:'EEEE, MMMM d, y' }}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
+
