@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Application } from '../shared/models/application.model';
 
 @Component({
@@ -8,13 +8,24 @@ import { Application } from '../shared/models/application.model';
 })
 export class ApplicationsComponent implements OnInit {
   @Input() applications: Array<Application>;
+  @Output() reloadApplications = new EventEmitter();
 
   showApplicationView = false;
+  selectedApplication: Application;
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  editApplication(application: Application): void {
+    this.selectedApplication = application;
+    this.showApplicationView = true;
+  }
+
+  deleteApplication(): void {
+    this.reloadApplications.next();
   }
 
 }

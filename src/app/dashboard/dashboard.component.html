@@ -27,6 +27,6 @@
     </div>
 
     <app-news *ngIf="showNews" [newsPosts]="allNewsPosts" (reloadNews)="reloadNews()"></app-news>
-    <app-applications *ngIf="showApplications" [applications]="allApplications"></app-applications>
+    <app-applications *ngIf="showApplications" [applications]="allApplications" (reloadApplications)="reloadApplications()"></app-applications>
 
 </div>

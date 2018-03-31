@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import Swal from 'sweetalert2';
 import { Application } from '../shared/models/application.model';
 import { GroupedApplications } from '../shared/models/grouped-applications.model';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-application-submissions',
@@ -9,8 +11,10 @@ import { GroupedApplications } from '../shared/models/grouped-applications.model
 })
 export class ApplicationSubmissionsComponent implements OnInit {
   @Input() applications: Array<Application>;
+  @Output() editApplicationEvent = new EventEmitter();
+  @Output() deleteApplicationEvent = new EventEmitter();
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
@@ -29,11 +33,32 @@ export class ApplicationSubmissionsComponent implements OnInit {
   }
 
   editApplication(application: Application): void {
-    console.log(application.first);
+    this.editApplicationEvent.next(application);
   }
 
   deleteApplication(application: Application): void {
-    console.log(application.first);
+    const fullName = application.first + ' ' + application.middle + ' ' + application.last;
+    Swal({
+      title: 'Are you sure you want to delete ' + fullName  + '\'s application?',
+      text: 'This application will no longer be available for review.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.dataService.deleteApplication(application).subscribe(data => this.deleteApplicationCallback());
+      }
+    });
+  }
+
+  private deleteApplicationCallback(): void {
+    this.deleteApplicationEvent.next();
+    Swal(
+      'Application Deleted',
+      '',
+      'success'
+    );
   }
 
   private groupBy(xs, key) {

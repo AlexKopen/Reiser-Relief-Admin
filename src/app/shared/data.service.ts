@@ -55,6 +55,14 @@ export class DataService {
       );
   }
 
+  deleteApplication(application: Application) {
+    return this.http
+      .delete<Application>(ENDPOINT.applicationsUrlPrivate + '/' + application.id, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(err: HttpErrorResponse | any) {
     console.error('An error occurred', err);
     return Observable.throw(err.message || err);

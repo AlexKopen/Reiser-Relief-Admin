@@ -8,7 +8,8 @@
         </div>
     </div>
 
-    <app-application-submissions [applications]="applications"></app-application-submissions>
+    <h2>Applications</h2>
+    <app-application-submissions [applications]="applications" (editApplicationEvent)="editApplication($event)" (deleteApplicationEvent)="deleteApplication()"></app-application-submissions>
 </div>
 
 <app-application-view *ngIf="showApplicationView"></app-application-view>

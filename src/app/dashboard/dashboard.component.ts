@@ -72,7 +72,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.loadNewsPosts();
   }
 
+  reloadApplications(): void {
+    this.loadApplications();
+  }
+
   ngOnDestroy() {
     this.newsPostsSubscription.unsubscribe();
+    this.applicationsSubscription.unsubscribe();
   }
 }
