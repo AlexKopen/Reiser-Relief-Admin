@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Application } from '../shared/models/application.model';
+import { TripDate } from '../shared/models/trip-date.model';
 
 @Component({
   selector: 'app-applications',
@@ -8,7 +9,9 @@ import { Application } from '../shared/models/application.model';
 })
 export class ApplicationsComponent implements OnInit {
   @Input() applications: Array<Application>;
+  @Input() tripDates: Array<TripDate>;
   @Output() reloadApplications = new EventEmitter();
+  @Output() reloadTripDates = new EventEmitter();
 
   showApplicationView = false;
   selectedApplication: Application;
@@ -31,5 +34,9 @@ export class ApplicationsComponent implements OnInit {
   applicationClose(): void {
     this.showApplicationView = false;
     this.selectedApplication = null;
+  }
+
+  updateTripDates(): void {
+    this.reloadTripDates.next();
   }
 }

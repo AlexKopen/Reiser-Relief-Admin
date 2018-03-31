@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { NewsPost } from './models/news-post.model';
 import { Application } from './models/application.model';
+import { TripDate } from './models/trip-date.model';
 
 @Injectable()
 export class DataService {
@@ -15,6 +16,7 @@ export class DataService {
     return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
   }
 
+  // News
   getNewsPosts(): Observable<Array<NewsPost>> {
     return this.http
       .get(ENDPOINT.newsUrlPublic)
@@ -47,6 +49,7 @@ export class DataService {
       );
   }
 
+  // Applications
   getApplications(): Observable<Array<Application>> {
     return this.http
       .get(ENDPOINT.applicationsUrlPrivate, {headers: this.headers})
@@ -58,6 +61,39 @@ export class DataService {
   deleteApplication(application: Application) {
     return this.http
       .delete<Application>(ENDPOINT.applicationsUrlPrivate + '/' + application.id, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Trip Dates
+  getTripDates(): Observable<Array<TripDate>> {
+    return this.http
+      .get(ENDPOINT.tripDatesUrlPublic)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  submitTripDate(tripDate: TripDate) {
+    return this.http
+      .post<TripDate>(ENDPOINT.tripDatesUrlPrivate, tripDate, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  updateTripDate(tripDate: TripDate) {
+    return this.http
+      .put<TripDate>(ENDPOINT.tripDatesUrlPrivate + '/' + tripDate.id, tripDate, {headers: this.headers})
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  deleteTripDate(tripDate: TripDate) {
+    return this.http
+      .delete<TripDate>(ENDPOINT.tripDatesUrlPrivate + '/' + tripDate.id, {headers: this.headers})
       .pipe(
         catchError(this.handleError)
       );

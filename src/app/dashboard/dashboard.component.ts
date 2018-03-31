@@ -3,6 +3,7 @@ import { DataService } from '../shared/data.service';
 import { NewsPost } from '../shared/models/news-post.model';
 import { Subscription } from 'rxjs/Subscription';
 import { Application } from '../shared/models/application.model';
+import { TripDate } from '../shared/models/trip-date.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,12 +21,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private applications: Array<Application>;
   private applicationsSubscription: Subscription;
 
+  private tripDates: Array<TripDate>;
+  private tripDatesSubscription: Subscription;
+
   constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
     this.loadNewsPosts();
     this.loadApplications();
+    this.loadTripDates();
   }
 
   get allNewsPosts(): Array<NewsPost> {
@@ -34,6 +39,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   get allApplications(): Array<Application> {
     return this.applications ? this.applications : [];
+  }
+
+  get allTripDates(): Array<TripDate> {
+    return this.tripDates ? this.tripDates : [];
   }
 
   private loadNewsPosts(): void {
@@ -45,6 +54,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private loadApplications(): void {
     this.applicationsSubscription = this.dataService.getApplications().subscribe(
       data => this.applications = data
+    );
+  }
+
+  private loadTripDates(): void {
+    this.tripDatesSubscription = this.dataService.getTripDates().subscribe(
+      data => this.tripDates = data
     );
   }
 
@@ -74,6 +89,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   reloadApplications(): void {
     this.loadApplications();
+  }
+
+  reloadTripDates(): void {
+    this.loadTripDates();
   }
 
   ngOnDestroy() {
