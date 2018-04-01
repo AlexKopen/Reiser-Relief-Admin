@@ -16,6 +16,9 @@ export class ApplicationsComponent implements OnInit {
   showApplicationView = false;
   selectedApplication: Application;
 
+  showModifyTripView = false;
+  selectedTripDate: TripDate;
+
   constructor() {
   }
 
@@ -36,7 +39,18 @@ export class ApplicationsComponent implements OnInit {
     this.selectedApplication = null;
   }
 
+  tripDateClose(): void {
+    this.showModifyTripView = false;
+    this.selectedTripDate = null;
+  }
+
+  modifyTripDate(tripDate: TripDate): void {
+    this.selectedTripDate = tripDate;
+    this.showModifyTripView = true;
+  }
+
   updateTripDates(): void {
+    this.tripDateClose();
     this.reloadTripDates.next();
   }
 }

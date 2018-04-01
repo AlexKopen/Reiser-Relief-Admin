@@ -23,6 +23,7 @@ import { ModifyTripComponent } from './modify-trip/modify-trip.component';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { ApplicationSubmissionsComponent } from './application-submissions/application-submissions.component';
 import { ApplicationViewComponent } from './application-view/application-view.component';
+import { ModifyTripViewComponent } from './modify-trip-view/modify-trip-view.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ApplicationViewComponent } from './application-view/application-view.co
     ModifyTripComponent,
     AddTripComponent,
     ApplicationSubmissionsComponent,
-    ApplicationViewComponent
+    ApplicationViewComponent,
+    ModifyTripViewComponent
   ],
   imports: [
     BrowserModule,

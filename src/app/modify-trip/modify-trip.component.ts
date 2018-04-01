@@ -9,6 +9,7 @@ import { TripDate } from '../shared/models/trip-date.model';
 export class ModifyTripComponent implements OnInit {
   @Input() tripDates: Array<TripDate>;
   @Output() reloadTripDates = new EventEmitter();
+  @Output() modifyTripDate = new EventEmitter();
 
   constructor() {
   }
@@ -17,7 +18,7 @@ export class ModifyTripComponent implements OnInit {
   }
 
   editTripDate(tripDate: TripDate): void {
-    console.log(tripDate);
+    this.modifyTripDate.next(tripDate);
   }
 
   deleteTripDate(tripDate: TripDate): void {
