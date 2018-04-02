@@ -1,3 +1,9 @@
-<p>{{selectedTripDate.tripLeader}}</p>
-<button (click)="closeClick()">Close</button>
-<button (click)="updateClick()">Update</button>
+<div id="modify-trip-view-container">
+    <h2>Update Trip</h2>
+    <input [(ngModel)]="tripLeader" type="text" placeholder="Trip Leader">
+    <button id="submit-trip-date-button" class="pure-button" (click)="updateClick()" [disabled]="updateDisabled">
+        Update Trip
+    </button>
+    <button id="cancel-button" class="pure-button" (click)="closeClick()">Cancel</button>
+
+</div>

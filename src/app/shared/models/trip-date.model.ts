@@ -1,7 +1,7 @@
 export class TripDate {
   constructor(public id: number,
-              tripLeader: string,
-              status: string,
-              date: string) {
+              public tripLeader: string,
+              public status: string,
+              public date: string) {
   }
 }
