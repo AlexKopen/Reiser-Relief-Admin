@@ -25,6 +25,10 @@ export class ApplicationsComponent implements OnInit {
   ngOnInit() {
   }
 
+  get loading(): boolean {
+    return this.applications.length === 0 || this.tripDates.length === 0;
+  }
+
   viewApplication(application: Application): void {
     this.selectedApplication = application;
     this.showApplicationView = true;

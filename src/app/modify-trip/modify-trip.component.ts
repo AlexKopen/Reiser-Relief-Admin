@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TripDate } from '../shared/models/trip-date.model';
 import { DataService } from '../shared/data.service';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-modify-trip',
@@ -13,7 +14,7 @@ export class ModifyTripComponent implements OnInit {
   @Output() reloadTripDates = new EventEmitter();
   @Output() modifyTripDate = new EventEmitter();
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -25,7 +26,8 @@ export class ModifyTripComponent implements OnInit {
 
   deleteTripDate(tripDate: TripDate): void {
     Swal({
-      title: 'Are you sure you want to delete the trip for"' + tripDate.date  + '"?',
+      title: 'Are you sure you want to delete the trip of ' +
+      this.datePipe.transform(tripDate.date, 'EEEE, MMMM d, y') + '?',
       text: 'This trip will no longer appear on the website.',
       type: 'warning',
       showCancelButton: true,
@@ -42,7 +44,7 @@ export class ModifyTripComponent implements OnInit {
     const oppositeStatus = this.getOppositeStatus(tripDate.status);
 
     Swal({
-      title: 'Are you sure you want to mark this trip as "' + oppositeStatus  + '"?',
+      title: 'Are you sure you want to mark this trip as "' + oppositeStatus + '"?',
       type: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, change it',

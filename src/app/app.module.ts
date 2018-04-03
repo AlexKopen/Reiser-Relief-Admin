@@ -24,6 +24,7 @@ import { AddTripComponent } from './add-trip/add-trip.component';
 import { ApplicationSubmissionsComponent } from './application-submissions/application-submissions.component';
 import { ApplicationViewComponent } from './application-view/application-view.component';
 import { ModifyTripViewComponent } from './modify-trip-view/modify-trip-view.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -52,7 +53,7 @@ import { ModifyTripViewComponent } from './modify-trip-view/modify-trip-view.com
     FormsModule,
     QuillModule
   ],
-  providers: [AuthService, DataService],
+  providers: [AuthService, DataService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
