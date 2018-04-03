@@ -1,6 +1,20 @@
-<div id="modify-trip-view-container">
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div [ngClass]="{'hide': loading}" id="modify-trip-view-container">
     <h2>Update Trip</h2>
+
+    <h3>Trip Leader</h3>
     <input [(ngModel)]="tripLeader" type="text" placeholder="Trip Leader">
+
+    <h3>Trip Date</h3>
+    <input #dateInput [(ngModel)]="tripDate" type="text">
+
+    <h3>Trip Status</h3>
+    <div id="trip-status-contents">
+        <p>{{selectedTripDate.status}}</p>
+        <button class="pure-button" (click)="changeTripStatusClick()">Mark as {{oppositeTripStatus}}</button>
+    </div>
+
     <button id="submit-trip-date-button" class="pure-button" (click)="updateClick()" [disabled]="updateDisabled">
         Update Trip
     </button>

@@ -1,3 +1,7 @@
+.hide {
+  display: none;
+}
+
 #modify-trip-view-container {
   width: 100%;
   max-width: 32em;
@@ -13,6 +17,12 @@
     vertical-align: middle;
     box-sizing: border-box;
     margin-bottom: 2em;
+  }
+
+  #trip-status-contents {
+    p, button {
+      display: inline-block;
+    }
   }
 
   #submit-trip-date-button, #cancel-button {
