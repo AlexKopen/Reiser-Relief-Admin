@@ -11,12 +11,12 @@
 
     <h3>Trip Status</h3>
     <div id="trip-status-contents">
-        <p>{{selectedTripDate.status}}</p>
+        <p>{{tripStatus}}</p>
         <button class="pure-button" (click)="changeTripStatusClick()">Mark as {{oppositeTripStatus}}</button>
     </div>
 
     <button id="submit-trip-date-button" class="pure-button" (click)="updateClick()" [disabled]="updateDisabled">
-        Update Trip
+        Save Changes
     </button>
     <button id="cancel-button" class="pure-button" (click)="closeClick()">Cancel</button>
 

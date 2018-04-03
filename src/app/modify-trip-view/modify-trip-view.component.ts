@@ -26,6 +26,7 @@ export class ModifyTripViewComponent implements OnInit {
   ngOnInit() {
     this.tripLeader = this.selectedTripDate.tripLeader;
     this.tripDate = this.selectedTripDate.date;
+    this.tripStatus = this.selectedTripDate.status;
 
     const flatPicker = require('flatpickr');
     flatPicker(this.dateInput.nativeElement, {'defaultDate': this.tripDate});
@@ -49,7 +50,7 @@ export class ModifyTripViewComponent implements OnInit {
   }
 
   changeTripStatusClick(): void {
-    switch (this.selectedTripDate.status) {
+    switch (this.tripStatus) {
       case 'Open':
         this.tripStatus = 'Closed';
         break;
@@ -59,12 +60,10 @@ export class ModifyTripViewComponent implements OnInit {
       default:
         break;
     }
-
-    this.selectedTripDate.status = this.tripStatus;
   }
 
   get oppositeTripStatus(): string {
-    return this.selectedTripDate.status === 'Open' ? 'Closed' : 'Open';
+    return this.tripStatus === 'Open' ? 'Closed' : 'Open';
   }
 
   private sendUpdate(): void {

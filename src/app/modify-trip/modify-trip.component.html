@@ -14,8 +14,7 @@
             <div class="trip-date-date" (click)="editTripDate(currentTrip)"><strong>{{currentTrip.date | date:'EEEE, MMMM d, y'}}</strong>
             </div>
             <div class="trip-date-entry-actions">
-                <span class="edit-action" (click)="editTripDate(currentTrip)">Edit</span> | <span
-                    class="trash-action" (click)="deleteTripDate(currentTrip)">Trash</span>
+                <span class="edit-action" (click)="editTripDate(currentTrip)">Edit</span> | <span class="mark-action" (click)="updateTripStatus(currentTrip)">Mark as {{oppositeTripStatus(currentTrip)}}</span> | <span class="trash-action" (click)="deleteTripDate(currentTrip)">Trash</span>
             </div>
         </td>
         <td>{{ currentTrip.tripLeader }}</td>

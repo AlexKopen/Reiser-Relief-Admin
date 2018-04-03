@@ -6,7 +6,7 @@ table {
     vertical-align: top;
     height: 5em;
 
-    .trip-date-date, .edit-action, .trash-action {
+    .trip-date-date, .edit-action, .mark-action, .trash-action {
       &:hover {
         cursor: pointer;
         text-decoration: underline;
