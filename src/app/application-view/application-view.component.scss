@@ -13,6 +13,10 @@ button {
   .app-section {
     $row-height: 50px;
 
+    &#second-reference {
+      margin-top: 20px;
+    }
+
     &#questions {
       .row {
         line-height: 40px;

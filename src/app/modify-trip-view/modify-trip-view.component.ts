@@ -28,8 +28,8 @@ export class ModifyTripViewComponent implements OnInit {
     this.tripDate = this.selectedTripDate.date;
     this.tripStatus = this.selectedTripDate.status;
 
-    const flatPicker = require('flatpickr');
-    flatPicker(this.dateInput.nativeElement, {'defaultDate': this.tripDate});
+    // const flatPicker = require('flatpickr');
+    // flatPicker(this.dateInput.nativeElement, {'defaultDate': this.tripDate});
   }
 
   get updateDisabled(): boolean {

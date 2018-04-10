@@ -41,11 +41,13 @@ export class ApplicationsComponent implements OnInit {
   applicationClose(): void {
     this.showApplicationView = false;
     this.selectedApplication = null;
+    window.scrollTo(0, 0);
   }
 
   tripDateClose(): void {
     this.showModifyTripView = false;
     this.selectedTripDate = null;
+    window.scrollTo(0, 0);
   }
 
   modifyTripDate(tripDate: TripDate): void {

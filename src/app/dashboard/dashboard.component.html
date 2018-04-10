@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <app-news *ngIf="showNews" [newsPosts]="allNewsPosts" (reloadNews)="reloadNews()"></app-news>
+    <app-news *ngIf="showNews" [newsPosts]="allNewsPosts" [dataLoading]="dataLoading" (reloadNews)="reloadNews()"></app-news>
     <app-applications *ngIf="showApplications" [applications]="allApplications" [tripDates]="allTripDates" (reloadApplications)="reloadApplications()" (reloadTripDates)="reloadTripDates()"></app-applications>
 
 </div>

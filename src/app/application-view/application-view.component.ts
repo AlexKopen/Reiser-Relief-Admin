@@ -14,6 +14,7 @@ export class ApplicationViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
   }
 
   get birthDate(): string {

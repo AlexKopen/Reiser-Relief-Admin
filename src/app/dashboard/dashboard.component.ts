@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private tripDates: Array<TripDate>;
   private tripDatesSubscription: Subscription;
 
+  private dataCallInProgess = false;
+
   constructor(private dataService: DataService) {
   }
 
@@ -31,6 +33,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.loadNewsPosts();
     this.loadApplications();
     this.loadTripDates();
+  }
+
+  get dataLoading(): boolean {
+    return this.dataCallInProgess;
   }
 
   get allNewsPosts(): Array<NewsPost> {
@@ -46,9 +52,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private loadNewsPosts(): void {
+    this.dataCallInProgess = true;
     this.newsPostsSubscription = this.dataService.getNewsPosts().subscribe(
-      data => this.newsPosts = data
+      data => this.loadNewsPostsCallback(data)
     );
+  }
+
+  private loadNewsPostsCallback(newsPosts: Array<NewsPost>): void {
+    this.newsPosts = newsPosts;
+    this.dataCallInProgess = false;
   }
 
   private loadApplications(): void {

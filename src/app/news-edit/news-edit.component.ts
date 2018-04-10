@@ -19,6 +19,8 @@ export class NewsEditComponent implements OnInit {
   currentDate: string;
   buttonText: string;
 
+  loading = false;
+
   constructor(private dataService: DataService) {
   }
 
@@ -35,6 +37,7 @@ export class NewsEditComponent implements OnInit {
   }
 
   newsSubmit(): void {
+    this.loading = true;
     if (this.postToEdit) {
       this.postToEdit.title = this.previewTitle;
       this.postToEdit.content = this.previewHTML;
@@ -46,6 +49,7 @@ export class NewsEditComponent implements OnInit {
   }
 
   private sendUpdate(): void {
+    this.loading = false;
     this.updateNews.next();
     const alertMessageEnding = this.postToEdit ? 'Updated' : 'Submitted';
 

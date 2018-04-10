@@ -8,12 +8,18 @@ import { NewsPost } from '../shared/models/news-post.model';
 })
 export class NewsComponent {
   @Input() newsPosts: Array<NewsPost>;
+  @Input() dataLoading: boolean;
   @Output() reloadNews = new EventEmitter();
 
   showNewsEdit = false;
   selectedNewsPost: NewsPost;
+  showCreateButton = true;
 
   constructor() {
+  }
+
+  get loading(): boolean {
+    return this.newsPosts.length === 0 || this.dataLoading;
   }
 
   updateNews(): void {
@@ -37,5 +43,10 @@ export class NewsComponent {
 
   deletePost(): void {
     this.updateNews();
+  }
+
+  deletionInProgress(inProgress: boolean): void {
+    console.log('eyo ' + inProgress);
+    this.showCreateButton = !inProgress;
   }
 }

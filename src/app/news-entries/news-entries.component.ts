@@ -12,6 +12,9 @@ export class NewsEntriesComponent implements OnInit {
   @Input() newsPosts: Array<NewsPost>;
   @Output() editPost = new EventEmitter();
   @Output() deletePost = new EventEmitter();
+  @Output() deletionInProgress = new EventEmitter();
+
+  loading = false;
 
   constructor(private dataService: DataService) {
   }
@@ -33,12 +36,16 @@ export class NewsEntriesComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value) {
+        this.loading = true;
+        this.deletionInProgress.next(true);
         this.dataService.deleteNewsPost(newsPost).subscribe(data => this.deleteNewsCallback());
       }
     });
   }
 
   private deleteNewsCallback(): void {
+    this.loading = false;
+    this.deletionInProgress.next(false);
     this.deletePost.next();
     Swal(
       'News Entry Deleted',

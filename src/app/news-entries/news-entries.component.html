@@ -1,4 +1,6 @@
-<table class="pure-table">
+<app-spinner *ngIf="loading"></app-spinner>
+
+<table *ngIf="!loading" class="pure-table">
     <thead>
     <tr>
         <th>Title</th>
