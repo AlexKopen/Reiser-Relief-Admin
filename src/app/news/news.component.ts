@@ -46,7 +46,6 @@ export class NewsComponent {
   }
 
   deletionInProgress(inProgress: boolean): void {
-    console.log('eyo ' + inProgress);
     this.showCreateButton = !inProgress;
   }
 }
