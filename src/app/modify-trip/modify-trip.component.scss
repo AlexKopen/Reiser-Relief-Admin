@@ -6,6 +6,10 @@ table {
     vertical-align: top;
     height: 5em;
 
+    &.hide {
+      display: none;
+    }
+
     .trip-date-date, .edit-action, .mark-action, .trash-action {
       &:hover {
         cursor: pointer;
@@ -19,5 +23,14 @@ table {
         color: #ca3d3c;
       }
     }
+  }
+}
+
+#show-old {
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
   }
 }

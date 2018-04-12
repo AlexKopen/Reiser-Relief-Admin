@@ -15,6 +15,8 @@ export class ModifyTripComponent implements OnInit {
   @Output() modifyTripDate = new EventEmitter();
   @Output() tripUpdating = new EventEmitter();
 
+  showOldValue = false;
+
   constructor(private dataService: DataService, private datePipe: DatePipe) {
   }
 
@@ -86,5 +88,13 @@ export class ModifyTripComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  showOnToggle(date: string): boolean {
+    return new Date(date) < new Date();
+  }
+
+  showOldToggle(): void {
+    this.showOldValue = !this.showOldValue;
   }
 }
