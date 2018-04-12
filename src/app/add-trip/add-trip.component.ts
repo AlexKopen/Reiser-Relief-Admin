@@ -14,12 +14,14 @@ export class AddTripComponent implements OnInit {
   tripDate = '';
   @ViewChild('tripDateElement') tripDateElement;
   flatpickrInstance: any;
+  flatpickrInstantiation: any;
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
-    this.flatpickrInstance = flatpickr(this.tripDateElement.nativeElement, {});
+    this.flatpickrInstance = flatpickr;
+    this.flatpickrInstantiation = this.flatpickrInstance(this.tripDateElement.nativeElement, {});
   }
 
   get disabled(): boolean {
@@ -30,7 +32,7 @@ export class AddTripComponent implements OnInit {
     const tripDate = new TripDate(null, this.tripLeader, 'Open', this.tripDate);
     this.tripLeader = '';
     this.tripDate = '';
-    this.flatpickrInstance.clear();
+    this.flatpickrInstantiation.clear();
 
     this.dataService.submitTripDate(tripDate).subscribe(data => this.submitClickCallback());
   }
