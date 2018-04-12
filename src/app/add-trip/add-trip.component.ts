@@ -11,6 +11,7 @@ import * as Pikaday from 'pikaday';
 })
 export class AddTripComponent implements OnInit {
   @Output() reloadTrips = new EventEmitter();
+  @Output() tripUpdating = new EventEmitter();
   tripLeader = '';
   @ViewChild('tripDateElement') tripDateElement;
   picker: any;
@@ -31,10 +32,12 @@ export class AddTripComponent implements OnInit {
     this.tripLeader = '';
     this.picker.setDate('');
 
+    this.tripUpdating.next(true);
     this.dataService.submitTripDate(tripDate).subscribe(data => this.submitClickCallback());
   }
 
   submitClickCallback(): void {
+    this.tripUpdating.next(false);
     this.reloadTrips.next();
     Swal(
       'Trip Date Added ',

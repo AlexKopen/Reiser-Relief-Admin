@@ -10,6 +10,7 @@ import { TripDate } from '../shared/models/trip-date.model';
 export class ApplicationsComponent implements OnInit {
   @Input() applications: Array<Application>;
   @Input() tripDates: Array<TripDate>;
+  @Input() dataCallInProgress: boolean;
   @Output() reloadApplications = new EventEmitter();
   @Output() reloadTripDates = new EventEmitter();
 
@@ -19,6 +20,8 @@ export class ApplicationsComponent implements OnInit {
   showModifyTripView = false;
   selectedTripDate: TripDate;
 
+  isUpdating = false;
+
   constructor() {
   }
 
@@ -26,7 +29,7 @@ export class ApplicationsComponent implements OnInit {
   }
 
   get loading(): boolean {
-    return this.applications.length === 0 || this.tripDates.length === 0;
+    return this.applications.length === 0 || this.tripDates.length === 0 || this.isUpdating || this.dataCallInProgress;
   }
 
   viewApplication(application: Application): void {
@@ -57,5 +60,9 @@ export class ApplicationsComponent implements OnInit {
 
   updateTripDates(): void {
     this.reloadTripDates.next();
+  }
+
+  resourceUpdating(isUpdating: boolean): void {
+    this.isUpdating = isUpdating;
   }
 }

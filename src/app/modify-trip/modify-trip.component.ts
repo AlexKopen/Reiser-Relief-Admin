@@ -13,6 +13,7 @@ export class ModifyTripComponent implements OnInit {
   @Input() tripDates: Array<TripDate>;
   @Output() reloadTripDates = new EventEmitter();
   @Output() modifyTripDate = new EventEmitter();
+  @Output() tripUpdating = new EventEmitter();
 
   constructor(private dataService: DataService, private datePipe: DatePipe) {
   }
@@ -35,6 +36,8 @@ export class ModifyTripComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value) {
+        window.scrollTo(0, 0);
+        this.tripUpdating.next(true);
         this.dataService.deleteTripDate(tripDate).subscribe(data => this.updateTripCallback('Deleted'));
       }
     });
@@ -51,6 +54,8 @@ export class ModifyTripComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value) {
+        window.scrollTo(0, 0);
+        this.tripUpdating.next(true);
         tripDate.status = oppositeStatus;
         this.dataService.updateTripDate(tripDate).subscribe(data => this.updateTripCallback('Updated'));
       }
@@ -59,6 +64,7 @@ export class ModifyTripComponent implements OnInit {
   }
 
   updateTripCallback(finalWord: string): void {
+    this.tripUpdating.next(false);
     this.reloadTripDates.next();
     Swal(
       'Trip Date ' + finalWord,

@@ -13,6 +13,7 @@ export class ApplicationSubmissionsComponent implements OnInit {
   @Input() applications: Array<Application>;
   @Output() viewApplicationEvent = new EventEmitter();
   @Output() deleteApplicationEvent = new EventEmitter();
+  @Output() applicationUpdating = new EventEmitter();
 
   constructor(private dataService: DataService) {
   }
@@ -47,12 +48,14 @@ export class ApplicationSubmissionsComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value) {
+        this.applicationUpdating.next(true);
         this.dataService.deleteApplication(application).subscribe(data => this.deleteApplicationCallback());
       }
     });
   }
 
   private deleteApplicationCallback(): void {
+    this.applicationUpdating.next(false);
     this.deleteApplicationEvent.next();
     Swal(
       'Application Deleted',

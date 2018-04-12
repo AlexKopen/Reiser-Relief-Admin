@@ -20,7 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/pikaday/css/pikaday.scss"
+        "../node_modules/pikaday/scss/pikaday.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

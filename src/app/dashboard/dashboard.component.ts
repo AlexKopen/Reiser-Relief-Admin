@@ -24,7 +24,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private tripDates: Array<TripDate>;
   private tripDatesSubscription: Subscription;
 
-  private dataCallInProgess = false;
+  private newsDataCallInProgress = false;
+  private applicationDataCallInProgress = false;
 
   constructor(private dataService: DataService) {
   }
@@ -36,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   get dataLoading(): boolean {
-    return this.dataCallInProgess;
+    return this.newsDataCallInProgress;
   }
 
   get allNewsPosts(): Array<NewsPost> {
@@ -52,7 +53,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private loadNewsPosts(): void {
-    this.dataCallInProgess = true;
+    this.newsDataCallInProgress = true;
     this.newsPostsSubscription = this.dataService.getNewsPosts().subscribe(
       data => this.loadNewsPostsCallback(data)
     );
@@ -60,19 +61,31 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private loadNewsPostsCallback(newsPosts: Array<NewsPost>): void {
     this.newsPosts = newsPosts;
-    this.dataCallInProgess = false;
+    this.newsDataCallInProgress = false;
   }
 
   private loadApplications(): void {
+    this.applicationDataCallInProgress = true;
     this.applicationsSubscription = this.dataService.getApplications().subscribe(
-      data => this.applications = data
+      data => this.loadApplicationsCallback(data)
     );
   }
 
+  private loadApplicationsCallback(applications: Array<Application>): void {
+    this.applications = applications;
+    this.applicationDataCallInProgress = false;
+  }
+
   private loadTripDates(): void {
+    this.applicationDataCallInProgress = true;
     this.tripDatesSubscription = this.dataService.getTripDates().subscribe(
-      data => this.tripDates = data
+      data => this.loadTripDatesCallback(data)
     );
+  }
+
+  private loadTripDatesCallback(tripDates: Array<TripDate>): void {
+    this.tripDates = tripDates;
+    this.applicationDataCallInProgress = false;
   }
 
   newsClick(): void {
