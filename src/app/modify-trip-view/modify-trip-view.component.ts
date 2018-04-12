@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { TripDate } from '../shared/models/trip-date.model';
 import { DataService } from '../shared/data.service';
 import Swal from 'sweetalert2';
+import * as Pikaday from 'pikaday';
 
 @Component({
   selector: 'app-modify-trip-view',
@@ -14,9 +15,9 @@ export class ModifyTripViewComponent implements OnInit {
   @Output() updateTripDate = new EventEmitter();
 
   tripLeader: string;
-  tripDate: string;
   tripStatus: string;
   @ViewChild('dateInput') dateInput;
+  picker: any;
 
   loading = false;
 
@@ -25,15 +26,13 @@ export class ModifyTripViewComponent implements OnInit {
 
   ngOnInit() {
     this.tripLeader = this.selectedTripDate.tripLeader;
-    this.tripDate = this.selectedTripDate.date;
     this.tripStatus = this.selectedTripDate.status;
-
-    // const flatPicker = require('flatpickr');
-    // flatPicker(this.dateInput.nativeElement, {'defaultDate': this.tripDate});
+    this.picker = new Pikaday({field: this.dateInput.nativeElement});
+    this.picker.setDate(this.selectedTripDate.date);
   }
 
   get updateDisabled(): boolean {
-    return this.tripLeader.length === 0 || this.tripDate.length === 0;
+    return this.tripLeader.length === 0 ||  this.picker.getDate() === null;
   }
 
   closeClick(): void {
@@ -42,7 +41,7 @@ export class ModifyTripViewComponent implements OnInit {
 
   updateClick(): void {
     this.selectedTripDate.tripLeader = this.tripLeader;
-    this.selectedTripDate.date = this.tripDate;
+    this.selectedTripDate.date = this.picker.getDate();
     this.selectedTripDate.status = this.tripStatus;
 
     this.loading = true;
