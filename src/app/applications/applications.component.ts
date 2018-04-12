@@ -55,7 +55,7 @@ export class ApplicationsComponent implements OnInit {
     this.showModifyTripView = true;
   }
 
-  updateTripDate(): void {
+  updateTripDates(): void {
     this.reloadTripDates.next();
   }
 }
