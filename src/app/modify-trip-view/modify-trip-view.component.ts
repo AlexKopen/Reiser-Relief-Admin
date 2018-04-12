@@ -28,11 +28,14 @@ export class ModifyTripViewComponent implements OnInit {
     this.tripLeader = this.selectedTripDate.tripLeader;
     this.tripStatus = this.selectedTripDate.status;
     this.picker = new Pikaday({field: this.dateInput.nativeElement});
-    this.picker.setDate(this.selectedTripDate.date);
+
+    const tripDate = new Date(this.selectedTripDate.date);
+    tripDate.setMinutes(tripDate.getMinutes() + tripDate.getTimezoneOffset());
+    this.picker.setDate(tripDate);
   }
 
   get updateDisabled(): boolean {
-    return this.tripLeader.length === 0 ||  this.picker.getDate() === null;
+    return this.tripLeader.length === 0 || this.picker.getDate() === null;
   }
 
   closeClick(): void {
