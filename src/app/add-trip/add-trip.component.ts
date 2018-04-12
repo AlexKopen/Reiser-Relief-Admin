@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { DataService } from '../shared/data.service';
 import { TripDate } from '../shared/models/trip-date.model';
 import Swal from 'sweetalert2';
-import * as flatpickr from 'flatpickr';
+import * as Pikaday from 'pikaday';
 
 @Component({
   selector: 'app-add-trip',
@@ -12,28 +12,24 @@ import * as flatpickr from 'flatpickr';
 export class AddTripComponent implements OnInit {
   @Output() reloadTrips = new EventEmitter();
   tripLeader = '';
-  tripDate = '';
   @ViewChild('tripDateElement') tripDateElement;
-  flatpickrInstance: any;
-  flatpickrInstantiation: any;
+  picker: any;
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
-    this.flatpickrInstance = flatpickr;
-    this.flatpickrInstantiation = this.flatpickrInstance(this.tripDateElement.nativeElement, {});
+    this.picker = new Pikaday({field: this.tripDateElement.nativeElement});
   }
 
   get disabled(): boolean {
-    return this.tripLeader.length === 0 || this.tripDate.length === 0;
+    return this.tripLeader.length === 0 || this.picker.getDate() === null;
   }
 
   submitClick(): void {
-    const tripDate = new TripDate(null, this.tripLeader, 'Open', this.tripDate);
+    const tripDate = new TripDate(null, this.tripLeader, 'Open', this.picker.getDate());
     this.tripLeader = '';
-    this.tripDate = '';
-    this.flatpickrInstantiation.clear();
+    this.picker.setDate('');
 
     this.dataService.submitTripDate(tripDate).subscribe(data => this.submitClickCallback());
   }
