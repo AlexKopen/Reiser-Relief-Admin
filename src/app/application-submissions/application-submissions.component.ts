@@ -15,6 +15,8 @@ export class ApplicationSubmissionsComponent implements OnInit {
   @Output() deleteApplicationEvent = new EventEmitter();
   @Output() applicationUpdating = new EventEmitter();
 
+  showOldValue = false;
+
   constructor(private dataService: DataService) {
   }
 
@@ -30,7 +32,7 @@ export class ApplicationSubmissionsComponent implements OnInit {
       groupedApplications.push(new GroupedApplications(groupedValuesKeys[i], groupedValues[groupedValuesKeys[i]]));
     }
 
-    return groupedApplications;
+    return groupedApplications.sort(this.compareByTripDate);
   }
 
   viewApplication(application: Application): void {
@@ -40,7 +42,7 @@ export class ApplicationSubmissionsComponent implements OnInit {
   deleteApplication(application: Application): void {
     const fullName = application.first + ' ' + application.middle + ' ' + application.last;
     Swal({
-      title: 'Are you sure you want to delete ' + fullName  + '\'s application?',
+      title: 'Are you sure you want to delete ' + fullName + '\'s application?',
       text: 'This application will no longer be available for review.',
       type: 'warning',
       showCancelButton: true,
@@ -64,10 +66,32 @@ export class ApplicationSubmissionsComponent implements OnInit {
     );
   }
 
+  showOnToggle(date: string): boolean {
+    return new Date(date) < new Date();
+  }
+
+  showOldToggle(): void {
+    this.showOldValue = !this.showOldValue;
+  }
+
+  get firstToggleWord(): string {
+    return this.showOldValue ? 'Hide' : 'Show';
+  }
+
   private groupBy(xs, key) {
     return xs.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});
+  }
+
+  private compareByTripDate(a, b) {
+    if (a.tripDate < b.tripDate) {
+      return 1;
+    }
+    if (a.tripDate > b.tripDate) {
+      return -1;
+    }
+    return 0;
   }
 }

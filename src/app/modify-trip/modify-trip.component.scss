@@ -29,8 +29,5 @@ table {
 #show-old {
   text-align: center;
   cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
 }

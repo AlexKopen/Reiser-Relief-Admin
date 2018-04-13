@@ -10,11 +10,16 @@
     <tbody>
     <tr class="trip-date-row" *ngFor="let currentTrip of tripDates; let i = index"
         [ngClass]="{'pure-table-odd': i % 2 == 1, 'hide': showOnToggle(currentTrip.date) && !showOldValue}">
-            <td>
-            <div class="trip-date-date" (click)="editTripDate(currentTrip)"><strong>{{currentTrip.date | date:'EEEE, MMMM d, y'}}</strong>
+        <td>
+            <div class="trip-date-date" (click)="editTripDate(currentTrip)">
+                <strong>
+                    {{currentTrip.date | date:'EEEE, MMMM d, y'}}
+                </strong>
             </div>
             <div class="trip-date-entry-actions">
-                <span class="edit-action" (click)="editTripDate(currentTrip)">Edit</span> | <span class="mark-action" (click)="updateTripStatus(currentTrip)">Mark as {{oppositeTripStatus(currentTrip)}}</span> | <span class="trash-action" (click)="deleteTripDate(currentTrip)">Trash</span>
+                <span class="edit-action" (click)="editTripDate(currentTrip)">Edit</span> | <span class="mark-action"
+                                                                                                  (click)="updateTripStatus(currentTrip)">Mark as {{oppositeTripStatus(currentTrip)}}</span>
+                | <span class="trash-action" (click)="deleteTripDate(currentTrip)">Trash</span>
             </div>
         </td>
         <td>{{ currentTrip.tripLeader }}</td>
@@ -23,4 +28,4 @@
     </tbody>
 </table>
 
-<p id="show-old" (click)="showOldToggle()">Show Old Trips</p>
+<p id="show-old" (click)="showOldToggle()">{{firstToggleWord}} Old Trips</p>

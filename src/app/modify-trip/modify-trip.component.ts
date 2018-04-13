@@ -97,4 +97,8 @@ export class ModifyTripComponent implements OnInit {
   showOldToggle(): void {
     this.showOldValue = !this.showOldValue;
   }
+
+  get firstToggleWord(): string {
+    return this.showOldValue ? 'Hide' : 'Show';
+  }
 }
