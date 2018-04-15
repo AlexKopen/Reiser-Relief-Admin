@@ -1,14 +1,20 @@
+#no-trips {
+  $no-trips-height: 11em;
+  height: $no-trips-height;
+
+  h3 {
+    line-height: $no-trips-height;
+    text-align: center;
+  }
+}
+
 table {
-  max-width: 100%;
+  width: 100%;
   margin-bottom: 2em;
 
   .trip-date-row {
     vertical-align: top;
     height: 5em;
-
-    &.hide {
-      display: none;
-    }
 
     .trip-date-date, .edit-action, .mark-action, .trash-action {
       &:hover {
@@ -30,4 +36,8 @@ table {
   text-align: center;
   cursor: pointer;
   text-decoration: underline;
+}
+
+.hide {
+  display: none;
 }

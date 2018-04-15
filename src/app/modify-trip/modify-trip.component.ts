@@ -23,6 +23,23 @@ export class ModifyTripComponent implements OnInit {
   ngOnInit() {
   }
 
+  get hideTable(): boolean {
+    if (this.showOldValue) {
+      return false;
+    }
+
+    const todaysDate = new Date();
+
+    for (let i = 0; i < this.tripDates.length; i++) {
+      const currentDate = new Date(this.tripDates[i].date);
+      if (currentDate.setHours(0, 0, 0, 0) >= todaysDate.setHours(0, 0, 0, 0)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   editTripDate(tripDate: TripDate): void {
     this.modifyTripDate.next(tripDate);
   }
@@ -96,6 +113,7 @@ export class ModifyTripComponent implements OnInit {
 
   showOldToggle(): void {
     this.showOldValue = !this.showOldValue;
+    window.scrollTo(0, 0);
   }
 
   get firstToggleWord(): string {

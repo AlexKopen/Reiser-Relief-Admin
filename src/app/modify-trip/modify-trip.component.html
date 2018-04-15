@@ -1,4 +1,8 @@
-<table class="pure-table">
+<div id="no-trips" [ngClass]="{'hide': !hideTable}">
+    <h3>No Upcoming Trips</h3>
+</div>
+
+<table class="pure-table" [ngClass]="{'hide': hideTable}">
     <thead>
     <tr>
         <th>Trip</th>
