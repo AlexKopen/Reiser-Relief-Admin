@@ -6,10 +6,13 @@ interface AuthConfig {
   SCOPE: string;
 }
 
+const redirectUrl = window.location.hostname.indexOf('localhost') > -1 ?
+  'http://localhost:4200/callback' : 'https://www.admin.reiserrelief.org/callback';
+
 export const AUTH_CONFIG: AuthConfig = {
   CLIENT_ID: '5ep2SNhoVyNHhz41vxFl0Y2M8mg6o6gY',
   CLIENT_DOMAIN: 'volzap.auth0.com',
   AUDIENCE: 'https://api.reiserrelief.org',
-  REDIRECT: 'http://localhost:4200/callback',
+  REDIRECT: redirectUrl,
   SCOPE: 'openid profile email'
 };
