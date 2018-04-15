@@ -1,0 +1,15 @@
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div *ngIf="!loading">
+    <div *ngIf="!showNewsEdit">
+        <h2>News Entries</h2>
+        <button *ngIf="showCreateButton" class="pure-button" id="create-new-button" (click)="createNewClick()">Create New</button>
+    </div>
+
+    <app-news-edit *ngIf="showNewsEdit" [postToEdit]="selectedNewsPost" (updateNews)="updateNews()"
+                   (close)="close()"></app-news-edit>
+
+    <app-news-entries *ngIf="!showNewsEdit" [newsPosts]="newsPosts" (editPost)="editPost($event)"
+                      (deletePost)="deletePost($event)"
+                      (deletionInProgress)="deletionInProgress($event)"></app-news-entries>
+</div>

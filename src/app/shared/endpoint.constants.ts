@@ -1,10 +1,8 @@
 export const ENDPOINT = {
-    newsUrlPublic: '/news',
-    newsUrlPrivate: '/secured/news',
-    eventsUrlPublic: '/events',
-    eventsUrlPrivate: '/secured/events',
-    tripDatesUrlPublic: '/trip-dates',
-    tripDatesUrlPrivate: '/secured/trip-date',
-    applicationsUrlPublic: '/applications',
-    applicationsUrlPrivate: '/secured/applications'
+    newsUrlPublic: '/api/public/news',
+    newsUrlPrivate: '/api/public/secured/news',
+    tripDatesUrlPublic: '/api/public/trip-dates-all',
+    tripDatesUrlPrivate: '/api/public/secured/trip-date',
+    applicationsUrlPublic: '/api/public/applications',
+    applicationsUrlPrivate: '/api/public/secured/applications'
 };

@@ -32,7 +32,6 @@
 npm-debug.log
 testem.log
 /typings
-package-lock.json
 
 # e2e
 /e2e/*.js
@@ -42,6 +41,4 @@ package-lock.json
 .DS_Store
 Thumbs.db
 
-# PHP
-/api/composer.lock
-/api/vendor
+src/app/shared/auth-config.ts

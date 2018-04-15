@@ -1,0 +1,43 @@
+#no-trips {
+  $no-trips-height: 11em;
+  height: $no-trips-height;
+
+  h3 {
+    line-height: $no-trips-height;
+    text-align: center;
+  }
+}
+
+table {
+  width: 100%;
+  margin-bottom: 2em;
+
+  .trip-date-row {
+    vertical-align: top;
+    height: 5em;
+
+    .trip-date-date, .edit-action, .mark-action, .trash-action {
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: #0073aa;
+      }
+    }
+
+    .trash-action {
+      &:hover {
+        color: #ca3d3c;
+      }
+    }
+  }
+}
+
+#show-old {
+  text-align: center;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hide {
+  display: none;
+}

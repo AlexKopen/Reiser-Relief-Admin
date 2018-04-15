@@ -1,45 +1,46 @@
 export class Application {
-  id: number;
-  submitted: string;
-  tripDate: string;
-  first: string;
-  middle: string;
-  last: string;
-  addressLine1: string;
-  addressLine2: string;
-  city: string;
-  state: string;
-  zip: string;
-  homePhone: string;
-  cellPhone: string;
-  email: string;
-  month: string;
-  day: string;
-  year: string;
-  nationality: string;
-  birthPlace: string;
-  maidenName: string;
-  maritalStatus: string;
-  gender: string;
-  passportNumber: string;
-  passportIssueDateMonth: string;
-  passportIssueDateDay: string;
-  passportIssueDateYear: string;
-  passportExpirationDateMonth: string;
-  passportExpirationDateDay: string;
-  passportExpirationDateYear: string;
-  question1: string;
-  question2: string;
-  question3: string;
-  question4: string;
-  question5: string;
-  question6: string;
-  person1Name: string;
-  person1Relationship: string;
-  person1Phone: string;
-  person1Email: string;
-  person2Name: string;
-  person2Relationship: string;
-  person2Phone: string;
-  person2Email: string;
+  constructor(public id: number,
+              public submitted: string,
+              public tripDate: string,
+              public first: string,
+              public middle: string,
+              public last: string,
+              public addressLine1: string,
+              public addressLine2: string,
+              public city: string,
+              public state: string,
+              public zip: string,
+              public homePhone: string,
+              public cellPhone: string,
+              public email: string,
+              public month: string,
+              public day: string,
+              public year: string,
+              public nationality: string,
+              public birthPlace: string,
+              public maidenName: string,
+              public maritalStatus: string,
+              public gender: string,
+              public passportNumber: string,
+              public passportIssueDateMonth: string,
+              public passportIssueDateDay: string,
+              public passportIssueDateYear: string,
+              public passportExpirationDateMonth: string,
+              public passportExpirationDateDay: string,
+              public passportExpirationDateYear: string,
+              public question1: string,
+              public question2: string,
+              public question3: string,
+              public question4: string,
+              public question5: string,
+              public question6: string,
+              public person1Name: string,
+              public person1Relationship: string,
+              public person1Phone: string,
+              public person1Email: string,
+              public person2Name: string,
+              public person2Relationship: string,
+              public person2Phone: string,
+              public person2Email: string) {
+  }
 }

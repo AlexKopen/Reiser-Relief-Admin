@@ -1,6 +1,7 @@
 export class NewsPost {
-    id: number;
-    date: string;
-    title: string;
-    content: string;
+  constructor(public id: number,
+              public title: string,
+              public date: string,
+              public content: string) {
+  }
 }

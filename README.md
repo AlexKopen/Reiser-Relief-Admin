@@ -1,28 +1,24 @@
-# Reiser Relief Administrative Portal
+# Reiser-Relief-Admin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
+The administrative portal for [reiserrelief.org](http://reiserrelief.org).
 
-## Development server
+## Installation
+In your [Auth0 administrative portal](https://manage.auth0.com/), create a new client and API as well as a new user to login with.  Add ```http://localhost:4200/callback``` to your Allowed Callback URLs in your newly created Auth0 client. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Install project dependencies.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+```
+npm install
+```
 
-## Build
+Under the ```src/app/shared``` directory, rename ```auth-config.ts.example``` to ```auth-config.ts``` and set your ```CLIENT_ID```, ```CLIENT_DOMAIN```, and ```AUDIENCE``` to the values provided in your Auth0 administrative portal.
+## Usage
+```
+npm start
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Login with an authorized user.  The ```/dashboard``` endpoint is only accessible when a user is logged in. 
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Additional Information
+[JSON Placeholder](https://jsonplaceholder.typicode.com/) is used to make a dummy API call.  ```src/app/shared/data.service.ts``` show an example of calling this API with an Authorization header.
