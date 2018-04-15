@@ -18,19 +18,33 @@ export class ApplicationViewComponent implements OnInit {
   }
 
   get birthDate(): string {
-    return this.applicationToEdit.year + '-' + this.applicationToEdit.month + '-' + this.applicationToEdit.day;
+    if (this.applicationToEdit.year === '' || this.applicationToEdit.month === '' || this.applicationToEdit.day === '') {
+      return '';
+    } else {
+      return this.applicationToEdit.year + '-' + this.applicationToEdit.month + '-' + this.applicationToEdit.day;
+    }
   }
 
   get passportIssueDate(): string {
-    return this.applicationToEdit.passportIssueDateYear + '-'
-      + this.applicationToEdit.passportIssueDateMonth + '-'
-      + this.applicationToEdit.passportIssueDateDay;
+    if (this.applicationToEdit.passportIssueDateYear === '' || this.applicationToEdit.passportIssueDateMonth === ''
+      || this.applicationToEdit.passportIssueDateDay === '') {
+      return '';
+    } else {
+      return this.applicationToEdit.passportIssueDateYear + '-'
+        + this.applicationToEdit.passportIssueDateMonth + '-'
+        + this.applicationToEdit.passportIssueDateDay;
+    }
   }
 
   get passportExpirationDate(): string {
-    return this.applicationToEdit.passportExpirationDateYear + '-'
-      + this.applicationToEdit.passportExpirationDateMonth + '-'
-      + this.applicationToEdit.passportExpirationDateDay;
+    if (this.applicationToEdit.passportExpirationDateYear === '' || this.applicationToEdit.passportExpirationDateMonth === ''
+      || this.applicationToEdit.passportExpirationDateDay === '') {
+      return '';
+    } else {
+      return this.applicationToEdit.passportExpirationDateYear + '-'
+        + this.applicationToEdit.passportExpirationDateMonth + '-'
+        + this.applicationToEdit.passportExpirationDateDay;
+    }
   }
 
   closeApplicationClick(): void {
