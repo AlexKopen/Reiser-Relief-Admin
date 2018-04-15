@@ -11,13 +11,15 @@
             </div>
             <div class="pure-u-1-1 pure-u-lg-6-24" id="add-trip">
                 <h2>Add a Trip</h2>
-                <app-add-trip (reloadTrips)="updateTripDates()" (tripUpdating)="resourceUpdating($event)"></app-add-trip>
+                <app-add-trip (reloadTrips)="updateTripDates()"
+                              (tripUpdating)="resourceUpdating($event)"></app-add-trip>
             </div>
         </div>
 
         <h2>Applications</h2>
         <app-application-submissions [applications]="applications" (viewApplicationEvent)="viewApplication($event)"
-                                     (deleteApplicationEvent)="deleteApplication()" (applicationUpdating)="resourceUpdating($event)"></app-application-submissions>
+                                     (deleteApplicationEvent)="deleteApplication()"
+                                     (applicationUpdating)="resourceUpdating($event)"></app-application-submissions>
     </div>
 
     <app-application-view *ngIf="showApplicationView" [applicationToEdit]="selectedApplication"

@@ -26,7 +26,10 @@
         </div>
     </div>
 
-    <app-news *ngIf="showNews" [newsPosts]="allNewsPosts" [dataLoading]="dataLoading" (reloadNews)="reloadNews()"></app-news>
-    <app-applications *ngIf="showApplications" [applications]="allApplications" [tripDates]="allTripDates" [dataCallInProgress]="applicationDataCallInProgress" (reloadApplications)="reloadApplications()" (reloadTripDates)="reloadTripDates()"></app-applications>
+    <app-news *ngIf="showNews" [newsPosts]="allNewsPosts" [dataLoading]="dataLoading"
+              (reloadNews)="reloadNews()"></app-news>
+    <app-applications *ngIf="showApplications" [applications]="allApplications" [tripDates]="allTripDates"
+                      [dataCallInProgress]="applicationDataCallInProgress" (reloadApplications)="reloadApplications()"
+                      (reloadTripDates)="reloadTripDates()"></app-applications>
 
 </div>

@@ -28,7 +28,7 @@ export class NewsEntriesComponent implements OnInit {
 
   deleteNewsPost(newsPost: NewsPost): void {
     Swal({
-      title: 'Are you sure you want to delete "' + newsPost.title  + '"?',
+      title: 'Are you sure you want to delete "' + newsPost.title + '"?',
       text: 'This news entry will no longer appear on the website.',
       type: 'warning',
       showCancelButton: true,

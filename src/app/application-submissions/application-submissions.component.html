@@ -1,4 +1,5 @@
-<div *ngFor="let currentGroupedApplications of applicationsGroupedByTripDate" [ngClass]="{'hide': showOnToggle(currentGroupedApplications.tripDate) && !showOldValue}">
+<div *ngFor="let currentGroupedApplications of applicationsGroupedByTripDate"
+     [ngClass]="{'hide': showOnToggle(currentGroupedApplications.tripDate) && !showOldValue}">
     <h3>{{currentGroupedApplications.tripDate | date:'EEEE, MMMM d, y'}}</h3>
     <table class="pure-table">
         <thead>
