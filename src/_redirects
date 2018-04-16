@@ -1,2 +1,3 @@
+https://www.admin.reiserrelief.org/* https://admin.reiserrelief.org/:splat 301!
 /api/*  http://api.reiserrelief.org/:splat 200
 /* /index.html 200
