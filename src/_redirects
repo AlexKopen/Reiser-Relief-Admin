@@ -1,4 +1,2 @@
 /api/*  http://api.reiserrelief.org/:splat 200
-/login /index.html 200
-/callback /index.html 200
-/dashboard /index.html 200
+/* /index.html 200
