@@ -101,7 +101,7 @@ export class DataService {
 
   private handleError(err: HttpErrorResponse | any) {
     console.error('An error occurred', err);
-    window.location.replace('/');
+    // window.location.replace('/');
     return Observable.throw(err.message || err);
   }
 
