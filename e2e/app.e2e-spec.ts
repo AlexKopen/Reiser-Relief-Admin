@@ -1,6 +1,6 @@
 import { AngularAuthenticationTemplatePage } from './app.po';
 
-describe('angular-authentication-template App', () => {
+describe('reiser-relief-admin App', () => {
   let page: AngularAuthenticationTemplatePage;
 
   beforeEach(() => {

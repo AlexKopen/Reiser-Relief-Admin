@@ -1,4 +1,4 @@
-# Angular-Authentication-Template
+# Reiser-Relief-Admin
 
 This repository demonstrates the use of [Auth0](https://auth0.com) within an Angular 6 application and a sample Node API with a protected route.
 

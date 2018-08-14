@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-authentication-template": {
+    "reiser-relief-admin": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -43,18 +43,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-authentication-template:build"
+            "browserTarget": "reiser-relief-admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-authentication-template:build:production"
+              "browserTarget": "reiser-relief-admin:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-authentication-template:build"
+            "browserTarget": "reiser-relief-admin:build"
           }
         },
         "test": {
@@ -78,7 +78,7 @@
         }
       }
     },
-    "angular-authentication-template-e2e": {
+    "reiser-relief-admin-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -87,7 +87,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "angular-authentication-template:serve"
+            "devServerTarget": "reiser-relief-admin:serve"
           }
         },
         "lint": {
@@ -100,7 +100,7 @@
       }
     }
   },
-  "defaultProject": "angular-authentication-template",
+  "defaultProject": "reiser-relief-admin",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
