@@ -1,60 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AppRoutingModule } from './app-routing.module';
+import { ApiService } from './shared/api.service';
+import { AuthService } from './shared/auth/auth.service';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 import { CallbackComponent } from './callback/callback.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { AuthService } from './shared/auth.service';
-import { DataService } from './shared/data.service';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { FormsModule } from '@angular/forms';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { NewsComponent } from './news/news.component';
-import { ApplicationsComponent } from './applications/applications.component';
-import { QuillModule } from 'ngx-quill';
-import { NewsEntriesComponent } from './news-entries/news-entries.component';
-import { NewsEditComponent } from './news-edit/news-edit.component';
-import { ModifyTripComponent } from './modify-trip/modify-trip.component';
-import { AddTripComponent } from './add-trip/add-trip.component';
-import { ApplicationSubmissionsComponent } from './application-submissions/application-submissions.component';
-import { ApplicationViewComponent } from './application-view/application-view.component';
-import { ModifyTripViewComponent } from './modify-trip-view/modify-trip-view.component';
-import { DatePipe } from '@angular/common';
-
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CallbackComponent,
-    LoginComponent,
-    DashboardComponent,
-    NavigationComponent,
-    LoginFormComponent,
-    SpinnerComponent,
-    NewsComponent,
-    ApplicationsComponent,
-    NewsEntriesComponent,
-    NewsEditComponent,
-    ModifyTripComponent,
-    AddTripComponent,
-    ApplicationSubmissionsComponent,
-    ApplicationViewComponent,
-    ModifyTripViewComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    QuillModule
-  ],
-  providers: [AuthService, DataService, DatePipe],
+  declarations: [AppComponent, HomeComponent, CallbackComponent, LoginComponent, DashboardComponent, HeaderComponent],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule],
+  providers: [ApiService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

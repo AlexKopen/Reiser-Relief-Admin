@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DataService } from '../shared/data.service';
-import { NewsPost } from '../shared/models/news-post.model';
-import { Subscription } from 'rxjs/Subscription';
-import { Application } from '../shared/models/application.model';
-import { TripDate } from '../shared/models/trip-date.model';
+import { Subscription } from 'rxjs/index';
+import { ApiService } from '../shared/api.service';
+import { AuthService } from '../shared/auth/auth.service';
+import { Dragon } from '../shared/models/dragon.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,117 +10,49 @@ import { TripDate } from '../shared/models/trip-date.model';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  displayTiles = true;
-  showNews = false;
-  showApplications = false;
+  dragons: Dragon[];
+  authSubscription: Subscription;
+  dragonsSubscription: Subscription;
+  displayedColumns: string[] = ['id', 'name', 'source'];
 
-  private newsPosts: Array<NewsPost>;
-  private newsPostsSubscription: Subscription;
-
-  private applications: Array<Application>;
-  private applicationsSubscription: Subscription;
-
-  private tripDates: Array<TripDate>;
-  private tripDatesSubscription: Subscription;
-
-  private newsDataCallInProgress = false;
-  private applicationDataCallInProgress = false;
-
-  constructor(private dataService: DataService) {
-  }
+  constructor(private api: ApiService, private auth: AuthService) {}
 
   ngOnInit() {
-    this.loadNewsPosts();
-    this.loadApplications();
-    this.loadTripDates();
-  }
-
-  get dataLoading(): boolean {
-    return this.newsDataCallInProgress;
-  }
-
-  get allNewsPosts(): Array<NewsPost> {
-    return this.newsPosts ? this.newsPosts : [];
-  }
-
-  get allApplications(): Array<Application> {
-    return this.applications ? this.applications : [];
-  }
-
-  get allTripDates(): Array<TripDate> {
-    return this.tripDates ? this.tripDates : [];
-  }
-
-  private loadNewsPosts(): void {
-    this.newsDataCallInProgress = true;
-    this.newsPostsSubscription = this.dataService.getNewsPosts().subscribe(
-      data => this.loadNewsPostsCallback(data)
-    );
-  }
-
-  private loadNewsPostsCallback(newsPosts: Array<NewsPost>): void {
-    this.newsPosts = newsPosts;
-    this.newsDataCallInProgress = false;
-  }
-
-  private loadApplications(): void {
-    this.applicationDataCallInProgress = true;
-    this.applicationsSubscription = this.dataService.getApplications().subscribe(
-      data => this.loadApplicationsCallback(data)
-    );
-  }
-
-  private loadApplicationsCallback(applications: Array<Application>): void {
-    this.applications = applications;
-    this.applicationDataCallInProgress = false;
-  }
-
-  private loadTripDates(): void {
-    this.applicationDataCallInProgress = true;
-    this.tripDatesSubscription = this.dataService.getTripDates().subscribe(
-      data => this.loadTripDatesCallback(data)
-    );
-  }
-
-  private loadTripDatesCallback(tripDates: Array<TripDate>): void {
-    this.tripDates = tripDates;
-    this.applicationDataCallInProgress = false;
-  }
-
-  newsClick(): void {
-    this.displayTiles = false;
-    this.showNews = true;
-  }
-
-  applicationsClick(): void {
-    this.displayTiles = false;
-    this.showApplications = true;
-  }
-
-  get showCrumbs(): boolean {
-    return this.showNews || this.showApplications;
-  }
-
-  homeClick(): void {
-    this.showNews = false;
-    this.showApplications = false;
-    this.displayTiles = true;
-  }
-
-  reloadNews(): void {
-    this.loadNewsPosts();
-  }
-
-  reloadApplications(): void {
-    this.loadApplications();
-  }
-
-  reloadTripDates(): void {
-    this.loadTripDates();
+    this.authSubscription = this.auth.loggedIn$.subscribe(loggedIn => {
+      if (loggedIn) {
+        this._getDragons();
+      } else {
+        this.dragons = null;
+        this._destroyDragonsSubscription();
+      }
+    });
   }
 
   ngOnDestroy() {
-    this.newsPostsSubscription.unsubscribe();
-    this.applicationsSubscription.unsubscribe();
+    // Unsubscribe from observables
+    this.authSubscription.unsubscribe();
+    this._destroyDragonsSubscription();
+  }
+
+  private _getDragons() {
+    // Subscribe to dragons API observable
+    this.dragonsSubscription = this.api.getDragons$().subscribe(
+      data => {
+        this.dragons = data;
+      },
+      err => console.warn(err),
+      () => console.log('Request complete')
+    );
+  }
+
+  private _destroyDragonsSubscription() {
+    // If a dragons subscription exists, unsubscribe
+    if (this.dragonsSubscription) {
+      this.dragonsSubscription.unsubscribe();
+    }
+  }
+
+  get dragonsExist() {
+    return !!this.dragons && this.dragons.length;
   }
 }
