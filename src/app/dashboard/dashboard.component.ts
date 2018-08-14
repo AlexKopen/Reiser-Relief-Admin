@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/index';
 import { ApiService } from '../shared/api.service';
 import { AuthService } from '../shared/auth/auth.service';
-import { Dragon } from '../shared/models/dragon.model';
+import { NewsPost } from '../shared/models/news-post.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +10,7 @@ import { Dragon } from '../shared/models/dragon.model';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  dragons: Dragon[];
+  dragons: NewsPost[];
   authSubscription: Subscription;
   dragonsSubscription: Subscription;
   displayedColumns: string[] = ['id', 'name', 'source'];
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _getDragons() {
     // Subscribe to dragons API observable
-    this.dragonsSubscription = this.api.getDragons$().subscribe(
+    this.dragonsSubscription = this.api.getNews$().subscribe(
       data => {
         this.dragons = data;
       },

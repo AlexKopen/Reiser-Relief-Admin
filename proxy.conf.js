@@ -1,9 +1,9 @@
 module.exports = {
-  '/api': {
-    target: 'http://localhost:3001/api',
+  "/api": {
+    target: "http://api.reiserrelief.org",
     changeOrigin: true,
     pathRewrite: {
-      '^/api': ''
+      "^/api": ""
     },
     secure: false
   }

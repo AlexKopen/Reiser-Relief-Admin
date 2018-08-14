@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { throwError, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Dragon } from './models/dragon.model';
 import { ENDPOINT } from './endpoint.constants';
 import { AuthService } from './auth/auth.service';
+import { NewsPost } from './models/news-post.model';
 
 @Injectable()
 export class ApiService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  getDragons$(): Observable<Dragon[]> {
+  getNews$(): Observable<NewsPost[]> {
     return this.http
-      .get<Dragon[]>(ENDPOINT.dragons, {
+      .get<NewsPost[]>(ENDPOINT.newsUrlPublic, {
         headers: new HttpHeaders().set('Authorization', `Bearer ${this.auth.accessToken}`)
       })
       .pipe(catchError(this.handleError));
