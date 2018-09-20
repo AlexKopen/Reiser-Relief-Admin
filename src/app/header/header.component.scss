@@ -6,9 +6,13 @@
   margin-bottom: 2em;
 
   .header-column {
-    flex: 1;
+    flex: 0 0 80px;
     $header-column-height: 70px;
     height: $header-column-height;
+
+    &.center {
+      flex: 1;
+    }
 
     img {
       width: 60px;
@@ -16,7 +20,6 @@
 
     h1 {
       margin: 0;
-      width: 15em;
       text-align: center;
       line-height: $header-column-height;
     }
