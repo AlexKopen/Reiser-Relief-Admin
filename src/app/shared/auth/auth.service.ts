@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import * as auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
+import * as cookie from 'browser-cookies';
 
 (window as any).global = window;
 
@@ -78,6 +79,8 @@ export class AuthService {
     this.expiresAt = authResult.expiresIn * 1000 + Date.now();
     this.accessToken = authResult.accessToken;
     this._setLoggedIn(true);
+    cookie.set('accessToken', this.accessToken);
+    cookie.set('expires', String(this.expiresAt));
   }
 
   logout() {
@@ -86,6 +89,8 @@ export class AuthService {
     // This does a refresh and redirects back to homepage
     // Make sure you have the returnTo URL in your Auth0
     // Dashboard Application settings in Allowed Logout URLs
+    cookie.erase('accessToken');
+    cookie.erase('expires');
     this._Auth0.logout({
       returnTo: 'http://localhost:4200',
       clientID: AUTH_CONFIG.CLIENT_ID
@@ -93,8 +98,18 @@ export class AuthService {
   }
 
   get authenticated(): boolean {
-    // Check if current date is greater than
-    // expiration and user is currently logged in
     return Date.now() < this.expiresAt && this.loggedIn;
+  }
+
+  get previousSessionCookiesSet(): boolean {
+    const currentAccessToken = cookie.get('accessToken');
+    const currentExpires = Number(cookie.get('expires'));
+    if (currentAccessToken && currentExpires) {
+      this.accessToken = currentAccessToken;
+      this.expiresAt = currentExpires;
+      this._setLoggedIn(true);
+      return true;
+    }
+    return false;
   }
 }

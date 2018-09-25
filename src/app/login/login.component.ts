@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,12 @@ export class LoginComponent implements OnInit {
   showSpinner = false;
   showError = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
+    if (this.auth.previousSessionCookiesSet) {
+      this.router.navigate(['dashboard']);
+    }
     this.auth.logInError$.subscribe(data => this.processLoginError(data));
   }
 
