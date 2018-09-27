@@ -13,9 +13,22 @@ import { MaterialModule } from './material/material.module';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { MissionTripsComponent } from './mission-trips/mission-trips.component';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, CallbackComponent, LoginComponent, DashboardComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    CallbackComponent,
+    LoginComponent,
+    DashboardComponent,
+    HeaderComponent,
+    SideBarComponent,
+    MissionTripsComponent,
+    NewsComponent
+  ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule],
   providers: [ApiService, AuthService],
   bootstrap: [AppComponent]

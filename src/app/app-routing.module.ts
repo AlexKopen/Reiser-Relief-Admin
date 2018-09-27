@@ -5,6 +5,8 @@ import { AuthGuard } from './shared/auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { CallbackComponent } from './callback/callback.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MissionTripsComponent } from './mission-trips/mission-trips.component';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,21 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [AuthGuard]
+        children: [
+          {
+            path: '',
+            redirectTo: 'mission-trips',
+            pathMatch: 'full'
+          },
+          {
+            path: 'mission-trips',
+            component: MissionTripsComponent
+          },
+          {
+            path: 'news',
+            component: NewsComponent
+          }
+        ]
       },
       {
         path: '**',
