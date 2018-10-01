@@ -1,11 +1,7 @@
-<div class="container" id="header-container">
-    <div class="header-column">
-        <img src="../../assets/auth0-logo.png" alt="Auth0 Logo">
-    </div>
-    <div class="header-column center">
-        <h1 id="title">Reiser Relief Administrative Portal</h1>
-    </div>
-    <div class="header-column">
-        <p *ngIf="userIsAuthenticated" (click)="logout()">Log Out</p>
+<div class="container-fluid" id="header-container">
+    <div class="row">
+        <div class="col">
+            <p id="logout-text" *ngIf="userIsAuthenticated" (click)="logout()">Log Out</p>
+        </div>
     </div>
 </div>

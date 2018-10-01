@@ -1,42 +1,17 @@
 @import '../../globals';
 
 #header-container {
-  display: flex;
-  flex-wrap: nowrap;
-  margin-bottom: 2em;
+  $header-height: 5.25rem;
+  height: $header-height;
 
-  .header-column {
-    flex: 0 0 80px;
-    $header-column-height: 70px;
-    height: $header-column-height;
+  #logout-text {
+    text-align: right;
+    line-height: $header-height;
+    color: $light-gray;
+    cursor: pointer;
 
-    &.center {
-      flex: 1;
-    }
-
-    img {
-      width: 60px;
-    }
-
-    h1 {
-      margin: 0;
-      text-align: center;
-      line-height: $header-column-height;
-    }
-
-    p {
-      margin: 0;
-      text-align: right;
-      line-height: $header-column-height;
-
-      &:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
+    &:hover {
+      text-decoration: underline;
     }
   }
-}
-
-#title {
-  text-align: center;
 }
