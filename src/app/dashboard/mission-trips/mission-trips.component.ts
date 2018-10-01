@@ -9,7 +9,8 @@ import { TripDate } from '../../shared/models/trip-date.model';
 })
 export class MissionTripsComponent implements OnInit {
   tripDates: TripDate[];
-  displayedColumns = ['id', 'status', 'trip-leader', 'date'];
+  displayedColumns = ['status', 'trip-leader', 'date'];
+  crumbs = ['Mission Trips'];
   private showOld = false;
 
   constructor(private apiService: ApiService) {}
