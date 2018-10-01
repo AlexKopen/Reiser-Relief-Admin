@@ -7,9 +7,9 @@ interface AuthConfig {
 }
 
 export const AUTH_CONFIG: AuthConfig = {
-  CLIENT_ID: 'HL1GpSXXFG6Z65dJXTauRnchkyJFlbh5',
-  CLIENT_DOMAIN: 'kopen.auth0.com', // e.g., you.auth0.com
-  AUDIENCE: 'http://localhost:3001/api/',
+  CLIENT_ID: '5ep2SNhoVyNHhz41vxFl0Y2M8mg6o6gY',
+  CLIENT_DOMAIN: 'volzap.auth0.com',
+  AUDIENCE: 'https://api.reiserrelief.org',
   REDIRECT: window.location.href.split('/')[0] + '//' + window.location.href.split('/')[2] + '/callback/',
   SCOPE: 'openid profile email'
 };
