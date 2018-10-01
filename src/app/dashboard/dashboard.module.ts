@@ -4,9 +4,7 @@ import { NewsComponent } from './news/news.component';
 import { MissionTripsComponent } from './mission-trips/mission-trips.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [MissionTripsComponent, NewsComponent]
 })
-export class DashboardModule { }
+export class DashboardModule {}

@@ -35,7 +35,7 @@ import { NewsComponent } from './dashboard/news/news.component';
             path: '',
             redirectTo: 'mission-trips',
             pathMatch: 'full'
-          },
+          }
         ]
       },
       {

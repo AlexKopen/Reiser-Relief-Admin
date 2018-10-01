@@ -26,7 +26,15 @@ import { DashboardModule } from './dashboard/dashboard.module';
     HeaderComponent,
     SideBarComponent
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule, DashboardModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    DashboardModule
+  ],
   providers: [ApiService, AuthService],
   bootstrap: [AppComponent]
 })
