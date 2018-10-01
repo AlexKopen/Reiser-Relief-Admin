@@ -1,1 +1,13 @@
 @import '../../globals';
+
+$side-bar-container-width: 18rem;
+
+#side-bar-container {
+  position: absolute;
+  height: 100%;
+  width: $side-bar-container-width;
+}
+
+#dashboard-content {
+  margin-left: $side-bar-container-width;
+}

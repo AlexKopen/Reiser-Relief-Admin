@@ -1,16 +1,8 @@
-<div class="container-fluid no-padding">
+<div id="side-bar-container">
+  <app-side-bar></app-side-bar>
+</div>
 
-  <div class="row no-gutters">
-
-    <div class="col-3">
-      <app-side-bar></app-side-bar>
-    </div>
-
-    <div class="col-9">
-      <app-header></app-header>
-      <router-outlet></router-outlet>
-    </div>
-
-  </div>
-
+<div id="dashboard-content">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
 </div>
