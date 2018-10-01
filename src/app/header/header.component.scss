@@ -3,6 +3,7 @@
 #header-container {
   $header-height: 5.25rem;
   height: $header-height;
+  background: $white;
 
   #logout-text {
     text-align: right;

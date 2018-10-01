@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { ENDPOINT } from './endpoint.constants';
 import { AuthService } from './auth/auth.service';
 import { NewsPost } from './models/news-post.model';
+import { TripDate } from './models/trip-date.model';
 
 @Injectable()
 export class ApiService {
@@ -13,6 +14,14 @@ export class ApiService {
   getNews$(): Observable<NewsPost[]> {
     return this.http
       .get<NewsPost[]>(ENDPOINT.newsUrlPublic, {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${this.auth.accessToken}`)
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  getTripDates$(): Observable<TripDate[]> {
+    return this.http
+      .get<TripDate[]>(ENDPOINT.tripDatesUrlPublic, {
         headers: new HttpHeaders().set('Authorization', `Bearer ${this.auth.accessToken}`)
       })
       .pipe(catchError(this.handleError));
