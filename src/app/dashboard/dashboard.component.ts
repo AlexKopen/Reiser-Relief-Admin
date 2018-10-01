@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs/index';
 import { ApiService } from '../shared/api.service';
 import { AuthService } from '../shared/auth/auth.service';
 import { NewsPost } from '../shared/models/news-post.model';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,14 +16,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'name', 'source'];
   private pageToDisplay: string;
 
-  constructor(private api: ApiService, private auth: AuthService, private route: ActivatedRoute) {}
+  constructor(private api: ApiService, private auth: AuthService) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      console.log(data);
-      this.pageToDisplay = data.page;
-    });
-
     this.authSubscription = this.auth.loggedIn$.subscribe(loggedIn => {
       if (loggedIn) {
         this._getDragons();
