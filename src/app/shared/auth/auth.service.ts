@@ -98,7 +98,7 @@ export class AuthService {
   }
 
   get authenticated(): boolean {
-    return Date.now() < this.expiresAt && this.loggedIn;
+    return (Date.now() < this.expiresAt) && this.loggedIn;
   }
 
   get previousSessionCookiesSet(): boolean {

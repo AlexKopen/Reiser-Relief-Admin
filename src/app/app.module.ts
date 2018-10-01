@@ -14,8 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { MissionTripsComponent } from './mission-trips/mission-trips.component';
-import { NewsComponent } from './news/news.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -25,11 +24,9 @@ import { NewsComponent } from './news/news.component';
     LoginComponent,
     DashboardComponent,
     HeaderComponent,
-    SideBarComponent,
-    MissionTripsComponent,
-    NewsComponent
+    SideBarComponent
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule, DashboardModule],
   providers: [ApiService, AuthService],
   bootstrap: [AppComponent]
 })
