@@ -22,6 +22,7 @@ import { NewsComponent } from './dashboard/news/news.component';
       {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivateChild: [AuthGuard],
         children: [
           {
             path: 'mission-trips',

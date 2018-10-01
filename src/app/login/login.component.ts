@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/auth/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/index';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,17 @@ export class LoginComponent implements OnInit {
   password: String;
   showSpinner = false;
   showError = false;
+  authSubscription: Subscription;
 
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
-    if (this.auth.previousSessionCookiesSet) {
-      this.router.navigate(['dashboard']);
-    }
+    this.authSubscription = this.auth.loggedIn$.subscribe(loggedIn => {
+      if (!loggedIn) {
+        this.router.navigate(['dashboard']);
+      }
+    });
+
     this.auth.logInError$.subscribe(data => this.processLoginError(data));
   }
 

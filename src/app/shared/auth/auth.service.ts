@@ -101,15 +101,13 @@ export class AuthService {
     return Date.now() < this.expiresAt && this.loggedIn;
   }
 
-  get previousSessionCookiesSet(): boolean {
+  setPreviousSessionCookies(): void {
     const currentAccessToken = cookie.get('accessToken');
     const currentExpires = Number(cookie.get('expires'));
     if (currentAccessToken && currentExpires) {
       this.accessToken = currentAccessToken;
       this.expiresAt = currentExpires;
       this._setLoggedIn(true);
-      return true;
     }
-    return false;
   }
 }
