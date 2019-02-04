@@ -21,6 +21,7 @@ export class Application {
               public maidenName: string,
               public maritalStatus: string,
               public gender: string,
+              public shirtSize: string,
               public passportNumber: string,
               public passportIssueDateMonth: string,
               public passportIssueDateDay: string,
