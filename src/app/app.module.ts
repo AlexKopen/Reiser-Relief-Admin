@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ApiService } from './shared/api.service';
 import { AuthService } from './shared/auth/auth.service';
@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { Interceptor } from './interceptors/interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     MaterialModule,
     DashboardModule
   ],
-  providers: [ApiService, AuthService],
+  providers: [ApiService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
