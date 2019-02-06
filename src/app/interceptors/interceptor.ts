@@ -8,18 +8,14 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (!environment.production) {
-      if (req.method === 'GET') {
-        switch (req.url.slice(req.url.lastIndexOf('/') + 1)) {
-          case 'news':
-            return next.handle(req.clone({ url: 'http://localhost:3000/news' }));
-          case 'trip-dates-all':
-            return next.handle(req.clone({ url: 'http://localhost:3000/trip-dates-all' }));
-          default:
-            return next.handle(req);
-        }
-      } else {
-        return next.handle(req);
+    if (!environment.production && req.method === 'GET') {
+      switch (req.url.slice(req.url.lastIndexOf('/') + 1)) {
+        case 'news':
+          return next.handle(req.clone({ url: 'http://localhost:3000/news' }));
+        case 'trip-dates-all':
+          return next.handle(req.clone({ url: 'http://localhost:3000/trip-dates-all' }));
+        default:
+          return next.handle(req);
       }
     } else {
       return next.handle(req);
