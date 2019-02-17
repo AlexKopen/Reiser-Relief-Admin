@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 /** Pass untouched request through to the next request handler. */
 @Injectable()
 export class Interceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (!environment.production && req.method === 'GET') {
       switch (req.url.slice(req.url.lastIndexOf('/') + 1)) {
         case 'news':

@@ -22,5 +22,15 @@
   #menu-options {
     padding-left: 1rem;
     padding-top: 1rem;
+
+    ul {
+      padding: 0;
+      list-style: none;
+      color: $white;
+
+      li {
+        margin-bottom: 1em;
+      }
+    }
   }
 }
