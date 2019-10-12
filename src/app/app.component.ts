@@ -1,22 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  constructor(public afAuth: AngularFireAuth) {}
+export class AppComponent implements OnInit {
+  authLoaded = false;
+  showLoginForm: boolean;
 
-  login() {
-    this.afAuth.auth.signInWithEmailAndPassword(
-      'alexkopen@gmail.com',
-      'password'
-    );
-  }
-  logout() {
-    this.afAuth.auth.signOut();
+  constructor(private afAuth: AngularFireAuth) {}
+
+  ngOnInit(): void {
+    this.afAuth.authState
+      .pipe(
+        flatMap(() => {
+          return this.afAuth.user;
+        })
+      )
+      .subscribe((user: any) => {
+        this.showLoginForm = user === null;
+        this.authLoaded = true;
+      });
   }
 }
