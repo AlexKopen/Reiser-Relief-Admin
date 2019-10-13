@@ -1,7 +1,12 @@
 <form [formGroup]="loginForm">
   <ng-container *ngIf="!loginInProcess; else loading">
     <mat-form-field>
-      <input [formControlName]="'username'" matInput placeholder="Username" />
+      <mat-label>Username</mat-label>
+      <input
+        [formControlName]="'username'"
+        matInput
+        placeholder="username@example.com"
+      />
     </mat-form-field>
 
     <mat-form-field>

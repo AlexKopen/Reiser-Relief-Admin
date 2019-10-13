@@ -32,8 +32,10 @@ export class LoginComponent implements OnInit {
           this.loginForm.value.password.trim()
         )
         .catch(() => {
-          this.loginInProcess = false;
           this.showLoginError = true;
+        })
+        .finally(() => {
+          this.loginInProcess = false;
         });
     }
   }
