@@ -1,8 +1,27 @@
-<div *ngIf="afAuth.user | async as user; else showLogin">
-  <h1>Hello {{ user | json }}!</h1>
-  <button (click)="logout()">Logout</button>
-</div>
-<ng-template #showLogin>
-  <p>Please login.</p>
-  <button (click)="login()">Login with Google</button>
-</ng-template>
+<form [formGroup]="loginForm">
+  <ng-container *ngIf="!loginInProcess; else loading">
+    <mat-form-field>
+      <input [formControlName]="'username'" matInput placeholder="Username" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        [formControlName]="'password'"
+        matInput
+        placeholder="Password"
+        type="password"
+      />
+    </mat-form-field>
+
+    <button (click)="login()" type="submit">Login!</button>
+  </ng-container>
+
+  <ng-template #loading>
+    <p>loading</p>
+  </ng-template>
+</form>
+
+<p *ngIf="showFormErrors" class="error">
+  Please enter a valid username and password
+</p>
+<p *ngIf="showLoginError" class="error">Invalid username or password</p>
