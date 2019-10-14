@@ -40,6 +40,12 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+.container {
+  width: 98%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .error {
   text-align: center;
   color: #f44336;

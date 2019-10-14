@@ -1,3 +1,28 @@
 <app-header></app-header>
 
-<p>home works!</p>
+<div fxLayout="column" fxFill>
+  <div fxLayout fxFlex>
+    <div fxFlex="10">Sidebar</div>
+    <div fxFlex="90">
+      <div class="container">
+        <div
+          fxLayout="row"
+          fxLayout.lt-md="column"
+          fxLayoutAlign="space-evenly stretch"
+        >
+          <div fxFlex>
+            <mat-card>
+              news posts
+            </mat-card>
+          </div>
+
+          <div fxFlex>
+            <mat-card>
+              apps
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
