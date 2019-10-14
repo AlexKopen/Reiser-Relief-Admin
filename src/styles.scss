@@ -18,7 +18,7 @@ $reiser-relief-admin-accent: mat-palette($mat-pink, A200, A100, A400);
 $reiser-relief-admin-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$reiser-relief-admin-theme: mat-light-theme(
+$reiser-relief-admin-theme: mat-dark-theme(
   $reiser-relief-admin-primary,
   $reiser-relief-admin-accent,
   $reiser-relief-admin-warn
@@ -38,4 +38,9 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.error {
+  text-align: center;
+  color: #f44336;
 }

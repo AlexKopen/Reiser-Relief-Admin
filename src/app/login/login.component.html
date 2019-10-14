@@ -1,32 +1,52 @@
-<form [formGroup]="loginForm">
-  <ng-container *ngIf="!loginInProcess; else loading">
-    <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input
-        [formControlName]="'username'"
-        matInput
-        placeholder="username@example.com"
-      />
-    </mat-form-field>
+<div [fxLayout]="'row'" [fxLayoutAlign]="'center center'" id="login-wrapper">
+  <div id="login-container">
+    <mat-card>
+      <form [formGroup]="loginForm">
+        <ng-container *ngIf="!loginInProcess; else loading">
+          <div>
+            <mat-form-field>
+              <mat-label>Username</mat-label>
+              <input
+                [formControlName]="'username'"
+                matInput
+                placeholder="username@example.com"
+              />
+            </mat-form-field>
+          </div>
 
-    <mat-form-field>
-      <input
-        [formControlName]="'password'"
-        matInput
-        placeholder="Password"
-        type="password"
-      />
-    </mat-form-field>
+          <div>
+            <mat-form-field>
+              <input
+                [formControlName]="'password'"
+                matInput
+                placeholder="Password"
+                type="password"
+              />
+            </mat-form-field>
+          </div>
+          <button mat-button (click)="login()" type="submit">Login!</button>
+        </ng-container>
 
-    <button (click)="login()" type="submit">Login!</button>
-  </ng-container>
+        <ng-template #loading>
+          <div
+            [fxLayout]="'row'"
+            [fxLayoutAlign]="'center center'"
+            id="loading-wrapper"
+          >
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </ng-template>
+      </form>
 
-  <ng-template #loading>
-    <p>loading</p>
-  </ng-template>
-</form>
-
-<p *ngIf="showFormErrors" class="error">
-  Please enter a valid username and password
-</p>
-<p *ngIf="showLoginError" class="error">Invalid username or password</p>
+      <p *ngIf="showFormErrors" class="error">
+        Please enter a valid username and password
+      </p>
+      <p *ngIf="loginError" class="error">Invalid username or password</p>
+    </mat-card>
+  </div>
+</div>

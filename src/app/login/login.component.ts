@@ -10,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   formSubmitted = false;
   loginInProcess = false;
-  showLoginError = false;
+  loginError = false;
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.formSubmitted = true;
-    this.showLoginError = false;
+    this.loginError = false;
 
     if (!this.showFormErrors) {
       this.loginInProcess = true;
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
           this.loginForm.value.password.trim()
         )
         .catch(() => {
-          this.showLoginError = true;
+          this.loginError = true;
         })
         .finally(() => {
           this.loginInProcess = false;
