@@ -1,5 +1,10 @@
 mat-card {
   margin: 0 auto;
+  margin-bottom: 10px;
   width: 90%;
-  height: 100%;
+
+  @media only screen and (min-width: 960px) {
+    margin: 0 auto;
+    height: 100%;
+  }
 }
