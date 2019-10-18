@@ -57,10 +57,6 @@ export class NewsPostsComponent implements OnInit {
     console.table(newsPost);
   }
 
-  castAsNewsPost(newsPost: NewsPost): NewsPost {
-    return newsPost;
-  }
-
   toggleInactivePosts(): void {
     this.showInactivePosts = !this.showInactivePosts;
   }
