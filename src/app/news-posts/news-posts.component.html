@@ -1,3 +1,30 @@
-<p>
-  {{ newsPosts | json }}
-</p>
+<ng-container *ngIf="dataLoaded">
+  <table mat-table [dataSource]="newsPostsFiltered">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Date</th>
+      <td mat-cell *matCellDef="let element">
+        {{ castAsNewsPost(element).date | date }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element">
+        {{ castAsNewsPost(element).title }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <span (click)="edit(element)">Edit</span> |
+        <span (click)="delete(element)">Delete</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <p (click)="toggleInactivePosts()">{{ postToggleText }} Inactive Posts</p>
+</ng-container>

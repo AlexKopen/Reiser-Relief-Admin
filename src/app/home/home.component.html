@@ -5,18 +5,14 @@
     <div fxFlex="10">Sidebar</div>
     <div fxFlex="90">
       <div class="container">
-        <div
-          fxLayout="row"
-          fxLayout.lt-md="column"
-          fxLayoutAlign="space-evenly stretch"
-        >
-          <div fxFlex>
+        <div fxLayout="column" fxLayoutAlign="space-evenly stretch">
+          <div fxFlex class="card-container">
             <mat-card>
               <app-news-posts></app-news-posts>
             </mat-card>
           </div>
 
-          <div fxFlex>
+          <div fxFlex class="card-container">
             <mat-card>
               apps
             </mat-card>

@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { NewsPostsComponent } from './news-posts/news-posts.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     MatInputModule,
     FlexLayoutModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
