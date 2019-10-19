@@ -18,6 +18,9 @@ export class NewsPostsComponent implements OnInit {
   displayedColumns: string[] = ['date', 'title', 'actions'];
   showInactivePosts = false;
 
+  newsActionActive = false;
+  selectedNewsPost: NewsPost;
+
   private newsPostsCollection: AngularFirestoreCollection<NewsPost>;
 
   constructor(private afs: AngularFirestore) {}
@@ -50,7 +53,8 @@ export class NewsPostsComponent implements OnInit {
   }
 
   edit(newsPost: NewsPost): void {
-    console.table(newsPost);
+    this.selectedNewsPost = newsPost;
+    this.newsActionActive = true;
   }
 
   delete(newsPost: NewsPost): void {
@@ -63,5 +67,10 @@ export class NewsPostsComponent implements OnInit {
 
   get postToggleText(): string {
     return this.showInactivePosts ? 'Hide' : 'Show';
+  }
+
+  back(): void {
+    this.newsActionActive = false;
+    this.selectedNewsPost = null;
   }
 }

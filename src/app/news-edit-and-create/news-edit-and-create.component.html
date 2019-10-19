@@ -1,0 +1,19 @@
+<p>news-edit-and-create works!</p>
+
+<form [formGroup]="newsForm">
+  <mat-form-field>
+    <input
+      matInput
+      [formControlName]="newsFormFields.title"
+      placeholder="Input"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea
+      matInput
+      [formControlName]="newsFormFields.content"
+      placeholder="Textarea"
+    ></textarea>
+  </mat-form-field>
+</form>

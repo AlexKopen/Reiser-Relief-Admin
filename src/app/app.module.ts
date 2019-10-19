@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NewsPostsComponent } from './news-posts/news-posts.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MatTableModule } from '@angular/material';
+import { NewsEditAndCreateComponent } from './news-edit-and-create/news-edit-and-create.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatTableModule } from '@angular/material';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    NewsPostsComponent
+    NewsPostsComponent,
+    NewsEditAndCreateComponent
   ],
   imports: [
     BrowserModule,

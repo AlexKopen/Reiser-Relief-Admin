@@ -1,30 +1,38 @@
 <ng-container *ngIf="dataLoaded">
-  <table mat-table [dataSource]="newsPostsFiltered">
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef>Date</th>
-      <td mat-cell *matCellDef="let newsPost">
-        {{ newsPost.date | date }}
-      </td>
-    </ng-container>
+  <ng-container *ngIf="!newsActionActive; else newsAction">
+    <table mat-table [dataSource]="newsPostsFiltered">
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let newsPost">
+          {{ newsPost.date | date }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>Title</th>
-      <td mat-cell *matCellDef="let newsPost">
-        {{ newsPost.title }}
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let newsPost">
+          {{ newsPost.title }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
-      <td mat-cell *matCellDef="let element">
-        <span (click)="edit(element)">Edit</span> |
-        <span (click)="delete(element)">Delete</span>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <span (click)="edit(element)">Edit</span> |
+          <span (click)="delete(element)">Delete</span>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
 
-  <p (click)="toggleInactivePosts()">{{ postToggleText }} Inactive Posts</p>
+    <p (click)="toggleInactivePosts()">{{ postToggleText }} Inactive Posts</p>
+  </ng-container>
+  <ng-template #newsAction>
+    <p (click)="back()">Back to news posts</p>
+    <app-news-edit-and-create
+      [newsPost]="selectedNewsPost"
+    ></app-news-edit-and-create>
+  </ng-template>
 </ng-container>
