@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NewsPost } from '../shared/models/news-post.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-news-edit-and-create',
@@ -17,7 +18,7 @@ export class NewsEditAndCreateComponent implements OnInit {
 
   newsForm: FormGroup;
 
-  constructor() {}
+  constructor(private afs: AngularFirestore) {}
 
   ngOnInit() {
     const formControls = {};
@@ -38,5 +39,11 @@ export class NewsEditAndCreateComponent implements OnInit {
         .get(this.newsFormFields.content)
         .setValue(this.newsPost.content);
     }
+  }
+
+  updateClick(): void {
+    this.afs
+      .doc<NewsPost>(`news-posts/${this.newsPost.id}`)
+      .update(this.newsForm.value);
   }
 }
