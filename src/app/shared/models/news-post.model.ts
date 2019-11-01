@@ -3,4 +3,5 @@ export class NewsPost {
   content: string;
   date: Date;
   title: string;
+  deleted: boolean;
 }

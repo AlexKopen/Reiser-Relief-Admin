@@ -20,6 +20,9 @@
         <td mat-cell *matCellDef="let element">
           <span (click)="edit(element)">Edit</span> |
           <span (click)="delete(element)">Delete</span>
+          <span *ngIf="element.deleted" (click)="restore(element)"
+            >| Restore</span
+          >
         </td>
       </ng-container>
 
@@ -27,7 +30,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    <p (click)="toggleInactivePosts()">{{ postToggleText }} Inactive Posts</p>
+    <p (click)="toggleInactivePosts()">
+      {{ postToggleText }} Inactive & Deleted Posts
+    </p>
   </ng-container>
   <ng-template #newsAction>
     <p (click)="back()">Back to news posts</p>

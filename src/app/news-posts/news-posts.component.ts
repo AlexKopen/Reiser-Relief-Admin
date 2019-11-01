@@ -16,7 +16,7 @@ export class NewsPostsComponent implements OnInit {
   dataLoaded = false;
   newsPosts: NewsPost[];
   displayedColumns: string[] = ['date', 'title', 'actions'];
-  showInactivePosts = false;
+  showInactiveAndDeletedPosts = false;
 
   newsActionActive = false;
   selectedNewsPost: NewsPost;
@@ -46,7 +46,13 @@ export class NewsPostsComponent implements OnInit {
 
   get newsPostsFiltered(): NewsPost[] {
     return orderBy(
-      this.showInactivePosts ? this.newsPosts : this.newsPosts.slice(0, 4),
+      this.showInactiveAndDeletedPosts
+        ? this.newsPosts
+        : this.newsPosts
+            .filter((newsPost: NewsPost) => {
+              return newsPost.deleted !== true;
+            })
+            .slice(0, 4),
       ['date'],
       ['desc']
     );
@@ -58,15 +64,21 @@ export class NewsPostsComponent implements OnInit {
   }
 
   delete(newsPost: NewsPost): void {
-    console.table(newsPost);
+    newsPost.deleted = true;
+    this.afs.doc<NewsPost>(`news-posts/${newsPost.id}`).update(newsPost);
+  }
+
+  restore(newsPost: NewsPost): void {
+    newsPost.deleted = false;
+    this.afs.doc<NewsPost>(`news-posts/${newsPost.id}`).update(newsPost);
   }
 
   toggleInactivePosts(): void {
-    this.showInactivePosts = !this.showInactivePosts;
+    this.showInactiveAndDeletedPosts = !this.showInactiveAndDeletedPosts;
   }
 
   get postToggleText(): string {
-    return this.showInactivePosts ? 'Hide' : 'Show';
+    return this.showInactiveAndDeletedPosts ? 'Hide' : 'Show';
   }
 
   back(): void {
