@@ -20,6 +20,7 @@ import { NewsPostsComponent } from './news-posts/news-posts.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MatTableModule } from '@angular/material';
 import { NewsEditAndCreateComponent } from './news-edit-and-create/news-edit-and-create.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NewsEditAndCreateComponent } from './news-edit-and-create/news-edit-and
     FlexLayoutModule,
     MatCardModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

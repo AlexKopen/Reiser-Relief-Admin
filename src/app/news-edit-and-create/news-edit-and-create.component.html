@@ -1,21 +1,29 @@
-<p>news-edit-and-create works!</p>
+<div fxLayout="row" fxLayout.md="column">
+  <div fxFlex>
+    <form [formGroup]="newsForm">
+      <mat-form-field>
+        <input
+          matInput
+          [formControlName]="newsFormFields.title"
+          placeholder="Input"
+        />
+      </mat-form-field>
 
-<form [formGroup]="newsForm">
-  <mat-form-field>
-    <input
-      matInput
-      [formControlName]="newsFormFields.title"
-      placeholder="Input"
-    />
-  </mat-form-field>
+      <mat-form-field>
+        <textarea
+          matInput
+          [formControlName]="newsFormFields.content"
+          placeholder="Textarea"
+        ></textarea>
+        <quill-editor></quill-editor>
+      </mat-form-field>
+    </form>
+  </div>
 
-  <mat-form-field>
-    <textarea
-      matInput
-      [formControlName]="newsFormFields.content"
-      placeholder="Textarea"
-    ></textarea>
-  </mat-form-field>
-</form>
+  <div fxFlex>
+    <h2>Preview</h2>
+    <div [innerHTML]="previewContent"></div>
+  </div>
+</div>
 
-<button mat-button (click)="updateClick()">Update</button>
+<button mat-button-raised (click)="updateClick()">Update</button>

@@ -29,6 +29,23 @@ export class NewsEditAndCreateComponent implements OnInit {
       ]);
     });
 
+    Object.keys(this.newsFormFields).forEach(key => {
+      formControls[key] = new FormControl(this.newsFormFields[key], [
+        Validators.required
+      ]);
+    });
+
+    this.newsForm = new FormGroup(formControls);
+
+    if (this.newsPost) {
+      this.newsForm
+        .get(this.newsFormFields.title)
+        .setValue(this.newsPost.title);
+      this.newsForm
+        .get(this.newsFormFields.content)
+        .setValue(this.newsPost.content);
+    }
+
     this.newsForm = new FormGroup(formControls);
 
     if (this.newsPost) {
@@ -45,5 +62,9 @@ export class NewsEditAndCreateComponent implements OnInit {
     this.afs
       .doc<NewsPost>(`news-posts/${this.newsPost.id}`)
       .update(this.newsForm.value);
+  }
+
+  get previewContent(): string {
+    return this.newsForm.get(this.newsFormFields.content).value;
   }
 }
