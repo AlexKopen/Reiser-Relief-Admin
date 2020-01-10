@@ -1,24 +1,31 @@
 <app-header></app-header>
 
-<div fxLayout="column" fxFill>
-  <div fxLayout fxFlex>
-    <div fxFlex="10">Sidebar</div>
-    <div fxFlex="90">
-      <div class="container">
-        <div fxLayout="column" fxLayoutAlign="space-evenly stretch">
-          <div fxFlex class="card-container">
-            <mat-card>
-              <app-news-posts></app-news-posts>
-            </mat-card>
-          </div>
+<!--<div fxLayout="column" fxFill>-->
+<!--  <div fxLayout fxFlex>-->
+<!--    <div fxFlex="10">Sidebar</div>-->
+<!--    <div fxFlex="90">-->
+<!--      <div class="container">-->
+<!--        <div fxLayout="column" fxLayoutAlign="space-evenly stretch">-->
+<!--          <div fxFlex class="card-container">-->
+<!--            <mat-card>-->
+<!--              <app-news-posts></app-news-posts>-->
+<!--            </mat-card>-->
+<!--          </div>-->
 
-          <div fxFlex class="card-container">
-            <mat-card>
-              apps
-            </mat-card>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--          <div fxFlex class="card-container">-->
+<!--            <mat-card>-->
+<!--              apps-->
+<!--            </mat-card>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>Drawer content</mat-drawer>
+  <mat-drawer-content>
+    <app-news-posts></app-news-posts>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,3 +1,9 @@
+@import 'src/app/shared/globals';
+
+mat-drawer-container {
+  height: calc(100% - #{$header-height});
+}
+
 .card-container {
   margin-bottom: 2em;
 }
