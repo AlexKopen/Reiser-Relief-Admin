@@ -18,9 +18,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { NewsPostsComponent } from './news-posts/news-posts.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { MatSidenavModule, MatTableModule } from '@angular/material';
+import {
+  MatListModule,
+  MatSidenavModule,
+  MatTableModule
+} from '@angular/material';
 import { NewsEditAndCreateComponent } from './news-edit-and-create/news-edit-and-create.component';
 import { QuillModule } from 'ngx-quill';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,9 @@ import { QuillModule } from 'ngx-quill';
     MatButtonModule,
     MatTableModule,
     QuillModule.forRoot(),
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

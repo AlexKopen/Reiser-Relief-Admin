@@ -4,17 +4,11 @@ mat-drawer-container {
   height: calc(100% - #{$header-height});
 }
 
-.card-container {
-  margin-bottom: 2em;
+mat-drawer {
+  width: 12em;
+  background: #fff;
 }
 
-mat-card {
-  margin: 0 auto;
-  margin-bottom: 10px;
-  width: 90%;
-
-  @media only screen and (min-width: 960px) {
-    margin: 0 auto;
-    height: 100%;
-  }
+mat-list-item {
+  color: #000 !important;
 }
