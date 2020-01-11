@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { faFile, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +8,7 @@ import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent implements OnInit {
   faNewspaper = faNewspaper;
+  faFile = faFile;
 
   constructor() {}
 

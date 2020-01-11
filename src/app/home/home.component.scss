@@ -2,6 +2,7 @@
 
 mat-drawer-container {
   height: calc(100% - #{$header-height});
+  border-right: 1px solid $theme-color-gray;
 }
 
 mat-drawer {
